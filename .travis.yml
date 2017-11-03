@@ -25,6 +25,7 @@ env:
   - TESTS="1" ODOO_REPO="OCA/OCB"
   - TESTS="1" ODOO_REPO="odoo/odoo"
 
+    #hello
 install:
   - pip install -q unidecode
   - pip install unicodecsv
