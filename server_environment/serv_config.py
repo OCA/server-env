@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Adapted by Nicolas Bessi. Copyright Camptocamp SA
@@ -20,7 +19,7 @@
 ##############################################################################
 
 import os
-import ConfigParser
+import configparser
 from lxml import etree
 from itertools import chain
 
@@ -91,7 +90,7 @@ def _load_config():
     else:
         conf_files = _listconf(running_env)
 
-    config_p = ConfigParser.SafeConfigParser()
+    config_p = configparser.SafeConfigParser()
     # options are case-sensitive
     config_p.optionxform = str
     try:
@@ -138,28 +137,35 @@ class ServerConfiguration(models.TransientModel):
 
     @classmethod
     def _format_key(cls, section, key):
-        return '%s | %s' % (section, key)
+        return '%s_I_%s' % (section, key)
+
+    @classmethod
+    def _format_key_display_name(cls, key_name):
+        return key_name.replace('_I_', ' | ')
 
     @classmethod
     def _add_columns(cls):
         """Add columns to model dynamically"""
         cols = chain(
-            cls._get_base_cols().items(),
-            cls._get_env_cols().items(),
-            cls._get_system_cols().items()
+            list(cls._get_base_cols().items()),
+            list(cls._get_env_cols().items()),
+            list(cls._get_system_cols().items())
         )
         for col, value in cols:
             col_name = col.replace('.', '_')
             setattr(ServerConfiguration,
                     col_name,
-                    fields.Char(string=col, readonly=True))
+                    fields.Char(
+                        string=cls._format_key_display_name(col_name),
+                        readonly=True)
+                    )
             cls._conf_defaults[col_name] = value
 
     @classmethod
     def _get_base_cols(cls):
         """ Compute base fields"""
         res = {}
-        for col, item in system_base_config.options.items():
+        for col, item in list(system_base_config.options.items()):
             key = cls._format_key('odoo', col)
             res[key] = item
         return res
@@ -199,8 +205,7 @@ class ServerConfiguration(models.TransientModel):
     @classmethod
     def _build_osv(cls):
         """Build the view for the current configuration."""
-        arch = ('<?xml version="1.0" encoding="utf-8"?>'
-                '<form string="Configuration Form">'
+        arch = ('<form string="Configuration Form">'
                 '<notebook colspan="4">')
 
         # Odoo server configuration
