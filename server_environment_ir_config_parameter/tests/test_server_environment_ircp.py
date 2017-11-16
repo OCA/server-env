@@ -1,19 +1,23 @@
-# -*- coding: utf-8 -*-
-# Copyright 2016 ACSONE SA/NV
+# Copyright 2016-2018 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
-from cStringIO import StringIO
 
 from odoo.exceptions import UserError
 from odoo.tests import common
-from odoo.tools import convert
+from odoo.tools import convert_file
+from odoo.modules.module import get_resource_path
 
 
 class TestEnv(common.TransactionCase):
 
     def setUp(self):
-        super(TestEnv, self).setUp()
+        super().setUp()
         self.ICP = self.env['ir.config_parameter']
+
+    def _load_xml(self, module, filepath):
+        convert_file(
+            self.env.cr, module,
+            get_resource_path(module, filepath),
+            {}, mode='init', noupdate=False, kind='test')
 
     def test_get_param(self):
         """ Get system parameter from config """
@@ -68,14 +72,9 @@ class TestEnv(common.TransactionCase):
         self.assertEqual(self.ICP.get_param('ircp_nonexistant'), False)
 
     def test_override_xmldata(self):
-        xml = """<odoo>
-            <data>
-                <record model="ir.config_parameter" id="some_record_id">
-                    <field name="key">ircp_from_config</field>
-                    <field name="value">value_from_xml</field>
-                </record>
-            </data>
-        </odoo>"""
-        convert.convert_xml_import(self.env.cr, 'testmodule', StringIO(xml))
+        self._load_xml(
+            'server_environment_ir_config_parameter',
+            'tests/config_param_test.xml'
+        )
         value = self.ICP.get_param('ircp_from_config')
         self.assertEqual(value, 'config_value')
