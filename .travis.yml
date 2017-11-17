@@ -11,7 +11,6 @@ addons:
       - expect-dev  # provides unbuffer utility
       - python-lxml # because pip installation is slow
       - unixodbc-dev
-      - python-mysqldb
 
 env:
   global:
@@ -25,7 +24,6 @@ env:
   - TESTS="1" ODOO_REPO="OCA/OCB"
   - TESTS="1" ODOO_REPO="odoo/odoo"
 
-    #hello
 install:
   - pip install -q unidecode
   - pip install unicodecsv
@@ -35,6 +33,8 @@ install:
   # Requirements to test server_environment modules
   - printf '[options]\n\nrunning_env = dev\n' > ${HOME}/.openerp_serverrc
   - ln -s ${TRAVIS_BUILD_DIR}/server_environment_files_sample ${TRAVIS_BUILD_DIR}/server_environment_files
+  # Install libraries that require specific development headers, but not during lint test
+  - if ! [ "$LINT_CHECK" = "1" ]; then pip install pymssql pyodbc; fi
 
 script:
   - travis_run_tests
