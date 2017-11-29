@@ -33,7 +33,7 @@ default values with a section named `[outgoing_mail.resource_name]` or
 `[incoming_mail.resource_name]` where "resource_name" is the name of
 the server.
 
-Exemple of config file ::
+Example of config file ::
 
   [outgoing_mail]
   smtp_host = smtp.myserver.com
@@ -81,7 +81,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues
 <https://github.com/OCA/server-tools/issues>`_. In case of trouble, please
 check there if your issue has already been reported. If you spotted it first,
-help us smashing it by providing a detailed and welcomed feedback.
+help us smash it by providing a detailed and welcomed feedback.
 
 Credits
 =======
