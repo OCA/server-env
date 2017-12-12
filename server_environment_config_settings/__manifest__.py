@@ -12,4 +12,6 @@
     'depends': [
         'server_environment',
     ],
+    'auto_install': False,
+    'installable': True
 }
