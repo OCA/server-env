@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_oauth_provider_form" model="ir.ui.view">
+        <field name="name">auth.oauth.provider.form.inherit</field>
+        <field name="model">auth.oauth.provider</field>
+        <field name="inherit_id" ref="auth_oauth.view_oauth_provider_form" />
+        <field name="arch" type="xml">
+            <field name="name" position="before">
+                <field name="managed_by_env" invisible="1" />
+            </field>
+            <field name="name" position="attributes">
+                <attribute name="attrs">{'readonly': [('managed_by_env', '=', True)]}</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>
