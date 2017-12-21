@@ -45,8 +45,9 @@ class AuthOAuthProvider(models.Model):
         for provider in self:
             provider.provider_simple_name = provider.name.split(' ')[0].lower()
 
-    @api.one
+    @api.multi
     def _get_provider_section_name(self):
+        self.ensure_one()
         return '.'.join(['auth_oauth', self.provider_simple_name])
 
     @api.model
