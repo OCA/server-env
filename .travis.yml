@@ -32,7 +32,7 @@ install:
   - travis_install_nightly
   # Requirements to test server_environment modules
   - printf '[options]\n\nrunning_env = dev\n' > ${HOME}/.openerp_serverrc
-  #- ln -s ${TRAVIS_BUILD_DIR}/server_environment_files_sample ${TRAVIS_BUILD_DIR}/server_environment_files
+  - ln -s ${TRAVIS_BUILD_DIR}/server_environment_files_sample ${TRAVIS_BUILD_DIR}/server_environment_files
 
 script:
   - travis_run_tests
