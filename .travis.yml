@@ -10,6 +10,7 @@ addons:
     packages:
       - expect-dev  # provides unbuffer utility
       - python-lxml # because pip installation is slow
+      - unixodbc-dev
 
 env:
   global:
@@ -23,14 +24,12 @@ env:
   - TESTS="1" ODOO_REPO="OCA/OCB"
   - TESTS="1" ODOO_REPO="odoo/odoo"
 
-
 install:
   - pip install -q unidecode
   - pip install unicodecsv
   - git clone --depth=1 https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
-  # Requirements to test server_environment modules
   - printf '[options]\n\nrunning_env = dev\n' > ${HOME}/.openerp_serverrc
   - ln -s ${TRAVIS_BUILD_DIR}/server_environment_files_sample ${TRAVIS_BUILD_DIR}/server_environment_files
 
