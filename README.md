@@ -25,6 +25,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
+[mail_environment](mail_environment/) | 11.0.1.0.0 | Configure mail servers with server_environment_files
 [server_environment](server_environment/) | 11.0.1.0.0 | move some configurations out of the database
 [server_environment_files_sample](server_environment_files_sample/) | 11.0.1.0.0 | sample config file for server_environment
 
