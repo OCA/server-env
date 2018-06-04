@@ -21,7 +21,7 @@
 {
     "name": "server configuration environment files",
     "version": "11.0.1.0.1",
-    "depends": ["base", "server_environment_files"],
+    "depends": ["base"],
     "author": "Camptocamp,Odoo Community Association (OCA)",
     "summary": "move some configurations out of the database",
     "website": "http://odoo-community.org/",
