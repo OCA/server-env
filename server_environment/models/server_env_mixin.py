@@ -35,7 +35,7 @@ class ServerEnvMixin(models.AbstractModel):
     By default, it looks for the configuration in a section named
     ``[model_name.Record Name]`` where ``model_name`` is the ``_name`` of the
     model with ``.`` replaced by ``_``. It can be customized by overriding the
-    method :meth:`~server_env_section_name`.
+    method :meth:`~_server_env_section_name`.
 
     For each field transformed to an env-computed field, a companion field
     ``<field>_env_default`` is automatically created. When it's value is set
@@ -111,17 +111,17 @@ class ServerEnvMixin(models.AbstractModel):
         read from the ``<field>_env_default`` field from database.
         """
         for record in self:
-            for field_name, getter_name in self._server_env_fields.items():
-                section_name = self._server_env_section_name()
+            for field_name, getter_name in record._server_env_fields.items():
+                section_name = record._server_env_section_name()
                 if (section_name in serv_config
                         and field_name in serv_config[section_name]):
 
-                    value = self._server_env_read_from_config(
+                    value = record._server_env_read_from_config(
                         section_name, field_name, getter_name
                     )
 
                 else:
-                    default_field = self._server_env_default_fieldname(
+                    default_field = record._server_env_default_fieldname(
                         field_name
                     )
                     value = record[default_field]
@@ -152,7 +152,8 @@ class ServerEnvMixin(models.AbstractModel):
                 is_editable_field = self._server_env_is_editable_fieldname(
                     field_name
                 )
-                section_name = self._server_env_section_name()
+
+                section_name = record._server_env_section_name()
                 is_editable = not (section_name in serv_config
                                    and field_name in serv_config[section_name])
                 record[is_editable_field] = is_editable
@@ -211,6 +212,7 @@ class ServerEnvMixin(models.AbstractModel):
         setattr(ServerEnvMixin, inverse_method_name, inverse_method)
         field.inverse = inverse_method_name
         field.store = False
+        field.required = False
         field.copy = False
         field.sparse = None
 
@@ -239,12 +241,15 @@ class ServerEnvMixin(models.AbstractModel):
         fieldname = self._server_env_default_fieldname(base_field.name)
         if fieldname not in self._fields:
             base_field_cls = base_field.__class__
-            field_args = base_field.args
+            field_args = base_field.args.copy()
             field_args.pop('_sequence', None)
             field_args.update({
                 'sparse': 'server_env_defaults',
                 'automatic': True,
             })
+
+            if hasattr(base_field, 'selection'):
+                field_args['selection'] = base_field.selection
             field = base_field_cls(**field_args)
             self._add_field(fieldname, field)
 
@@ -253,6 +258,6 @@ class ServerEnvMixin(models.AbstractModel):
         super()._setup_base()
         for fieldname in self._server_env_fields:
             field = self._fields[fieldname]
+            self._server_env_add_default_field(field)
             self._server_env_transform_field_to_read_from_env(field)
             self._server_env_add_is_editable_field(field)
-            self._server_env_add_default_field(field)
