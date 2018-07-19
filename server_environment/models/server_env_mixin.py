@@ -34,8 +34,10 @@ class ServerEnvMixin(models.AbstractModel):
 
     By default, it looks for the configuration in a section named
     ``[model_name.Record Name]`` where ``model_name`` is the ``_name`` of the
-    model with ``.`` replaced by ``_``. It can be customized by overriding the
-    method :meth:`~_server_env_section_name`.
+    model with ``.`` replaced by ``_``. Then in a global section which is only
+    the name of the model. They can be customized by overriding the method
+    :meth:`~_server_env_section_name` and
+    :meth:`~_server_env_global_section_name`.
 
     For each field transformed to an env-computed field, a companion field
     ``<field>_env_default`` is automatically created. When it's value is set
@@ -88,6 +90,15 @@ class ServerEnvMixin(models.AbstractModel):
         return {}
 
     @api.multi
+    def _server_env_global_section_name(self):
+        """Name of the global section in the configuration files
+
+        Can be customized in your model
+        """
+        self.ensure_one()
+        return self._name.replace(".", "_")
+
+    @api.multi
     def _server_env_section_name(self):
         """Name of the section in the configuration files
 
@@ -99,12 +110,20 @@ class ServerEnvMixin(models.AbstractModel):
         )
 
     @api.multi
-    def _server_env_read_from_config(self, section_name, field_name,
-                                     config_getter):
+    def _server_env_read_from_config(self, field_name, config_getter):
         self.ensure_one()
+        global_section_name = self._server_env_global_section_name()
+        section_name = self._server_env_section_name()
         try:
+            # at this point we should have checked that we have a key with
+            # _server_env_has_key_defined so we are sure that the value is
+            # either in the global or the record config
             getter = getattr(serv_config, config_getter)
-            value = getter(section_name, field_name)
+            if (section_name in serv_config
+                    and field_name in serv_config[section_name]):
+                value = getter(section_name, field_name)
+            else:
+                value = getter(global_section_name, field_name)
         except:
             _logger.exception(
                 "error trying to read field %s in section %s",
@@ -115,6 +134,21 @@ class ServerEnvMixin(models.AbstractModel):
         return value
 
     @api.multi
+    def _server_env_has_key_defined(self, field_name):
+        self.ensure_one()
+        global_section_name = self._server_env_global_section_name()
+        section_name = self._server_env_section_name()
+        has_global_config = (
+            global_section_name in serv_config
+            and field_name in serv_config[global_section_name]
+        )
+        has_config = (
+            section_name in serv_config
+            and field_name in serv_config[section_name]
+        )
+        return has_global_config or has_config
+
+    @api.multi
     def _compute_server_env(self):
         """Read values from environment configuration files
 
@@ -122,13 +156,11 @@ class ServerEnvMixin(models.AbstractModel):
         read from the ``<field>_env_default`` field from database.
         """
         for record in self:
-            for field_name, options in record._server_env_fields.items():
-                section_name = record._server_env_section_name()
-                if (section_name in serv_config
-                        and field_name in serv_config[section_name]):
+            for field_name, options in self._server_env_fields.items():
+                if record._server_env_has_key_defined(field_name):
                     getter_name = options.get('getter', 'get')
                     value = record._server_env_read_from_config(
-                        section_name, field_name, getter_name
+                        field_name, getter_name
                     )
 
                 else:
@@ -145,6 +177,7 @@ class ServerEnvMixin(models.AbstractModel):
         for record in self:
             # when we write in an env-computed field, if it is editable
             # we update the default value in database
+
             if record[is_editable_field]:
                 record[default_field] = record[field_name]
 
@@ -163,10 +196,9 @@ class ServerEnvMixin(models.AbstractModel):
                 is_editable_field = self._server_env_is_editable_fieldname(
                     field_name
                 )
-
-                section_name = record._server_env_section_name()
-                is_editable = not (section_name in serv_config
-                                   and field_name in serv_config[section_name])
+                is_editable = not record._server_env_has_key_defined(
+                    field_name
+                )
                 record[is_editable_field] = is_editable
 
     def _server_env_view_set_readonly(self, view_arch):
