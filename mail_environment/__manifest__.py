@@ -3,7 +3,7 @@
 
 {
     'name': 'Mail configuration with server_environment',
-    'version': '11.0.1.0.0',
+    'version': '11.0.1.1.0',
     'category': 'Tools',
     'summary': 'Configure mail servers with server_environment_files',
     'author': "Camptocamp, Odoo Community Association (OCA)",
@@ -13,7 +13,5 @@
         'fetchmail',
         'server_environment',
     ],
-    'data': [
-        'views/fetchmail_server_views.xml',
-    ],
+    'data': [],
 }
