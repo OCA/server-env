@@ -89,13 +89,12 @@ class ServerEnvMixin(models.AbstractModel):
         """
         return {}
 
-    @api.multi
+    @api.model
     def _server_env_global_section_name(self):
         """Name of the global section in the configuration files
 
         Can be customized in your model
         """
-        self.ensure_one()
         return self._name.replace(".", "_")
 
     @api.multi
@@ -105,9 +104,8 @@ class ServerEnvMixin(models.AbstractModel):
         Can be customized in your model
         """
         self.ensure_one()
-        return ".".join(
-            (self._name.replace(".", "_"), self.name)
-        )
+        base = self._server_env_global_section_name()
+        return ".".join((base, self.name))
 
     @api.multi
     def _server_env_read_from_config(self, field_name, config_getter):
