@@ -1,44 +1,32 @@
 # Copyright 2012-2018 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from odoo import api, fields, models
-from odoo.addons.server_environment import serv_config
+from odoo import api, models
 
 
 class IrMailServer(models.Model):
-    _inherit = "ir.mail_server"
+    _name = "ir.mail_server"
+    _inherit = ["ir.mail_server", "server.env.mixin"]
 
-    smtp_host = fields.Char(compute='_compute_server_env',
-                            required=False,
-                            readonly=True)
-    smtp_port = fields.Integer(compute='_compute_server_env',
-                               required=False,
-                               readonly=True)
-    smtp_user = fields.Char(compute='_compute_server_env',
-                            required=False,
-                            readonly=True)
-    smtp_pass = fields.Char(compute='_compute_server_env',
-                            required=False,
-                            readonly=True)
-    smtp_encryption = fields.Selection(compute='_compute_server_env',
-                                       required=False,
-                                       readonly=True)
+    @property
+    def _server_env_fields(self):
+        base_fields = super()._server_env_fields
+        mail_fields = {
+            "smtp_host": {},
+            "smtp_port": {
+                "getter": "getint",
+            },
+            "smtp_user": {},
+            "smtp_pass": {},
+            "smtp_encryption": {},
+        }
+        mail_fields.update(base_fields)
+        return mail_fields
 
-    @api.depends()
-    def _compute_server_env(self):
-        for server in self:
-            global_section_name = 'outgoing_mail'
+    @api.model
+    def _server_env_global_section_name(self):
+        """Name of the global section in the configuration files
 
-            # default vals
-            config_vals = {'smtp_port': 587}
-            if serv_config.has_section(global_section_name):
-                config_vals.update((serv_config.items(global_section_name)))
-
-            custom_section_name = '.'.join((global_section_name, server.name))
-            if serv_config.has_section(custom_section_name):
-                config_vals.update(serv_config.items(custom_section_name))
-
-            if config_vals.get('smtp_port'):
-                config_vals['smtp_port'] = int(config_vals['smtp_port'])
-
-            server.update(config_vals)
+        Can be customized in your model
+        """
+        return 'outgoing_mail'
