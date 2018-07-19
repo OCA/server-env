@@ -97,8 +97,19 @@ def _load_config():
         config_p.read(conf_files)
     except Exception as e:
         raise Exception('Cannot read config files "%s":  %s' % (conf_files, e))
+
     config_p.read(system_base_config.rcfile)
     config_p.remove_section('options')
+
+    env_config = os.getenv('SERVER_ENV_CONFIG')
+    if env_config:
+        try:
+            config_p.read_string(env_config)
+        except configparser.Error as err:
+            raise Exception(
+                'SERVER_ENV_CONFIG content could not be parsed: %s'
+                % (err,)
+            )
 
     return config_p
 

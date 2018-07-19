@@ -47,8 +47,12 @@ You should then edit the settings you need in the
   `default/` directory using the .ini file syntax;
 * each environment you need to define is stored in its own directory
   and can override or extend default values;
-* finally, you can override or extend values in the main configuration
-  file of you instance.
+* you can override or extend values in the main configuration
+  file of you instance;
+* additional configuration can be passed in the environment variable
+  ``SERVER_ENV_CONFIG``, overriding any values set in the configuration files.
+  This is a multi-line environment variable in the same configparser format than
+  the files.
 
 Values associated to keys
 containing 'passw' are only displayed in the 'dev' environment.
