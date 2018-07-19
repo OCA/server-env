@@ -258,6 +258,7 @@ class ServerEnvMixin(models.AbstractModel):
         field.required = False
         field.copy = False
         field.sparse = None
+        field.prefetch = False
 
     def _server_env_add_is_editable_field(self, base_field):
         """Add a field indicating if we can edit the env-computed fields
