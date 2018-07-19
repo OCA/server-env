@@ -269,6 +269,9 @@ class ServerEnvMixin(models.AbstractModel):
             field = fields.Boolean(
                 compute='_compute_server_env_is_editable',
                 automatic=True,
+                # this is required to be able to edit fields
+                # on new records
+                default=True,
             )
             self._add_field(fieldname, field)
 
