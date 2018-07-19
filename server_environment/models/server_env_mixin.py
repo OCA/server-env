@@ -24,7 +24,7 @@ class ServerEnvMixin(models.AbstractModel):
 
             @property
             def _server_env_fields(self):
-                return {"directory_path": 'get'}
+                return {"directory_path": {'getter': 'get'}}
 
     With the snippet above, the "storage.backend" model now uses a server
     environment configuration for the field ``directory_path``.
@@ -56,9 +56,16 @@ class ServerEnvMixin(models.AbstractModel):
         """Dict of fields to replace by fields computed from env
 
         To override in models. The dictionary is:
-        {'name_of_the_field': 'name_of_the_configparser_getter'}
+        {'name_of_the_field': options}
 
-        The configparser getter can be one of: get, getbool, getint
+        Where ``options`` is a dictionary::
+
+            options = {
+                "getter": "getint",
+            }
+
+        The configparser getter can be one of: get, getbool, getint.
+        If options is an empty dict, "get" is used.
 
         Example::
 
@@ -66,10 +73,14 @@ class ServerEnvMixin(models.AbstractModel):
             def _server_env_fields(self):
                 base_fields = super()._server_env_fields
                 sftp_fields = {
-                    "sftp_server": "get",
-                    "sftp_port": "getint",
-                    "sftp_login": "get",
-                    "sftp_password": "get",
+                    "sftp_server": {
+                        "getter": "get",
+                    },
+                    "sftp_port": {
+                        "getter": "getint",
+                    },,
+                    "sftp_login": {},
+                    "sftp_password": {},
                 }
                 sftp_fields.update(base_fields)
                 return sftp_fields
@@ -111,11 +122,11 @@ class ServerEnvMixin(models.AbstractModel):
         read from the ``<field>_env_default`` field from database.
         """
         for record in self:
-            for field_name, getter_name in record._server_env_fields.items():
+            for field_name, options in record._server_env_fields.items():
                 section_name = record._server_env_section_name()
                 if (section_name in serv_config
                         and field_name in serv_config[section_name]):
-
+                    getter_name = options.get('getter', 'get')
                     value = record._server_env_read_from_config(
                         section_name, field_name, getter_name
                     )
