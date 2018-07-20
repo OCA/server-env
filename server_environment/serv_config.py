@@ -18,6 +18,7 @@
 #
 ##############################################################################
 
+import logging
 import os
 import configparser
 from lxml import etree
@@ -28,8 +29,15 @@ from odoo.tools.config import config as system_base_config
 
 from .system_info import get_server_environment
 
-from odoo.addons import server_environment_files
-_dir = os.path.dirname(server_environment_files.__file__)
+_logger = logging.getLogger(__name__)
+
+try:
+    from odoo.addons import server_environment_files
+    _dir = os.path.dirname(server_environment_files.__file__)
+except ImportError:
+    _logger.info('not using server_environment_files for configuration,'
+                 ' no directory found')
+    _dir = None
 
 ENV_VAR_NAMES = ('SERVER_ENV_CONFIG', 'SERVER_ENV_CONFIG_SECRET')
 
@@ -46,13 +54,15 @@ if not system_base_config.get('running_env', False):
         "[options]\nrunning_env = dev"
     )
 
-ck_path = os.path.join(_dir, system_base_config['running_env'])
+ck_path = None
+if _dir:
+    ck_path = os.path.join(_dir, system_base_config['running_env'])
 
-if not os.path.exists(ck_path):
-    raise Exception(
-        "Provided server environment does not exist, "
-        "please add a folder %s" % ck_path
-    )
+    if not os.path.exists(ck_path):
+        raise Exception(
+            "Provided server environment does not exist, "
+            "please add a folder %s" % ck_path
+        )
 
 
 def setboolean(obj, attr, _bool=None):
@@ -82,8 +92,7 @@ def _listconf(env_path):
     return files
 
 
-def _load_config():
-    """Load the configuration and return a ConfigParser instance."""
+def _load_config_from_server_env_files(config_p):
     default = os.path.join(_dir, 'default')
     running_env = os.path.join(_dir,
                                system_base_config['running_env'])
@@ -92,17 +101,18 @@ def _load_config():
     else:
         conf_files = _listconf(running_env)
 
-    config_p = configparser.SafeConfigParser()
-    # options are case-sensitive
-    config_p.optionxform = str
     try:
         config_p.read(conf_files)
     except Exception as e:
         raise Exception('Cannot read config files "%s":  %s' % (conf_files, e))
 
+
+def _load_config_from_rcfile(config_p):
     config_p.read(system_base_config.rcfile)
     config_p.remove_section('options')
 
+
+def _load_config_from_env(config_p):
     for varname in ENV_VAR_NAMES:
         env_config = os.getenv(varname)
         if env_config:
@@ -114,6 +124,16 @@ def _load_config():
                     % (varname, err,)
                 )
 
+
+def _load_config():
+    """Load the configuration and return a ConfigParser instance."""
+    config_p = configparser.SafeConfigParser()
+    # options are case-sensitive
+    config_p.optionxform = str
+    if _dir:
+        _load_config_from_server_env_files(config_p)
+    _load_config_from_rcfile(config_p)
+    _load_config_from_env(config_p)
     return config_p
 
 
