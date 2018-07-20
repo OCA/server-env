@@ -27,6 +27,8 @@ the incoming and outgoing mail servers depending on the environment.
 To install this module, you need to provide a companion module called
 `server_environment_files`. You can copy and customize the provided
 `server_environment_files_sample` module for this purpose.
+You can provide additional options in environment variables
+``SERVER_ENV_CONFIG`` and ``SERVER_ENV_CONFIG_SECRET``.
 
 
 Configuration
@@ -48,11 +50,11 @@ You should then edit the settings you need in the
 * each environment you need to define is stored in its own directory
   and can override or extend default values;
 * you can override or extend values in the main configuration
-  file of you instance;
+  file of your instance;
 * additional configuration can be passed in the environment variable
-  ``SERVER_ENV_CONFIG``, overriding any values set in the configuration files.
-  This is a multi-line environment variable in the same configparser format than
-  the files.
+  ``SERVER_ENV_CONFIG`` and/or ``SERVER_ENV_CONFIG_SECRET``, overriding any
+  values set in the configuration files. This is a multi-line environment
+  variable in the same configparser format than the files.
 
 Values associated to keys
 containing 'passw' are only displayed in the 'dev' environment.
