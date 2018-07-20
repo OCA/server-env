@@ -16,7 +16,10 @@ _logger = logging.getLogger(__name__)
 class ServerEnvMixin(models.AbstractModel):
     """Mixin to add server environment in existing models
 
-    Usage::
+    Usage
+    -----
+
+    ::
 
         class StorageBackend(models.Model):
             _name = "storage.backend"
@@ -48,6 +51,49 @@ class ServerEnvMixin(models.AbstractModel):
     Env-computed fields are conditionally editable, based on the absence
     of their key in environment configuration files. When edited, their
     value is stored in the database.
+
+    Integration with keychain
+    -------------------------
+    The keychain addon is used account information, encrypting the password
+    with a key per environment.
+
+    The default behavior of server_environment is to store the default fields
+    in a serialized field, so the password would lend there unencrypted.
+
+    You can benefit from keychain by using custom compute/inverse methods to
+    get/set the password field:
+
+    ::
+
+        class StorageBackend(models.Model):
+            _name = 'storage.backend'
+            _inherit = ['keychain.backend', 'collection.base']
+
+            @property
+            def _server_env_fields(self):
+                base_fields = super()._server_env_fields
+                sftp_fields = {
+                    "sftp_server": {},
+                    "sftp_port": {'getter': "getint"},
+                    "sftp_login": {},
+                    "sftp_password": {
+                        "no_default_field": True,
+                        "compute_default": "_compute_password",
+                        "inverse_default": "_inverse_password",
+                    },
+                }
+                sftp_fields.update(base_fields)
+                return sftp_fields
+
+    * ``no_default_field`` means that no new (sparse) field need to be
+      created, it already is provided by keychain
+    * ``compute_default`` is the name of the compute method to get the default
+      value when no key is set in the configuration files.
+      ``_compute_password`` is implemented by ``keychain.backend``.
+    * ``inverse_default`` is the name of the compute method to set the default
+      value when it is editable. ``_inverse_password`` is implemented by
+      ``keychain.backend``.
+
     """
     _name = 'server.env.mixin'
 
@@ -64,10 +110,20 @@ class ServerEnvMixin(models.AbstractModel):
 
             options = {
                 "getter": "getint",
+                "no_default_field": True,
+                "compute_default": "_compute_password",
+                "inverse_default": "_inverse_password",
             }
 
-        The configparser getter can be one of: get, getbool, getint.
-        If options is an empty dict, "get" is used.
+        * ``getter``: The configparser getter can be one of: get, getbool,
+          getint. Default is "get".
+        * ``no_default_field``: disable creation of a field for storing
+          the default value, must be used with ``compute_default`` and
+          ``inverse_default``
+        * ``compute_default``: name of a compute method to get the default
+          value when no key is present in configuration files
+        * ``inverse_default``: name of an inverse method to set the default
+          value when the value is editable
 
         Example::
 
@@ -146,6 +202,23 @@ class ServerEnvMixin(models.AbstractModel):
         )
         return has_global_config or has_config
 
+    def _compute_server_env_from_config(self, field_name, options):
+        getter_name = options.get('getter', 'get')
+        value = self._server_env_read_from_config(
+            field_name, getter_name
+        )
+        self[field_name] = value
+
+    def _compute_server_env_from_default(self, field_name, options):
+        if options.get('compute_default'):
+            getattr(self, options['compute_default'])()
+        else:
+            default_field = self._server_env_default_fieldname(
+                field_name
+            )
+            if default_field:
+                self[field_name] = self[default_field]
+
     @api.multi
     def _compute_server_env(self):
         """Read values from environment configuration files
@@ -156,28 +229,25 @@ class ServerEnvMixin(models.AbstractModel):
         for record in self:
             for field_name, options in self._server_env_fields.items():
                 if record._server_env_has_key_defined(field_name):
-                    getter_name = options.get('getter', 'get')
-                    value = record._server_env_read_from_config(
-                        field_name, getter_name
-                    )
+                    self._compute_server_env_from_config(field_name, options)
 
                 else:
-                    default_field = record._server_env_default_fieldname(
-                        field_name
-                    )
-                    value = record[default_field]
-
-                record[field_name] = value
+                    self._compute_server_env_from_default(field_name, options)
 
     def _inverse_server_env(self, field_name):
+        options = self._server_env_fields[field_name]
         default_field = self._server_env_default_fieldname(field_name)
         is_editable_field = self._server_env_is_editable_fieldname(field_name)
+
         for record in self:
             # when we write in an env-computed field, if it is editable
             # we update the default value in database
 
             if record[is_editable_field]:
-                record[default_field] = record[field_name]
+                if options.get('inverse_default'):
+                    getattr(record, options['inverse_default'])()
+                elif default_field:
+                    record[default_field] = record[field_name]
 
     @api.multi
     def _compute_server_env_is_editable(self):
@@ -233,6 +303,9 @@ class ServerEnvMixin(models.AbstractModel):
 
     def _server_env_default_fieldname(self, base_field_name):
         """Return the name of the field with default value"""
+        options = self._server_env_fields[base_field_name]
+        if options.get('no_default_field'):
+            return ''
         return '%s_env_default' % (base_field_name,)
 
     def _server_env_is_editable_fieldname(self, base_field_name):
@@ -284,6 +357,8 @@ class ServerEnvMixin(models.AbstractModel):
         The field is stored in the serialized field ``server_env_defaults``.
         """
         fieldname = self._server_env_default_fieldname(base_field.name)
+        if not fieldname:
+            return
         if fieldname not in self._fields:
             base_field_cls = base_field.__class__
             field_args = base_field.args.copy()
@@ -301,7 +376,7 @@ class ServerEnvMixin(models.AbstractModel):
     @api.model
     def _setup_base(self):
         super()._setup_base()
-        for fieldname in self._server_env_fields:
+        for fieldname, options in self._server_env_fields.items():
             field = self._fields[fieldname]
             self._server_env_add_default_field(field)
             self._server_env_transform_field_to_read_from_env(field)
