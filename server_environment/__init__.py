@@ -18,4 +18,8 @@
 #
 ##############################################################################
 from . import models
+# Add an alias to access to the 'serv_config' module as it is shadowed
+# the next line by an import of a variable with the same name.
+# We can't change the import of serv_config for backward compatibility.
+from . import serv_config as server_env
 from .serv_config import serv_config, setboolean
