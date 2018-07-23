@@ -130,6 +130,7 @@ def _load_config():
     config_p = configparser.SafeConfigParser()
     # options are case-sensitive
     config_p.optionxform = str
+
     if _dir:
         _load_config_from_server_env_files(config_p)
     _load_config_from_rcfile(config_p)
