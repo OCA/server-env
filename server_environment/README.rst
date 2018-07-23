@@ -27,31 +27,84 @@ the incoming and outgoing mail servers depending on the environment.
 To install this module, you need to provide a companion module called
 `server_environment_files`. You can copy and customize the provided
 `server_environment_files_sample` module for this purpose.
+You can provide additional options in environment variables
+``SERVER_ENV_CONFIG`` and ``SERVER_ENV_CONFIG_SECRET``.
 
 
 Configuration
 =============
 
 To configure this module, you need to edit the main configuration file
-of your instance, and add a directive called `running_env`. Commonly
+of your instance, and add a directive called ``running_env``. Commonly
 used values are 'dev', 'test', 'production'::
 
   [options]
   running_env=dev
 
-You should then edit the settings you need in the
-`server_environment_files` addon. The
-`server_environment_files_sample` can be used as an example:
+Values associated to keys containing 'passw' are only displayed in the 'dev'
+environment.
+
+You have several possibilities to set configuration values:
+
+server_environment_files
+------------------------
+
+You can edit the settings you need in the ``server_environment_files`` addon. The
+``server_environment_files_sample`` can be used as an example:
 
 * values common to all / most environments can be stored in the
-  `default/` directory using the .ini file syntax;
+  ``default/`` directory using the .ini file syntax;
 * each environment you need to define is stored in its own directory
   and can override or extend default values;
-* finally, you can override or extend values in the main configuration
-  file of you instance.
+* you can override or extend values in the main configuration
+  file of your instance;
 
-Values associated to keys
-containing 'passw' are only displayed in the 'dev' environment.
+Environment variable
+--------------------
+
+You can define configuration in the environment variable ``SERVER_ENV_CONFIG``
+and/or ``SERVER_ENV_CONFIG_SECRET``. The 2 variables are handled the exact same
+way, this is only a convenience for the deployment where you can isolate the
+secrets in a different, encrypted, file. This is a multi-line environment variable
+in the same configparser format than the files.
+If you used options in ``server_environment_files``, the options set in the
+environment variable overrides them. 
+
+The options in the environment variable are not dependent of ``running_env``,
+the content of the variable must be set accordingly to the running environment.
+
+Example of setup:
+
+
+A public file, containing that will contain public variables::
+
+    # These variables are not odoo standard variables,
+    # they are there to represent what your file could look like
+    export WORKERS='8'
+    export MAX_CRON_THREADS='1'
+    export LOG_LEVEL=info
+    export LOG_HANDLER=":INFO"
+    export DB_MAXCONN=5
+
+    # server environment options
+    export SERVER_ENV_CONFIG="
+    [storage_backend.my-sftp]
+    sftp_server=10.10.10.10
+    sftp_login=foo
+    sftp_port=22200
+    directory_path=Odoo
+    "
+
+A second file which is encrypted and contains secrets::
+
+    # This variable is not an odoo standard variable,
+    # it is there to represent what your file could look like
+    export DB_PASSWORD='xxxxxxxxx'
+    # server environment options
+    export SERVER_ENV_CONFIG_SECRET="
+    [storage_backend.my-sftp]
+    sftp_password=xxxxxxxxx
+    "
 
 Usage
 =====

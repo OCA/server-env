@@ -31,6 +31,8 @@ from .system_info import get_server_environment
 from odoo.addons import server_environment_files
 _dir = os.path.dirname(server_environment_files.__file__)
 
+ENV_VAR_NAMES = ('SERVER_ENV_CONFIG', 'SERVER_ENV_CONFIG_SECRET')
+
 # Same dict as RawConfigParser._boolean_states
 _boolean_states = {'1': True, 'yes': True, 'true': True, 'on': True,
                    '0': False, 'no': False, 'false': False, 'off': False}
@@ -97,8 +99,20 @@ def _load_config():
         config_p.read(conf_files)
     except Exception as e:
         raise Exception('Cannot read config files "%s":  %s' % (conf_files, e))
+
     config_p.read(system_base_config.rcfile)
     config_p.remove_section('options')
+
+    for varname in ENV_VAR_NAMES:
+        env_config = os.getenv(varname)
+        if env_config:
+            try:
+                config_p.read_string(env_config)
+            except configparser.Error as err:
+                raise Exception(
+                    '%s content could not be parsed: %s'
+                    % (varname, err,)
+                )
 
     return config_p
 
