@@ -136,7 +136,7 @@ class ServerEnvMixin(models.AbstractModel):
                     },
                     "sftp_port": {
                         "getter": "getint",
-                    },,
+                    },
                     "sftp_login": {},
                     "sftp_password": {},
                 }
@@ -319,6 +319,7 @@ class ServerEnvMixin(models.AbstractModel):
     def _server_env_transform_field_to_read_from_env(self, field):
         """Transform the original field in a computed field"""
         field.compute = '_compute_server_env'
+
         inverse_method_name = '_inverse_server_env_%s' % field.name
         inverse_method = partialmethod(
             ServerEnvMixin._inverse_server_env, field.name
