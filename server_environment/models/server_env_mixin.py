@@ -43,10 +43,11 @@ class ServerEnvMixin(models.AbstractModel):
     :meth:`~_server_env_global_section_name`.
 
     For each field transformed to an env-computed field, a companion field
-    ``<field>_env_default`` is automatically created. When it's value is set
-    and the configuration files do not contain a key, the env-computed field
-    uses the default value stored in database. If a key is empty, the
-    env-computed field has an empty value.
+    ``<field>_env_default`` is automatically created. When its value is set
+    and the configuration files do not contain a key for that field, the
+    env-computed field uses the default value stored in database. If there is a
+    key for this field but it is empty, the env-computed field has an empty
+    value.
 
     Env-computed fields are conditionally editable, based on the absence
     of their key in environment configuration files. When edited, their
@@ -295,7 +296,7 @@ class ServerEnvMixin(models.AbstractModel):
             is_editable_field = self._server_env_is_editable_fieldname(field)
             for elem in view_arch.findall(field_xpath % field):
                 # set env-computed fields to readonly if the configuration
-                # files have a key
+                # files have a key set for this field
                 elem.set('attrs',
                          str({'readonly': [(is_editable_field, '=', False)]}))
             if not view_arch.findall(field_xpath % is_editable_field):
