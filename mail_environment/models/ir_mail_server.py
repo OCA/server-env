@@ -13,9 +13,7 @@ class IrMailServer(models.Model):
         base_fields = super()._server_env_fields
         mail_fields = {
             "smtp_host": {},
-            "smtp_port": {
-                "getter": "getint",
-            },
+            "smtp_port": {},
             "smtp_user": {},
             "smtp_pass": {},
             "smtp_encryption": {},

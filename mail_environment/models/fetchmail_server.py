@@ -15,21 +15,13 @@ class FetchmailServer(models.Model):
         base_fields = super()._server_env_fields
         mail_fields = {
             "server": {},
-            "port": {
-                "getter": "getint",
-            },
+            "port": {},
             "type": {},
             "user": {},
             "password": {},
-            "is_ssl": {
-                "getter": "getbool",
-            },
-            "attach": {
-                "getter": "getbool",
-            },
-            "original": {
-                "getter": "getbool",
-            },
+            "is_ssl": {},
+            "attach": {},
+            "original": {},
         }
         mail_fields.update(base_fields)
         return mail_fields
