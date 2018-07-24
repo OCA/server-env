@@ -27,7 +27,7 @@ class ServerEnvMixin(models.AbstractModel):
 
             @property
             def _server_env_fields(self):
-                return {"directory_path": {'getter': 'get'}}
+                return {"directory_path": {}}
 
     With the snippet above, the "storage.backend" model now uses a server
     environment configuration for the field ``directory_path``.
@@ -99,6 +99,16 @@ class ServerEnvMixin(models.AbstractModel):
 
     server_env_defaults = fields.Serialized()
 
+    _server_env_getter_mapping = {
+        'integer': 'getint',
+        'float': 'getfloat',
+        'monetary': 'getfloat',
+        'boolean': 'getboolean',
+        'char': 'get',
+        'selection': 'get',
+        'text': 'get',
+    }
+
     @property
     def _server_env_fields(self):
         """Dict of fields to replace by fields computed from env
@@ -115,8 +125,9 @@ class ServerEnvMixin(models.AbstractModel):
                 "inverse_default": "_inverse_password",
             }
 
-        * ``getter``: The configparser getter can be one of: get, getbool,
-          getint. Default is "get".
+        * ``getter``: The configparser getter can be one of: get, getboolean,
+          getint, getfloat. The getter is automatically inferred from the
+          type of the field, so it shouldn't generally be needed to set it.
         * ``no_default_field``: disable creation of a field for storing
           the default value, must be used with ``compute_default`` and
           ``inverse_default``
@@ -203,14 +214,23 @@ class ServerEnvMixin(models.AbstractModel):
         return has_global_config or has_config
 
     def _compute_server_env_from_config(self, field_name, options):
-        getter_name = options.get('getter', 'get')
+        getter_name = options.get('getter') if options else None
+        if not getter_name:
+            field_type = self._fields[field_name].type
+            getter_name = self._server_env_getter_mapping.get(field_type)
+        if not getter_name:
+            # if you get this message and the field is working as expected,
+            # you may want to add the type in _server_env_getter_mapping
+            _logger.warning('server.env.mixin is used on a field of type %s, '
+                            'which may not be supported properly')
+            getter_name = 'get'
         value = self._server_env_read_from_config(
             field_name, getter_name
         )
         self[field_name] = value
 
     def _compute_server_env_from_default(self, field_name, options):
-        if options.get('compute_default'):
+        if options and options.get('compute_default'):
             getattr(self, options['compute_default'])()
         else:
             default_field = self._server_env_default_fieldname(
@@ -244,7 +264,7 @@ class ServerEnvMixin(models.AbstractModel):
             # we update the default value in database
 
             if record[is_editable_field]:
-                if options.get('inverse_default'):
+                if options and options.get('inverse_default'):
                     getattr(record, options['inverse_default'])()
                 elif default_field:
                     record[default_field] = record[field_name]
@@ -304,12 +324,12 @@ class ServerEnvMixin(models.AbstractModel):
     def _server_env_default_fieldname(self, base_field_name):
         """Return the name of the field with default value"""
         options = self._server_env_fields[base_field_name]
-        if options.get('no_default_field'):
+        if options and options.get('no_default_field'):
             return ''
         return '%s_env_default' % (base_field_name,)
 
     def _server_env_is_editable_fieldname(self, base_field_name):
-        """Return the name of the field for "is editable
+        """Return the name of the field for "is editable"
 
         This is the field used to tell if the env-computed field can
         be edited.

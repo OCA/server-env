@@ -39,9 +39,7 @@ class ServerEnvTestWithMixin(models.Model):
         base_fields = super()._server_env_fields
         sftp_fields = {
             "host": {},
-            "port": {
-                "getter": "getint",
-            },
+            "port": {},
             "user": {},
             "password": {},
             "ssl": {},

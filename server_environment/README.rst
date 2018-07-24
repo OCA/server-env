@@ -141,7 +141,7 @@ by an override of ``_server_env_fields``.
 
         @property
         def _server_env_fields(self):
-            return {"directory_path": {'getter': 'get'}}
+            return {"directory_path": {}}
 
 Read the documentation of the class and methods in `models/server_env_mixin.py
 <models/server_env_mixin.py>`__.
