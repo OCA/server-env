@@ -22,13 +22,13 @@ class FetchmailServer(models.Model):
             "user": {},
             "password": {},
             "is_ssl": {
-                "getter": "getbool",
+                "getter": "getboolean",
             },
             "attach": {
-                "getter": "getbool",
+                "getter": "getboolean",
             },
             "original": {
-                "getter": "getbool",
+                "getter": "getboolean",
             },
         }
         mail_fields.update(base_fields)
