@@ -10,7 +10,7 @@
     ],
     "author": "Camptocamp,Odoo Community Association (OCA)",
     "website": "http://odoo-community.org/",
-    "license": "GPL-3 or any later version",
+    "license": "AGPL-3",
     "category": "Tools",
     "data": [
         'security/ir.model.access.csv',
