@@ -131,3 +131,24 @@ class TestServerEnvMixin(ServerEnvironmentCase):
             self.assertEqual(foo.user, 'foo')
             self.assertEqual(foo.password, 'bar')
             self.assertTrue(foo.ssl)
+
+    def test_env_custom_compute_method(self):
+        """Can customize compute/inverse methods"""
+        foo = self.env['server.env.test'].create({
+            'name': 'foo',
+        })
+        self.assertNotIn('alias_env_default', foo._fields)
+        with self.load_config():
+            self.assertTrue(foo.alias_env_is_editable)
+
+            foo.alias = 'test'
+            self.assertEqual(foo.alias_default, 'test')
+
+        foo = self.env['server.env.test'].create({
+            'name': 'foo_with_default',
+        })
+        with self.load_config():
+            self.assertTrue(foo.alias_env_is_editable)
+
+            foo.alias_default = 'new_value'
+            self.assertEqual(foo.alias, 'new_value')

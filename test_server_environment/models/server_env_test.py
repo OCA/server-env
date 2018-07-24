@@ -23,6 +23,11 @@ class ServerEnvTest(models.Model):
     password = fields.Char()
     ssl = fields.Boolean()
 
+    # we'll use these ones to stress the custom
+    # compute/inverse for the default value
+    alias = fields.Char()
+    alias_default = fields.Char()
+
 
 # Intentionally re-declares a class to stress the inclusion of the mixin
 class ServerEnvTestWithMixin(models.Model):
@@ -40,6 +45,19 @@ class ServerEnvTestWithMixin(models.Model):
             "user": {},
             "password": {},
             "ssl": {},
+            "alias": {
+                "no_default_field": True,
+                "compute_default": "_compute_alias_default",
+                "inverse_default": "_inverse_alias_default",
+            }
         }
         sftp_fields.update(base_fields)
         return sftp_fields
+
+    def _compute_alias_default(self):
+        for record in self:
+            record.alias = record.alias_default
+
+    def _inverse_alias_default(self):
+        for record in self:
+            record.alias_default = record.alias
