@@ -75,7 +75,7 @@ class ServerEnvMixin(models.AbstractModel):
                 base_fields = super()._server_env_fields
                 sftp_fields = {
                     "sftp_server": {},
-                    "sftp_port": {'getter': "getint"},
+                    "sftp_port": {},
                     "sftp_login": {},
                     "sftp_password": {
                         "no_default_field": True,
@@ -143,12 +143,8 @@ class ServerEnvMixin(models.AbstractModel):
             def _server_env_fields(self):
                 base_fields = super()._server_env_fields
                 sftp_fields = {
-                    "sftp_server": {
-                        "getter": "get",
-                    },
-                    "sftp_port": {
-                        "getter": "getint",
-                    },
+                    "sftp_server": {},
+                    "sftp_port": {},
                     "sftp_login": {},
                     "sftp_password": {},
                 }
