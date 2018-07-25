@@ -59,3 +59,57 @@ class ServerEnvTestWithMixin(models.Model):
     def _inverse_alias_default(self):
         for record in self:
             record.alias_default = record.alias
+
+
+class ServerEnvTest2(models.Model):
+    _name = 'server.env.test2'
+    _description = 'Server Environment Test Model 2'
+    # applied directly on the model
+    _inherit = 'server.env.mixin'
+
+    name = fields.Char(required=True)
+    host = fields.Char()
+
+    @property
+    def _server_env_fields(self):
+        base_fields = super()._server_env_fields
+        sftp_fields = {
+            "host": {},
+        }
+        sftp_fields.update(base_fields)
+        return sftp_fields
+
+
+class ServerEnvTestInherits1(models.Model):
+    _name = 'server.env.test.inherits1'
+    _description = 'Server Environment Test Model Inherits'
+
+    base_id = fields.Many2one(
+        comodel_name='server.env.test',
+        delegate=True,
+    )
+    # host is not redefined, handled by the delegated model
+
+
+class ServerEnvTestInherits2(models.Model):
+    _name = 'server.env.test.inherits2'
+    _description = 'Server Environment Test Model Inherits'
+    # if you want to benefit from mixin in an inherits,
+    # even if the parent includes it, you have to
+    # add the inheritance here as well
+    _inherit = 'server.env.mixin'
+
+    base_id = fields.Many2one(
+        comodel_name='server.env.test',
+        delegate=True,
+    )
+    host = fields.Char()
+
+    @property
+    def _server_env_fields(self):
+        base_fields = super()._server_env_fields
+        sftp_fields = {
+            "host": {},
+        }
+        sftp_fields.update(base_fields)
+        return sftp_fields

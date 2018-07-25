@@ -339,9 +339,9 @@ class ServerEnvMixin(models.AbstractModel):
 
         inverse_method_name = '_inverse_server_env_%s' % field.name
         inverse_method = partialmethod(
-            ServerEnvMixin._inverse_server_env, field.name
+            type(self)._inverse_server_env, field.name
         )
-        setattr(ServerEnvMixin, inverse_method_name, inverse_method)
+        setattr(type(self), inverse_method_name, inverse_method)
         field.inverse = inverse_method_name
         field.store = False
         field.required = False
@@ -356,7 +356,9 @@ class ServerEnvMixin(models.AbstractModel):
         and in the views to add 'readonly' on the fields.
         """
         fieldname = self._server_env_is_editable_fieldname(base_field.name)
-        if fieldname not in self._fields:
+        # if the field is inherited, it's a related to its delegated model
+        # (inherits), we want to override it with a new one
+        if fieldname not in self._fields or self._fields[fieldname].inherited:
             field = fields.Boolean(
                 compute='_compute_server_env_is_editable',
                 automatic=True,
@@ -378,7 +380,9 @@ class ServerEnvMixin(models.AbstractModel):
         fieldname = self._server_env_default_fieldname(base_field.name)
         if not fieldname:
             return
-        if fieldname not in self._fields:
+        # if the field is inherited, it's a related to its delegated model
+        # (inherits), we want to override it with a new one
+        if fieldname not in self._fields or self._fields[fieldname].inherited:
             base_field_cls = base_field.__class__
             field_args = base_field.args.copy()
             field_args.pop('_sequence', None)

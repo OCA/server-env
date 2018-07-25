@@ -1,29 +1,10 @@
 # Copyright 2018 Camptocamp (https://www.camptocamp.com).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from contextlib import contextmanager
-
-from odoo.addons.server_environment import server_env
 from odoo.addons.server_environment.tests.common import ServerEnvironmentCase
-
-import odoo.addons.server_environment.models.server_env_mixin as \
-    server_env_mixin
 
 
 class TestServerEnvMixin(ServerEnvironmentCase):
-
-    @contextmanager
-    def load_config(self, public=None, secret=None):
-        original_serv_config = server_env_mixin.serv_config
-        try:
-            with self.set_config_dir(None), \
-                    self.set_env_variables(public, secret):
-                parser = server_env._load_config()
-                server_env_mixin.serv_config = parser
-                yield
-
-        finally:
-            server_env_mixin.serv_config = original_serv_config
 
     def test_env_computed_fields_read(self):
         """Read values from the config in env-computed fields"""

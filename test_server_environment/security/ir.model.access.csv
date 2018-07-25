@@ -1,2 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_server_env_test,access_server_env_test,model_server_env_test,,1,0,0,0
+access_server_env_test2,access_server_env_test2,model_server_env_test2,,1,0,0,0
+access_server_env_test_inherits1,access_server_env_test_inherits1,model_server_env_test_inherits1,,1,0,0,0
+access_server_env_test_inherits2,access_server_env_test_inherits2,model_server_env_test_inherits2,,1,0,0,0

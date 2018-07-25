@@ -9,6 +9,9 @@ from odoo.tests import common
 from odoo.addons.server_environment import server_env
 from odoo.tools.config import config
 
+import odoo.addons.server_environment.models.server_env_mixin as \
+    server_env_mixin
+
 
 class ServerEnvironmentCase(common.TransactionCase):
 
@@ -41,3 +44,16 @@ class ServerEnvironmentCase(common.TransactionCase):
             newkeys['SERVER_ENV_CONFIG_SECRET'] = secret
         with patch.dict('os.environ', newkeys):
             yield
+
+    @contextmanager
+    def load_config(self, public=None, secret=None):
+        original_serv_config = server_env_mixin.serv_config
+        try:
+            with self.set_config_dir(None), \
+                    self.set_env_variables(public, secret):
+                parser = server_env._load_config()
+                server_env_mixin.serv_config = parser
+                yield
+
+        finally:
+            server_env_mixin.serv_config = original_serv_config
