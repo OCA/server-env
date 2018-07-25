@@ -118,7 +118,8 @@ configuration files / environment variable.
 
 When the default field is used, the field is made editable on Odoo.
 
-Note: a present key with an empty value do not fallback on the default field.
+Note: empty environment keys always take precedence over default fields
+
 
 Keychain integration
 --------------------

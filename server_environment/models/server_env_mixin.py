@@ -372,7 +372,8 @@ class ServerEnvMixin(models.AbstractModel):
         The default value is used when there is no key for an env-computed
         field in the configuration files.
 
-        The field is stored in the serialized field ``server_env_defaults``.
+        The field is a sparse field stored in the serialized (json) field
+        ``server_env_defaults``.
         """
         fieldname = self._server_env_default_fieldname(base_field.name)
         if not fieldname:
@@ -394,7 +395,7 @@ class ServerEnvMixin(models.AbstractModel):
     @api.model
     def _setup_base(self):
         super()._setup_base()
-        for fieldname, options in self._server_env_fields.items():
+        for fieldname in self._server_env_fields:
             field = self._fields[fieldname]
             self._server_env_add_default_field(field)
             self._server_env_transform_field_to_read_from_env(field)
