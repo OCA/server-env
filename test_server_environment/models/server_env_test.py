@@ -87,6 +87,7 @@ class ServerEnvTestInherits1(models.Model):
     base_id = fields.Many2one(
         comodel_name='server.env.test',
         delegate=True,
+        required=True,
     )
     # host is not redefined, handled by the delegated model
 
@@ -102,6 +103,7 @@ class ServerEnvTestInherits2(models.Model):
     base_id = fields.Many2one(
         comodel_name='server.env.test',
         delegate=True,
+        required=True,
     )
     host = fields.Char()
 
