@@ -6,9 +6,10 @@ from odoo.addons.server_environment.tests.common import ServerEnvironmentCase
 
 class TestServerEnvMixinSameFieldName(ServerEnvironmentCase):
 
-    def setUp(self):
-        super().setUp()
-        self.public = (
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.public = (
             # global for all server.env.test records
             "[server_env_test]\n"
             "host=global_value\n"
@@ -19,8 +20,8 @@ class TestServerEnvMixinSameFieldName(ServerEnvironmentCase):
             "[server_env_test2.foo]\n"
             "host=foo2_value\n"
         )
-        self.foo = self.env['server.env.test'].create({'name': 'foo'})
-        self.foo2 = self.env['server.env.test2'].create({
+        cls.foo = cls.env['server.env.test'].create({'name': 'foo'})
+        cls.foo2 = cls.env['server.env.test2'].create({
             'name': 'foo',
         })
 
@@ -71,9 +72,10 @@ class TestServerEnvMixinSameFieldName(ServerEnvironmentCase):
 
 class TestServerEnvMixinInherits(ServerEnvironmentCase):
 
-    def setUp(self):
-        super().setUp()
-        self.public = (
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.public = (
             # global for all server.env.test records
             "[server_env_test]\n"
             "host=global_value\n"
@@ -87,11 +89,11 @@ class TestServerEnvMixinInherits(ServerEnvironmentCase):
             "[server_env_test_inherits2.foo]\n"
             "host=foo_inherits_value\n"
         )
-        self.foo = self.env['server.env.test'].create({'name': 'foo'})
-        self.foo_inh1 = self.env['server.env.test.inherits1'].create({
+        cls.foo = cls.env['server.env.test'].create({'name': 'foo'})
+        cls.foo_inh1 = cls.env['server.env.test.inherits1'].create({
             'name': 'foo'
         })
-        self.foo_inh2 = self.env['server.env.test.inherits2'].create({
+        cls.foo_inh2 = cls.env['server.env.test.inherits2'].create({
             'name': 'foo'
         })
 

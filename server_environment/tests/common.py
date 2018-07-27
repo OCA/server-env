@@ -13,7 +13,7 @@ import odoo.addons.server_environment.models.server_env_mixin as \
     server_env_mixin
 
 
-class ServerEnvironmentCase(common.TransactionCase):
+class ServerEnvironmentCase(common.SavepointCase):
 
     def setUp(self):
         super().setUp()
