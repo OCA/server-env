@@ -246,10 +246,12 @@ class ServerEnvMixin(models.AbstractModel):
         for record in self:
             for field_name, options in self._server_env_fields.items():
                 if record._server_env_has_key_defined(field_name):
-                    self._compute_server_env_from_config(field_name, options)
+                    record._compute_server_env_from_config(field_name, options)
 
                 else:
-                    self._compute_server_env_from_default(field_name, options)
+                    record._compute_server_env_from_default(
+                        field_name, options
+                    )
 
     def _inverse_server_env(self, field_name):
         options = self._server_env_fields[field_name]

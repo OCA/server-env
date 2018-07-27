@@ -35,6 +35,26 @@ class TestServerEnvMixin(ServerEnvironmentCase):
             self.assertEqual(foo.password, 'bar')
             self.assertTrue(foo.ssl)
 
+    def test_env_computed_fields_read_multi(self):
+        """Read values in env-computed fields on several records"""
+        public = (
+            "[server_env_test]\n"
+            "host=test.example.com\n"
+            "port=21\n"
+            "user=foo\n"
+        )
+        # we can create the record even if we didn't provide
+        # the field host which was required
+        foo = self.env['server.env.test'].create({
+            'name': 'foo',
+        })
+        foo2 = self.env['server.env.test'].create({
+            'name': 'foo2',
+        })
+        foos = foo + foo2
+        with self.load_config(public):
+            foos._compute_server_env()
+
     def test_env_computed_fields_write(self):
         """Env-computed fields without key in config can be written"""
         public = (
