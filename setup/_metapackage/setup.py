@@ -12,6 +12,7 @@ setuptools.setup(
         'odoo11-addon-server_environment',
         'odoo11-addon-server_environment_files_sample',
         'odoo11-addon-server_environment_ir_config_parameter',
+        'odoo11-addon-test_server_environment',
     ],
     classifiers=[
         'Programming Language :: Python',
