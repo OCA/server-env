@@ -18,7 +18,8 @@ an environment variable with a fallback on default values in the database.
 
 The configuration read from the files are visible under the Configuration
 menu.  If you are not in the 'dev' environment you will not be able to
-see the values contained in keys named '*passw*'.
+see the values contained in the defined secret keys
+(by default : '*passw*', '*key*', '*secret*' and '*token*').
 
 Installation
 ============
