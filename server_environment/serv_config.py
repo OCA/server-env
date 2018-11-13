@@ -153,6 +153,7 @@ class _Defaults(dict):
 class ServerConfiguration(models.TransientModel):
     """Display server configuration."""
     _name = 'server.config'
+    _description = 'Display server configuration'
     _conf_defaults = _Defaults()
 
     @classmethod
