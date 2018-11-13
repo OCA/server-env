@@ -97,6 +97,7 @@ class ServerEnvMixin(models.AbstractModel):
 
     """
     _name = 'server.env.mixin'
+    _description = 'Mixin to add server environment in existing models'
 
     server_env_defaults = fields.Serialized()
 
