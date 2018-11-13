@@ -1,5 +1,5 @@
 # Copyright 2018 Camptocamp (https://www.camptocamp.com).
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License GPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
 
