@@ -1,10 +1,11 @@
+* Florent Xicluna (Wingo) <florent.xicluna@gmail.com>
+* Nicolas Bessi <nicolas.bessi@camptocamp.com>
 * Alexandre Fayolle <alexandre.fayolle@camptocamp.com>
 * Daniel Reis <dgreis@sapo.pt>
-* Florent Xicluna <florent.xicluna@gmail.com>
-* Guewen Baconnier <guewen.baconnier@camptocamp.com>
 * Holger Brunn <hbrunn@therp.nl>
-* Joël Grand-Guillaume <joel.grandguillaume@camptocamp.com>
-* Nicolas Bessi <nicolas.bessi@camptocamp.com>
-* Wingo
-* Yannick Vaucher <yannick.vaucher@camptocamp.com>
-* Stéphane Bidoul <stephane.bidoul@acsone.eu>
+* Leonardo Pistone <leonardo.pistone@camptocamp.com>
+* Adrien Peiffer <adrien.peiffer@acsone.com>
+* Thierry Ducrest <thierry.ducrest@camptocamp.com>
+* Guewen Baconnier <guewen.baconnier@camptocamp.com>
+* Thomas Binfeld <thomas.binsfeld@acsone.eu>
+* Stéphane Bidoul <stefane.bidoul@acsone.com>
