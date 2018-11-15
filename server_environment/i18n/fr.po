@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * server_environment
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,47 +10,66 @@ msgstr ""
 "POT-Creation-Date: 2016-02-27 01:37+0000\n"
 "PO-Revision-Date: 2016-02-26 17:03+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: French (http://www.transifex.com/oca/OCA-server-tools-9-0/language/fr/)\n"
+"Language-Team: French (http://www.transifex.com/oca/OCA-server-tools-9-0/"
+"language/fr/)\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_create_uid
+#: model:ir.model.fields,field_description:server_environment.field_server_config__create_uid
 msgid "Created by"
 msgstr "Créé par"
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_create_date
+#: model:ir.model.fields,field_description:server_environment.field_server_config__create_date
 msgid "Created on"
 msgstr "Date"
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_display_name
+#: model:ir.model.fields,field_description:server_environment.field_server_config__display_name
+#: model:ir.model.fields,field_description:server_environment.field_server_env_mixin__display_name
 msgid "Display Name"
 msgstr "Nom d'affichage"
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_id
+#: model:ir.model,name:server_environment.model_server_config
+msgid "Display server configuration"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__id
+#: model:ir.model.fields,field_description:server_environment.field_server_env_mixin__id
 msgid "ID"
 msgstr "ID"
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config___last_update
+#: model:ir.model.fields,field_description:server_environment.field_server_config____last_update
+#: model:ir.model.fields,field_description:server_environment.field_server_env_mixin____last_update
 msgid "Last Modified on"
 msgstr "Dernière modification le"
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_write_uid
+#: model:ir.model.fields,field_description:server_environment.field_server_config__write_uid
 msgid "Last Updated by"
 msgstr "Dernière mise à jour par"
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_write_date
+#: model:ir.model.fields,field_description:server_environment.field_server_config__write_date
 msgid "Last Updated on"
 msgstr "Dernière mise à jour le"
+
+#. module: server_environment
+#: model:ir.model,name:server_environment.model_server_env_mixin
+msgid "Mixin to add server environment in existing models"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_env_mixin__server_env_defaults
+msgid "Server Env Defaults"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.actions.act_window,name:server_environment.act_show_config_window
@@ -59,558 +78,481 @@ msgid "Server Environment"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_custom_ged
-#: | ged_folder
+#: model:res.groups,name:server_environment.has_server_configuration_access
+msgid "View Server Environment Configuration"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__custom_ged_I_ged_folder
 msgid "custom_ged | ged_folder"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_external_service
-#: | CONSTA
+#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_I_CONSTA
 msgid "external_service | CONSTA"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_external_service
-#: | CONSTB
+#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_I_CONSTB
 msgid "external_service | CONSTB"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_external_service
-#: | CONSTC
+#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_I_CONSTC
 msgid "external_service | CONSTC"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_external_service_ftp
-#: | in_path
-msgid "external_service.ftp | in_path"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_ftp_I_in_path
+msgid "external_service_ftp | in_path"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_external_service_ftp
-#: | out_path
-msgid "external_service.ftp | out_path"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_ftp_I_out_path
+msgid "external_service_ftp | out_path"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_external_service_ftp
-#: | password
-msgid "external_service.ftp | password"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_ftp_I_password
+msgid "external_service_ftp | password"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_external_service_ftp
-#: | port
-msgid "external_service.ftp | port"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_ftp_I_port
+msgid "external_service_ftp | port"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_external_service_ftp
-#: | server
-msgid "external_service.ftp | server"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_ftp_I_server
+msgid "external_service_ftp | server"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_external_service_ftp
-#: | tls
-msgid "external_service.ftp | tls"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_ftp_I_tls
+msgid "external_service_ftp | tls"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_external_service_ftp
-#: | user
-msgid "external_service.ftp | user"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_ftp_I_user
+msgid "external_service_ftp | user"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_misc
-#: | completed_state
+#: model:ir.model.fields,field_description:server_environment.field_server_config__ir_config_parameter_I_ircp_empty
+msgid "ir_config_parameter | ircp_empty"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__ir_config_parameter_I_ircp_from_config
+msgid "ir_config_parameter | ircp_from_config"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__misc_I_completed_state
 msgid "misc | completed_state"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_misc
-#: | smtp_server
+#: model:ir.model.fields,field_description:server_environment.field_server_config__misc_I_smtp_server
 msgid "misc | smtp_server"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | addons_path
-msgid "openerp | addons_path"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_addons_path
+msgid "odoo | addons_path"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | admin_passwd
-msgid "openerp | admin_passwd"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_admin_passwd
+msgid "odoo | admin_passwd"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | config
-msgid "openerp | config"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_config
+msgid "odoo | config"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | csv_internal_sep
-msgid "openerp | csv_internal_sep"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_csv_internal_sep
+msgid "odoo | csv_internal_sep"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | data_dir
-msgid "openerp | data_dir"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_data_dir
+msgid "odoo | data_dir"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | db_host
-msgid "openerp | db_host"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_db_host
+msgid "odoo | db_host"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | db_maxconn
-msgid "openerp | db_maxconn"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_db_maxconn
+msgid "odoo | db_maxconn"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | db_name
-msgid "openerp | db_name"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_db_name
+msgid "odoo | db_name"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | db_password
-msgid "openerp | db_password"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_db_password
+msgid "odoo | db_password"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | db_port
-msgid "openerp | db_port"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_db_port
+msgid "odoo | db_port"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | db_template
-msgid "openerp | db_template"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_db_sslmode
+msgid "odoo | db_sslmode"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | db_user
-msgid "openerp | db_user"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_db_template
+msgid "odoo | db_template"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | dbfilter
-msgid "openerp | dbfilter"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_db_user
+msgid "odoo | db_user"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | debug_mode
-msgid "openerp | debug_mode"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_dbfilter
+msgid "odoo | dbfilter"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | demo
-msgid "openerp | demo"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_demo
+msgid "odoo | demo"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | dev_mode
-msgid "openerp | dev_mode"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_dev_mode
+msgid "odoo | dev_mode"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | email_from
-msgid "openerp | email_from"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_email_from
+msgid "odoo | email_from"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | geoip_database
-msgid "openerp | geoip_database"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_geoip_database
+msgid "odoo | geoip_database"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | import_partial
-msgid "openerp | import_partial"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_http_enable
+msgid "odoo | http_enable"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | init
-msgid "openerp | init"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_http_interface
+msgid "odoo | http_interface"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | language
-msgid "openerp | language"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_http_port
+msgid "odoo | http_port"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | limit_memory_hard
-msgid "openerp | limit_memory_hard"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_import_partial
+msgid "odoo | import_partial"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | limit_memory_soft
-msgid "openerp | limit_memory_soft"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_init
+msgid "odoo | init"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | limit_request
-msgid "openerp | limit_request"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_language
+msgid "odoo | language"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | limit_time_cpu
-msgid "openerp | limit_time_cpu"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_limit_memory_hard
+msgid "odoo | limit_memory_hard"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | limit_time_real
-msgid "openerp | limit_time_real"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_limit_memory_soft
+msgid "odoo | limit_memory_soft"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | list_db
-msgid "openerp | list_db"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_limit_request
+msgid "odoo | limit_request"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | log_db
-msgid "openerp | log_db"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_limit_time_cpu
+msgid "odoo | limit_time_cpu"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | log_db_level
-msgid "openerp | log_db_level"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_limit_time_real
+msgid "odoo | limit_time_real"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | log_handler
-msgid "openerp | log_handler"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_limit_time_real_cron
+msgid "odoo | limit_time_real_cron"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | log_level
-msgid "openerp | log_level"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_list_db
+msgid "odoo | list_db"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | logfile
-msgid "openerp | logfile"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_log_db
+msgid "odoo | log_db"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | logrotate
-msgid "openerp | logrotate"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_log_db_level
+msgid "odoo | log_db_level"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | longpolling_port
-msgid "openerp | longpolling_port"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_log_handler
+msgid "odoo | log_handler"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | max_cron_threads
-msgid "openerp | max_cron_threads"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_log_level
+msgid "odoo | log_level"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | osv_memory_age_limit
-msgid "openerp | osv_memory_age_limit"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_logfile
+msgid "odoo | logfile"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | osv_memory_count_limit
-msgid "openerp | osv_memory_count_limit"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_logrotate
+msgid "odoo | logrotate"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | overwrite_existing_translations
-msgid "openerp | overwrite_existing_translations"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_longpolling_port
+msgid "odoo | longpolling_port"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | pg_path
-msgid "openerp | pg_path"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_max_cron_threads
+msgid "odoo | max_cron_threads"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | pidfile
-msgid "openerp | pidfile"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_osv_memory_age_limit
+msgid "odoo | osv_memory_age_limit"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | proxy_mode
-msgid "openerp | proxy_mode"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_osv_memory_count_limit
+msgid "odoo | osv_memory_count_limit"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | publisher_warranty_url
-msgid "openerp | publisher_warranty_url"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_overwrite_existing_translations
+msgid "odoo | overwrite_existing_translations"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | reportgz
-msgid "openerp | reportgz"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_pg_path
+msgid "odoo | pg_path"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | root_path
-msgid "openerp | root_path"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_pidfile
+msgid "odoo | pidfile"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | running_env
-msgid "openerp | running_env"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_proxy_mode
+msgid "odoo | proxy_mode"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | save
-msgid "openerp | save"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_publisher_warranty_url
+msgid "odoo | publisher_warranty_url"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | server_wide_modules
-msgid "openerp | server_wide_modules"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_reportgz
+msgid "odoo | reportgz"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | smtp_password
-msgid "openerp | smtp_password"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_root_path
+msgid "odoo | root_path"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | smtp_port
-msgid "openerp | smtp_port"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_running_env
+msgid "odoo | running_env"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | smtp_server
-msgid "openerp | smtp_server"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_save
+msgid "odoo | save"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | smtp_ssl
-msgid "openerp | smtp_ssl"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_server_wide_modules
+msgid "odoo | server_wide_modules"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | smtp_user
-msgid "openerp | smtp_user"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_shell_interface
+msgid "odoo | shell_interface"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | stop_after_init
-msgid "openerp | stop_after_init"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_smtp_password
+msgid "odoo | smtp_password"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | syslog
-msgid "openerp | syslog"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_smtp_port
+msgid "odoo | smtp_port"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | test_commit
-msgid "openerp | test_commit"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_smtp_server
+msgid "odoo | smtp_server"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | test_enable
-msgid "openerp | test_enable"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_smtp_ssl
+msgid "odoo | smtp_ssl"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | test_file
-msgid "openerp | test_file"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_smtp_user
+msgid "odoo | smtp_user"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | test_report_directory
-msgid "openerp | test_report_directory"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_stop_after_init
+msgid "odoo | stop_after_init"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | translate_in
-msgid "openerp | translate_in"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_syslog
+msgid "odoo | syslog"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | translate_modules
-msgid "openerp | translate_modules"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_test_enable
+msgid "odoo | test_enable"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | translate_out
-msgid "openerp | translate_out"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_test_file
+msgid "odoo | test_file"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | unaccent
-msgid "openerp | unaccent"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_test_tags
+msgid "odoo | test_tags"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | update
-msgid "openerp | update"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_translate_in
+msgid "odoo | translate_in"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | without_demo
-msgid "openerp | without_demo"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_translate_modules
+msgid "odoo | translate_modules"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | workers
-msgid "openerp | workers"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_translate_out
+msgid "odoo | translate_out"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | xmlrpc
-msgid "openerp | xmlrpc"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_unaccent
+msgid "odoo | unaccent"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | xmlrpc_interface
-msgid "openerp | xmlrpc_interface"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_update
+msgid "odoo | update"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_openerp
-#: | xmlrpc_port
-msgid "openerp | xmlrpc_port"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_without_demo
+msgid "odoo | without_demo"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model,name:server_environment.model_server_config
-msgid "server.config"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_workers
+msgid "odoo | workers"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_system
-#: | architecture
+#: model:ir.model.fields,field_description:server_environment.field_server_config__system_I_architecture
 msgid "system | architecture"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_system
-#: | locale
+#: model:ir.model.fields,field_description:server_environment.field_server_config__system_I_locale
 msgid "system | locale"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_system
-#: | lsb_release
+#: model:ir.model.fields,field_description:server_environment.field_server_config__system_I_lsb_release
 msgid "system | lsb_release"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_system
-#: | openerp
-msgid "system | openerp"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__system_I_odoo
+msgid "system | odoo"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_system
-#: | os_name
-msgid "system | os.name"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__system_I_os_name
+msgid "system | os_name"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_system
-#: | platform
+#: model:ir.model.fields,field_description:server_environment.field_server_config__system_I_platform
 msgid "system | platform"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_system
-#: | python
+#: model:ir.model.fields,field_description:server_environment.field_server_config__system_I_python
 msgid "system | python"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_system
-#: | release
+#: model:ir.model.fields,field_description:server_environment.field_server_config__system_I_release
 msgid "system | release"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_system
-#: | revision
+#: model:ir.model.fields,field_description:server_environment.field_server_config__system_I_revision
 msgid "system | revision"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_system
-#: | version
+#: model:ir.model.fields,field_description:server_environment.field_server_config__system_I_version
 msgid "system | version"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config_wkhtml2pdf
-#: | lib_path
+#: model:ir.model.fields,field_description:server_environment.field_server_config__wkhtml2pdf_I_lib_path
 msgid "wkhtml2pdf | lib_path"
 msgstr ""
