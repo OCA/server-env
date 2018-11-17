@@ -9,7 +9,6 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo12-addon-server_environment',
-        'odoo12-addon-server_environment_files_sample',
     ],
     classifiers=[
         'Programming Language :: Python',
