@@ -20,12 +20,15 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: server_environment_ir_config_parameter
-#: code:addons/server_environment_ir_config_parameter/models/ir_config_parameter.py:23
+#: code:addons/server_environment_ir_config_parameter/models/ir_config_parameter.py:22
 #, python-format
 msgid "Key %s is empty in server_environment_file"
 msgstr "sleutel %s is leeg in server_environment_file"
 
 #. module: server_environment_ir_config_parameter
 #: model:ir.model,name:server_environment_ir_config_parameter.model_ir_config_parameter
-msgid "ir.config_parameter"
-msgstr "ir.config_parameter"
+msgid "System Parameter"
+msgstr ""
+
+#~ msgid "ir.config_parameter"
+#~ msgstr "ir.config_parameter"
