@@ -30,6 +30,7 @@
     "website": "http://odoo-community.org/",
     "license": "GPL-3 or any later version",
     "category": "Tools",
+    "preloadable": False,
     "data": [
         'serv_config.xml',
     ],
