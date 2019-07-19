@@ -396,6 +396,8 @@ class ServerEnvMixin(models.AbstractModel):
 
             if hasattr(base_field, 'selection'):
                 field_args['selection'] = base_field.selection
+            if base_field.type in ['many2many', 'many2one']:
+                field_args['comodel_name'] = base_field.comodel_name
             field = base_field_cls(**field_args)
             self._add_field(fieldname, field)
 
