@@ -1,29 +1,25 @@
-/******************************************************************************
+/** ****************************************************************************
     Copyright (C) 2019 - Today: GRAP (http://www.grap.coop)
     @author: Sylvain LE GAL (https://twitter.com/legalsylvain)
     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
  *****************************************************************************/
-'use strict';
 
-openerp.pos_environment = function(instance, local) {
+odoo.define('pos_environment.models', function (require) {
+    'use strict';
 
-    var module = instance.point_of_sale;
+    var models = require('point_of_sale.models');
 
-    /*************************************************************************
-        Extend module.Order:
-            add environment header and footer in export_for_printing
-            to make print via proxy working
-    */
-    var moduleOrderParent = module.Order;
-    module.Order = module.Order.extend({
+    var order_super = models.Order.prototype;
 
-        export_for_printing: function(attributes){
-            var order = moduleOrderParent.prototype.export_for_printing.apply(this, arguments);
-            order.receipt_environment_header = this.pos.config.receipt_environment_header;
-            order.receipt_environment_footer = this.pos.config.receipt_environment_footer;
-            return order;
+    models.Order = models.Order.extend({
+        export_for_printing: function () {
+            var res = order_super.export_for_printing.apply(this, arguments);
+            res.receipt_environment_header =
+                this.pos.config.receipt_environment_header;
+            res.receipt_environment_footer =
+                this.pos.config.receipt_environment_footer;
+            console.log(res);
+            return res;
         },
-
     });
-
-};
+});
