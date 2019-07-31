@@ -4,3 +4,7 @@ on your environment. (Development, , Pre Production, Production, etc...)
 
 This module is based on the mechanism introduced by the ``server_environment``
 module.
+
+**Note**
+
+This module works with or without IoT Box.

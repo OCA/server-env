@@ -3,7 +3,7 @@
 
     <!-- Non Proxy Bill -->
     <t t-extend="PosTicket">
-        <t t-jquery="[t-if='widget.pos.config.receipt_header']" t-operation="before">
+        <t t-jquery="[t-if='receipt.header']" t-operation="before">
             <t t-if="widget.pos.config.receipt_environment_header">
                 <br />
                 <div style='text-align:center'>
@@ -15,7 +15,7 @@
             </t>
         </t>
 
-        <t t-jquery="[t-if='widget.pos.config.receipt_footer']" t-operation="after">
+        <t t-jquery="[t-if='receipt.footer']" t-operation="after">
             <t t-if="widget.pos.config.receipt_environment_footer">
                 <br />
                 <div style='text-align:center'>
@@ -30,7 +30,7 @@
 
     <!--     Proxy Bill -->
     <t t-extend="XmlReceipt">
-        <t t-jquery="[t-if='receipt.header']" t-operation="after">
+        <t t-jquery="[t-if='receipt.header_xml']" t-operation="after">
 
             <t t-if="widget.pos.config.receipt_environment_header">
                 <br />
@@ -43,7 +43,7 @@
             </t>
         </t>
 
-        <t t-jquery="[t-if='receipt.footer']" t-operation="after">
+        <t t-jquery="[t-if='receipt.footer_xml']" t-operation="after">
             <t t-if="widget.pos.config.receipt_environment_footer">
                 <br />
                 <div style='text-align:center'>
