@@ -22,7 +22,7 @@ class ServerEnvMixin(models.AbstractModel):
         vals = (
             self.env["encrypted.data"]
             .sudo()
-            ._get_json(encrypted_data_name, env=env)
+            ._encrypted_read_json(encrypted_data_name, env=env)
         )
         if vals.get(field_name):
             self[field_name] = vals[field_name]
@@ -42,12 +42,12 @@ class ServerEnvMixin(models.AbstractModel):
         for record in self:
             if record[is_editable_field]:
                 encrypted_data_name = "%s,%s" % (record._name, record.id)
-                values = encrypted_data_obj._get_json(
+                values = encrypted_data_obj._encrypted_read_json(
                     encrypted_data_name, env=env
                 )
                 new_val = {field_name: record[field_name]}
                 values.update(new_val)
-                encrypted_data_obj._store_json(
+                encrypted_data_obj._encrypted_store_json(
                     encrypted_data_name, values, env=env
                 )
 
