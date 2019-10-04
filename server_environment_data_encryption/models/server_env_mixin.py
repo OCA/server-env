@@ -118,13 +118,17 @@ class ServerEnvMixin(models.AbstractModel):
         current_env = self.env.context.get("environment") or config.get(
             "running_env"
         )
-        other_environments = [
+        # Important to keep this list sorted. It makes sure the button to
+        # switch environment will always be in the same order. (more user
+        # friendly) and the test would fail without it as the order could
+        # change randomly and the view would then also change randomly
+        other_environments = sorted([
             key[15:]
             for key, val in config.options.items()
             if key.startswith("encryption_key_")
             and val
             and key[15:] != current_env
-        ]
+        ])
 
         if not current_env:
             raise ValidationError(
