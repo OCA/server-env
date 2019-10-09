@@ -41,7 +41,6 @@ class IrConfigParameter(models.Model):
             vals = dict(vals, value=serv_config.get(SECTION, key))
         return super().create(vals)
 
-    @api.multi
     def write(self, vals):
         for rec in self:
             key = vals.get('key') or rec.key
