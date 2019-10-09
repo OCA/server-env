@@ -3,7 +3,6 @@
     <act_window id="act_show_config_window"
         name="Server Environment"
         res_model="server.config"
-        view_type="form"
         view_mode="form"/>
 
     <menuitem

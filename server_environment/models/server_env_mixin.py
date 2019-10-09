@@ -8,7 +8,7 @@ from functools import partialmethod
 from lxml import etree
 
 from odoo import api, fields, models
-from ..serv_config import serv_config
+from ..server_env import serv_config
 
 _logger = logging.getLogger(__name__)
 
@@ -162,7 +162,6 @@ class ServerEnvMixin(models.AbstractModel):
         """
         return self._name.replace(".", "_")
 
-    @api.multi
     def _server_env_section_name(self):
         """Name of the section in the configuration files
 
@@ -172,7 +171,6 @@ class ServerEnvMixin(models.AbstractModel):
         base = self._server_env_global_section_name()
         return ".".join((base, self.name))
 
-    @api.multi
     def _server_env_read_from_config(self, field_name, config_getter):
         self.ensure_one()
         global_section_name = self._server_env_global_section_name()
@@ -196,7 +194,6 @@ class ServerEnvMixin(models.AbstractModel):
             return False
         return value
 
-    @api.multi
     def _server_env_has_key_defined(self, field_name):
         self.ensure_one()
         global_section_name = self._server_env_global_section_name()
@@ -236,8 +233,9 @@ class ServerEnvMixin(models.AbstractModel):
             )
             if default_field:
                 self[field_name] = self[default_field]
+            else:
+                self[field_name] = False
 
-    @api.multi
     def _compute_server_env(self):
         """Read values from environment configuration files
 
@@ -269,7 +267,6 @@ class ServerEnvMixin(models.AbstractModel):
                 elif default_field:
                     record[default_field] = record[field_name]
 
-    @api.multi
     def _compute_server_env_is_editable(self):
         """Compute <field>_is_editable values
 
