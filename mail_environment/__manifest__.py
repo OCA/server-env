@@ -9,6 +9,7 @@
     'author': "Camptocamp, Odoo Community Association (OCA)",
     'license': 'AGPL-3',
     'website': 'https://github.com/OCA/server-env',
+    'preloadable': False,
     'depends': [
         'fetchmail',
         'server_environment',
