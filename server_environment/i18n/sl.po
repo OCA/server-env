@@ -513,6 +513,61 @@ msgid "odoo | workers"
 msgstr ""
 
 #. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__pos_environment_footer_I_line_1
+msgid "pos_environment_footer | line_1"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__pos_environment_footer_I_line_2
+msgid "pos_environment_footer | line_2"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__pos_environment_footer_I_line_3
+msgid "pos_environment_footer | line_3"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__pos_environment_footer_I_line_4
+msgid "pos_environment_footer | line_4"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__pos_environment_footer_I_line_5
+msgid "pos_environment_footer | line_5"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__pos_environment_footer_I_line_6
+msgid "pos_environment_footer | line_6"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__pos_environment_footer_I_line_7
+msgid "pos_environment_footer | line_7"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__pos_environment_header_I_line_1
+msgid "pos_environment_header | line_1"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__pos_environment_header_I_line_2
+msgid "pos_environment_header | line_2"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__pos_environment_header_I_line_3
+msgid "pos_environment_header | line_3"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__pos_environment_header_I_line_4
+msgid "pos_environment_header | line_4"
+msgstr ""
+
+#. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__system_I_architecture
 msgid "system | architecture"
 msgstr "system | architecture"
