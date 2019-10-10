@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2013 - Today: GRAP (http://www.grap.coop)
+@author: Sylvain LE GAL (https://twitter.com/legalsylvain)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+
+<odoo>
+
+    <template id="point_of_sale_assets" inherit_id="point_of_sale.index">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/pos_environment/static/src/js/models.js"></script>
+        </xpath>
+    </template>
+
+</odoo>
