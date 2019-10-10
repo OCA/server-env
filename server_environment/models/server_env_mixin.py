@@ -8,7 +8,7 @@ from functools import partialmethod
 from lxml import etree
 
 from odoo import api, fields, models
-from ..serv_config import serv_config
+from ..server_env import serv_config
 
 _logger = logging.getLogger(__name__)
 
