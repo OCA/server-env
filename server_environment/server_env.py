@@ -292,7 +292,7 @@ class ServerConfiguration(models.TransientModel):
         self, view_id=None, view_type="form", toolbar=False, submenu=False
     ):
         """Overwrite the default method to render the custom view."""
-        res = super(ServerConfiguration, self).fields_view_get(
+        res = super().fields_view_get(
             view_id, view_type, toolbar
         )
         View = self.env["ir.ui.view"]
@@ -315,7 +315,7 @@ class ServerConfiguration(models.TransientModel):
 
     @api.model
     def default_get(self, fields_list):
-        res = {}
+        res = super().default_get(fields_list)
         if not self.env.user.has_group(
             "server_environment.has_server_configuration_access"
         ):
