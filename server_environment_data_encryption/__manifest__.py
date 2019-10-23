@@ -4,11 +4,9 @@
     "version": "12.0.1.0.0",
     "development_status": 'Alpha',
     "category": "Tools",
-    "website": "https://akretion.com/",
+    "website": "https://github.com/OCA/server-env",
     "author": "Akretion, Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "application": False,
     "installable": True,
     "depends": ["server_environment", "data_encryption"],
-    "data": [],
 }
