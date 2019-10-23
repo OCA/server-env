@@ -181,13 +181,18 @@ class ServerEnvMixin(models.AbstractModel):
             # _server_env_has_key_defined so we are sure that the value is
             # either in the global or the record config
             getter = getattr(serv_config, config_getter)
-            if section_name in serv_config and field_name in serv_config[section_name]:
+            if (
+                section_name in serv_config
+                and field_name in serv_config[section_name]
+            ):
                 value = getter(section_name, field_name)
             else:
                 value = getter(global_section_name, field_name)
         except Exception:
             _logger.exception(
-                "error trying to read field %s in section %s", field_name, section_name
+                "error trying to read field %s in section %s",
+                field_name,
+                section_name,
             )
             return False
         return value
@@ -201,7 +206,8 @@ class ServerEnvMixin(models.AbstractModel):
             and field_name in serv_config[global_section_name]
         )
         has_config = (
-            section_name in serv_config and field_name in serv_config[section_name]
+            section_name in serv_config
+            and field_name in serv_config[section_name]
         )
         return has_global_config or has_config
 
@@ -243,7 +249,9 @@ class ServerEnvMixin(models.AbstractModel):
                     record._compute_server_env_from_config(field_name, options)
 
                 else:
-                    record._compute_server_env_from_default(field_name, options)
+                    record._compute_server_env_from_default(
+                        field_name, options
+                    )
 
     def _inverse_server_env(self, field_name):
         options = self._server_env_fields[field_name]
@@ -271,8 +279,12 @@ class ServerEnvMixin(models.AbstractModel):
         # in ``_inverse_server_env`` it would reset the value of the field
         for record in self:
             for field_name in self._server_env_fields:
-                is_editable_field = self._server_env_is_editable_fieldname(field_name)
-                is_editable = not record._server_env_has_key_defined(field_name)
+                is_editable_field = self._server_env_is_editable_fieldname(
+                    field_name
+                )
+                is_editable = not record._server_env_has_key_defined(
+                    field_name
+                )
                 record[is_editable_field] = is_editable
 
     def _server_env_view_set_readonly(self, view_arch):
@@ -282,12 +294,17 @@ class ServerEnvMixin(models.AbstractModel):
             for elem in view_arch.findall(field_xpath % field):
                 # set env-computed fields to readonly if the configuration
                 # files have a key set for this field
-                elem.set("attrs", str({"readonly": [(is_editable_field, "=", False)]}))
+                elem.set(
+                    "attrs",
+                    str({"readonly": [(is_editable_field, "=", False)]}),
+                )
             if not view_arch.findall(field_xpath % is_editable_field):
                 # add the _is_editable fields in the view for the 'attrs'
                 # domain
                 view_arch.append(
-                    etree.Element("field", name=is_editable_field, invisible="1")
+                    etree.Element(
+                        "field", name=is_editable_field, invisible="1"
+                    )
                 )
         return view_arch
 
@@ -295,7 +312,10 @@ class ServerEnvMixin(models.AbstractModel):
         self, view_id=None, view_type="form", toolbar=False, submenu=False
     ):
         view_data = super()._fields_view_get(
-            view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu
+            view_id=view_id,
+            view_type=view_type,
+            toolbar=toolbar,
+            submenu=submenu,
         )
         view_arch = etree.fromstring(view_data["arch"].encode("utf-8"))
         view_arch = self._server_env_view_set_readonly(view_arch)
@@ -322,7 +342,9 @@ class ServerEnvMixin(models.AbstractModel):
         field.compute = "_compute_server_env"
 
         inverse_method_name = "_inverse_server_env_%s" % field.name
-        inverse_method = partialmethod(type(self)._inverse_server_env, field.name)
+        inverse_method = partialmethod(
+            type(self)._inverse_server_env, field.name
+        )
         setattr(type(self), inverse_method_name, inverse_method)
         field.inverse = inverse_method_name
         field.store = False
@@ -368,7 +390,9 @@ class ServerEnvMixin(models.AbstractModel):
             base_field_cls = base_field.__class__
             field_args = base_field.args.copy()
             field_args.pop("_sequence", None)
-            field_args.update({"sparse": "server_env_defaults", "automatic": True})
+            field_args.update(
+                {"sparse": "server_env_defaults", "automatic": True}
+            )
 
             if hasattr(base_field, "selection"):
                 field_args["selection"] = base_field.selection
