@@ -15,7 +15,7 @@ class ServerEnvMixin(models.AbstractModel):
     _inherit = "server.env.mixin"
 
     def _compute_server_env_from_default(self, field_name, options):
-        "First return database encrypted value then default value"
+        """ First return database encrypted value then default value """
         self.ensure_one()
         encrypted_data_name = "%s,%s" % (self._name, self.id)
         env = self.env.context.get("environment", None)
@@ -54,11 +54,12 @@ class ServerEnvMixin(models.AbstractModel):
     def action_change_env_data_encrypted_fields(self):
         action_id = self.env.context.get("params", {}).get("action")
         if not action_id:
-            # We don't know which action we are using... take one random.
-            action_id = self.env['ir.actions.act_window'].search(
-                [('res_model', '=', self._name)], limit=1).id
-        action = self.env["ir.actions.act_window"].browse(action_id).read()[0]
-        action["view_mode"] = "form"
+            # We don't know which action we are using... take default one
+            action = self.get_formview_action()
+        else:
+            action = self.env["ir.actions.act_window"].browse(
+                action_id).read()[0]
+            action["view_mode"] = "form"
         action["res_id"] = self.id
         views_form = []
         for view_id, view_type in action.get("views", []):
@@ -68,6 +69,7 @@ class ServerEnvMixin(models.AbstractModel):
         return action
 
     def _get_extra_environment_info_div(self, current_env, extra_envs):
+        # TODO we could use a qweb template here
         button_div = "<div>"
         button_string = _("Define values for ")
         for environment in extra_envs:

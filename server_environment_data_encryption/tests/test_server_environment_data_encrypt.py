@@ -6,10 +6,6 @@ from pathlib import Path
 
 class TestServerEnvDataEncrypted(CommonDataEncrypted):
 
-    #    def test_store_data_no_superuser(self):
-    #        self.env['server.env.mixin']._inverse_server_env('test')
-    #        pass
-
     def test_dynamic_view_current_env(self):
         self.maxDiff = None
         self.set_new_key_env("prod")
