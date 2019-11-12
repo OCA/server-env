@@ -38,7 +38,8 @@ try:
     _dir = os.path.dirname(server_environment_files.__file__)
 except ImportError:
     _logger.info(
-        "not using server_environment_files for configuration," " no directory found"
+        "not using server_environment_files for configuration,"
+        " no directory found"
     )
     _dir = None
 
@@ -119,7 +120,9 @@ def _load_config_from_server_env_files(config_p):
     try:
         config_p.read(conf_files)
     except Exception as e:
-        raise Exception('Cannot read config files "{}":  {}'.format(conf_files, e))
+        raise Exception(
+            'Cannot read config files "{}":  {}'.format(conf_files, e)
+        )
 
 
 def _load_config_from_rcfile(config_p):
@@ -209,7 +212,8 @@ class ServerConfiguration(models.TransientModel):
                 ServerConfiguration,
                 col_name,
                 fields.Char(
-                    string=cls._format_key_display_name(col_name), readonly=True
+                    string=cls._format_key_display_name(col_name),
+                    readonly=True,
                 ),
             )
             cls._conf_defaults[col_name] = value
@@ -253,7 +257,10 @@ class ServerConfiguration(models.TransientModel):
         return (
             '<group col="2" colspan="4">'
             + "".join(
-                ['<field name="%s" readonly="1"/>' % _escape(name) for name in names]
+                [
+                    '<field name="%s" readonly="1"/>' % _escape(name)
+                    for name in names
+                ]
             )
             + "</group>"
         )
@@ -292,13 +299,13 @@ class ServerConfiguration(models.TransientModel):
         self, view_id=None, view_type="form", toolbar=False, submenu=False
     ):
         """Overwrite the default method to render the custom view."""
-        res = super(ServerConfiguration, self).fields_view_get(
-            view_id, view_type, toolbar
-        )
+        res = super().fields_view_get(view_id, view_type, toolbar)
         View = self.env["ir.ui.view"]
         if view_type == "form":
             arch_node = self._arch
-            xarch, xfields = View.postprocess_and_fields(self._name, arch_node, view_id)
+            xarch, xfields = View.postprocess_and_fields(
+                self._name, arch_node, view_id
+            )
             res["arch"] = xarch
             res["fields"] = xfields
         return res
@@ -315,7 +322,7 @@ class ServerConfiguration(models.TransientModel):
 
     @api.model
     def default_get(self, fields_list):
-        res = {}
+        res = super().default_get(fields_list)
         if not self.env.user.has_group(
             "server_environment.has_server_configuration_access"
         ):

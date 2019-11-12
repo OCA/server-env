@@ -1,7 +1,6 @@
 # Copyright 2018 Camptocamp (https://www.camptocamp.com).
 # License GPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo.addons.server_environment import server_env
-
+from .. import server_env
 from . import common
 
 
