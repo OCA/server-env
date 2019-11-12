@@ -47,9 +47,7 @@ class ServerEnvironmentCase(common.SavepointCase):
     def load_config(self, public=None, secret=None):
         original_serv_config = server_env_mixin.serv_config
         try:
-            with self.set_config_dir(None), self.set_env_variables(
-                public, secret
-            ):
+            with self.set_config_dir(None), self.set_env_variables(public, secret):
                 parser = server_env._load_config()
                 server_env_mixin.serv_config = parser
                 yield
