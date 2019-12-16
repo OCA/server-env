@@ -18,13 +18,14 @@
 #
 ##############################################################################
 
+import configparser
 import logging
 import os
-import configparser
-from lxml import etree
 from itertools import chain
 
-from odoo import api, models, fields
+from lxml import etree
+
+from odoo import api, fields, models
 from odoo.tools.config import config as system_base_config
 
 from .system_info import get_server_environment
@@ -33,19 +34,29 @@ _logger = logging.getLogger(__name__)
 
 try:
     from odoo.addons import server_environment_files
+
     _dir = os.path.dirname(server_environment_files.__file__)
 except ImportError:
-    _logger.info('not using server_environment_files for configuration,'
-                 ' no directory found')
+    _logger.info(
+        "not using server_environment_files for configuration," " no directory found"
+    )
     _dir = None
 
-ENV_VAR_NAMES = ('SERVER_ENV_CONFIG', 'SERVER_ENV_CONFIG_SECRET')
+ENV_VAR_NAMES = ("SERVER_ENV_CONFIG", "SERVER_ENV_CONFIG_SECRET")
 
 # Same dict as RawConfigParser._boolean_states
-_boolean_states = {'1': True, 'yes': True, 'true': True, 'on': True,
-                   '0': False, 'no': False, 'false': False, 'off': False}
+_boolean_states = {
+    "1": True,
+    "yes": True,
+    "true": True,
+    "on": True,
+    "0": False,
+    "no": False,
+    "false": False,
+    "off": False,
+}
 
-if not system_base_config.get('running_env', False):
+if not system_base_config.get("running_env", False):
     raise Exception(
         "The parameter 'running_env' has not be set neither in base config "
         "file option -c or in openerprc.\n"
@@ -56,7 +67,7 @@ if not system_base_config.get('running_env', False):
 
 ck_path = None
 if _dir:
-    ck_path = os.path.join(_dir, system_base_config['running_env'])
+    ck_path = os.path.join(_dir, system_base_config["running_env"])
 
     if not os.path.exists(ck_path):
         raise Exception(
@@ -77,25 +88,29 @@ def setboolean(obj, attr, _bool=None):
 # Borrowed from MarkupSafe
 def _escape(s):
     """Convert the characters &<>'" in string s to HTML-safe sequences."""
-    return (str(s).replace('&', '&amp;')
-                  .replace('>', '&gt;')
-                  .replace('<', '&lt;')
-                  .replace("'", '&#39;')
-                  .replace('"', '&#34;'))
+    return (
+        str(s)
+        .replace("&", "&amp;")
+        .replace(">", "&gt;")
+        .replace("<", "&lt;")
+        .replace("'", "&#39;")
+        .replace('"', "&#34;")
+    )
 
 
 def _listconf(env_path):
     """List configuration files in a folder."""
-    files = [os.path.join(env_path, name)
-             for name in sorted(os.listdir(env_path))
-             if name.endswith('.conf')]
+    files = [
+        os.path.join(env_path, name)
+        for name in sorted(os.listdir(env_path))
+        if name.endswith(".conf")
+    ]
     return files
 
 
 def _load_config_from_server_env_files(config_p):
-    default = os.path.join(_dir, 'default')
-    running_env = os.path.join(_dir,
-                               system_base_config['running_env'])
+    default = os.path.join(_dir, "default")
+    running_env = os.path.join(_dir, system_base_config["running_env"])
     if os.path.isdir(default):
         conf_files = _listconf(default) + _listconf(running_env)
     else:
@@ -104,12 +119,12 @@ def _load_config_from_server_env_files(config_p):
     try:
         config_p.read(conf_files)
     except Exception as e:
-        raise Exception('Cannot read config files "%s":  %s' % (conf_files, e))
+        raise Exception('Cannot read config files "{}":  {}'.format(conf_files, e))
 
 
 def _load_config_from_rcfile(config_p):
     config_p.read(system_base_config.rcfile)
-    config_p.remove_section('options')
+    config_p.remove_section("options")
 
 
 def _load_config_from_env(config_p):
@@ -120,8 +135,7 @@ def _load_config_from_env(config_p):
                 config_p.read_string(env_config)
             except configparser.Error as err:
                 raise Exception(
-                    '%s content could not be parsed: %s'
-                    % (varname, err,)
+                    "{} content could not be parsed: {}".format(varname, err)
                 )
 
 
@@ -147,13 +161,15 @@ class _Defaults(dict):
     def __setitem__(self, key, value):
         def func(*a):
             return str(value)
+
         return dict.__setitem__(self, key, func)
 
 
 class ServerConfiguration(models.TransientModel):
     """Display server configuration."""
-    _name = 'server.config'
-    _description = 'Display server configuration'
+
+    _name = "server.config"
+    _description = "Display server configuration"
     _conf_defaults = _Defaults()
 
     @classmethod
@@ -164,20 +180,20 @@ class ServerConfiguration(models.TransientModel):
         """
         ModelClass = super(ServerConfiguration, cls)._build_model(pool, cr)
         ModelClass._add_columns()
-        ModelClass.running_env = system_base_config['running_env']
+        ModelClass.running_env = system_base_config["running_env"]
         # Only show passwords in development
-        ModelClass.show_passwords = ModelClass.running_env in ('dev',)
+        ModelClass.show_passwords = ModelClass.running_env in ("dev",)
         ModelClass._arch = None
         ModelClass._build_osv()
         return ModelClass
 
     @classmethod
     def _format_key(cls, section, key):
-        return '%s_I_%s' % (section, key)
+        return "{}_I_{}".format(section, key)
 
     @classmethod
     def _format_key_display_name(cls, key_name):
-        return key_name.replace('_I_', ' | ')
+        return key_name.replace("_I_", " | ")
 
     @classmethod
     def _add_columns(cls):
@@ -185,16 +201,17 @@ class ServerConfiguration(models.TransientModel):
         cols = chain(
             list(cls._get_base_cols().items()),
             list(cls._get_env_cols().items()),
-            list(cls._get_system_cols().items())
+            list(cls._get_system_cols().items()),
         )
         for col, value in cols:
-            col_name = col.replace('.', '_')
-            setattr(ServerConfiguration,
-                    col_name,
-                    fields.Char(
-                        string=cls._format_key_display_name(col_name),
-                        readonly=True)
-                    )
+            col_name = col.replace(".", "_")
+            setattr(
+                ServerConfiguration,
+                col_name,
+                fields.Char(
+                    string=cls._format_key_display_name(col_name), readonly=True
+                ),
+            )
             cls._conf_defaults[col_name] = value
 
     @classmethod
@@ -202,7 +219,7 @@ class ServerConfiguration(models.TransientModel):
         """ Compute base fields"""
         res = {}
         for col, item in list(system_base_config.options.items()):
-            key = cls._format_key('odoo', col)
+            key = cls._format_key("odoo", col)
             res[key] = item
         return res
 
@@ -222,7 +239,7 @@ class ServerConfiguration(models.TransientModel):
         """ Compute system fields"""
         res = {}
         for col, item in get_server_environment():
-            key = cls._format_key('system', col)
+            key = cls._format_key("system", col)
             res[key] = item
         return res
 
@@ -232,17 +249,19 @@ class ServerConfiguration(models.TransientModel):
         names = []
 
         for key in sorted(items):
-            names.append(key.replace('.', '_'))
-        return ('<group col="2" colspan="4">' +
-                ''.join(['<field name="%s" readonly="1"/>' %
-                         _escape(name) for name in names]) +
-                '</group>')
+            names.append(key.replace(".", "_"))
+        return (
+            '<group col="2" colspan="4">'
+            + "".join(
+                ['<field name="%s" readonly="1"/>' % _escape(name) for name in names]
+            )
+            + "</group>"
+        )
 
     @classmethod
     def _build_osv(cls):
         """Build the view for the current configuration."""
-        arch = ('<form string="Configuration Form">'
-                '<notebook colspan="4">')
+        arch = '<form string="Configuration Form">' '<notebook colspan="4">'
 
         # Odoo server configuration
         rcfile = system_base_config.rcfile
@@ -265,23 +284,21 @@ class ServerConfiguration(models.TransientModel):
         arch += cls._group(cls._get_system_cols())
         arch += '<separator colspan="4"/></page>'
 
-        arch += '</notebook></form>'
+        arch += "</notebook></form>"
         cls._arch = etree.fromstring(arch)
 
     @api.model
-    def fields_view_get(self, view_id=None, view_type='form', toolbar=False,
-                        submenu=False):
+    def fields_view_get(
+        self, view_id=None, view_type="form", toolbar=False, submenu=False
+    ):
         """Overwrite the default method to render the custom view."""
-        res = super(ServerConfiguration, self).fields_view_get(view_id,
-                                                               view_type,
-                                                               toolbar)
-        View = self.env['ir.ui.view']
-        if view_type == 'form':
+        res = super().fields_view_get(view_id, view_type, toolbar)
+        View = self.env["ir.ui.view"]
+        if view_type == "form":
             arch_node = self._arch
-            xarch, xfields = View.postprocess_and_fields(
-                self._name, arch_node, view_id)
-            res['arch'] = xarch
-            res['fields'] = xfields
+            xarch, xfields = View.postprocess_and_fields(self._name, arch_node, view_id)
+            res["arch"] = xarch
+            res["fields"] = xfields
         return res
 
     @api.model
@@ -291,18 +308,19 @@ class ServerConfiguration(models.TransientModel):
         should be secret.
         :return: list of secret keywords
         """
-        secret_keys = ['passw', 'key', 'secret', 'token']
+        secret_keys = ["passw", "key", "secret", "token"]
         return any(secret_key in key for secret_key in secret_keys)
 
     @api.model
     def default_get(self, fields_list):
-        res = {}
+        res = super().default_get(fields_list)
         if not self.env.user.has_group(
-                'server_environment.has_server_configuration_access'):
+            "server_environment.has_server_configuration_access"
+        ):
             return res
         for key in self._conf_defaults:
             if not self.show_passwords and self._is_secret(key=key):
-                res[key] = '**********'
+                res[key] = "**********"
             else:
                 res[key] = self._conf_defaults[key]()
         return res
