@@ -84,81 +84,6 @@ msgid "View Server Environment Configuration"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__custom_ged_I_ged_folder
-msgid "custom_ged | ged_folder"
-msgstr ""
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_I_CONSTA
-msgid "external_service | CONSTA"
-msgstr ""
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_I_CONSTB
-msgid "external_service | CONSTB"
-msgstr ""
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_I_CONSTC
-msgid "external_service | CONSTC"
-msgstr ""
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_ftp_I_in_path
-msgid "external_service_ftp | in_path"
-msgstr ""
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_ftp_I_out_path
-msgid "external_service_ftp | out_path"
-msgstr ""
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_ftp_I_password
-msgid "external_service_ftp | password"
-msgstr ""
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_ftp_I_port
-msgid "external_service_ftp | port"
-msgstr ""
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_ftp_I_server
-msgid "external_service_ftp | server"
-msgstr ""
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_ftp_I_tls
-msgid "external_service_ftp | tls"
-msgstr ""
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_ftp_I_user
-msgid "external_service_ftp | user"
-msgstr ""
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__ir_config_parameter_I_ircp_empty
-msgid "ir_config_parameter | ircp_empty"
-msgstr ""
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__ir_config_parameter_I_ircp_from_config
-msgid "ir_config_parameter | ircp_from_config"
-msgstr ""
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__misc_I_completed_state
-msgid "misc | completed_state"
-msgstr ""
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__misc_I_smtp_server
-msgid "misc | smtp_server"
-msgstr ""
-
-#. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_addons_path
 msgid "odoo | addons_path"
 msgstr ""
@@ -339,11 +264,6 @@ msgid "odoo | logfile"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_logrotate
-msgid "odoo | logrotate"
-msgstr ""
-
-#. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_longpolling_port
 msgid "odoo | longpolling_port"
 msgstr ""
@@ -406,6 +326,16 @@ msgstr ""
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_save
 msgid "odoo | save"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_screencasts
+msgid "odoo | screencasts"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_screenshots
+msgid "odoo | screenshots"
 msgstr ""
 
 #. module: server_environment
@@ -494,6 +424,11 @@ msgid "odoo | update"
 msgstr ""
 
 #. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_upgrades_paths
+msgid "odoo | upgrades_paths"
+msgstr ""
+
+#. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_without_demo
 msgid "odoo | without_demo"
 msgstr ""
@@ -551,9 +486,4 @@ msgstr ""
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__system_I_version
 msgid "system | version"
-msgstr ""
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__wkhtml2pdf_I_lib_path
-msgid "wkhtml2pdf | lib_path"
 msgstr ""
