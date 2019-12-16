@@ -102,88 +102,6 @@ msgid "View Server Environment Configuration"
 msgstr "Ambiente do servidor"
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__custom_ged_I_ged_folder
-msgid "custom_ged | ged_folder"
-msgstr "custom_ged | ged_folder"
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_I_CONSTA
-msgid "external_service | CONSTA"
-msgstr "external_service | CONSTA"
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_I_CONSTB
-msgid "external_service | CONSTB"
-msgstr "external_service | CONSTB"
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_I_CONSTC
-msgid "external_service | CONSTC"
-msgstr "external_service | CONSTC"
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_ftp_I_in_path
-#, fuzzy
-msgid "external_service_ftp | in_path"
-msgstr "external_service.ftp | in_path"
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_ftp_I_out_path
-#, fuzzy
-msgid "external_service_ftp | out_path"
-msgstr "external_service.ftp | out_path"
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_ftp_I_password
-#, fuzzy
-msgid "external_service_ftp | password"
-msgstr "external_service.ftp | password"
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_ftp_I_port
-#, fuzzy
-msgid "external_service_ftp | port"
-msgstr "external_service.ftp | port"
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_ftp_I_server
-#, fuzzy
-msgid "external_service_ftp | server"
-msgstr "external_service.ftp | port"
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_ftp_I_tls
-#, fuzzy
-msgid "external_service_ftp | tls"
-msgstr "external_service.ftp | port"
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_ftp_I_user
-#, fuzzy
-msgid "external_service_ftp | user"
-msgstr "external_service.ftp | port"
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__ir_config_parameter_I_ircp_empty
-msgid "ir_config_parameter | ircp_empty"
-msgstr ""
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__ir_config_parameter_I_ircp_from_config
-msgid "ir_config_parameter | ircp_from_config"
-msgstr ""
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__misc_I_completed_state
-msgid "misc | completed_state"
-msgstr ""
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__misc_I_smtp_server
-msgid "misc | smtp_server"
-msgstr ""
-
-#. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_addons_path
 msgid "odoo | addons_path"
 msgstr ""
@@ -364,11 +282,6 @@ msgid "odoo | logfile"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_logrotate
-msgid "odoo | logrotate"
-msgstr ""
-
-#. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_longpolling_port
 msgid "odoo | longpolling_port"
 msgstr ""
@@ -431,6 +344,16 @@ msgstr ""
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_save
 msgid "odoo | save"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_screencasts
+msgid "odoo | screencasts"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_screenshots
+msgid "odoo | screenshots"
 msgstr ""
 
 #. module: server_environment
@@ -519,6 +442,11 @@ msgid "odoo | update"
 msgstr ""
 
 #. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_upgrades_paths
+msgid "odoo | upgrades_paths"
+msgstr ""
+
+#. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_without_demo
 msgid "odoo | without_demo"
 msgstr ""
@@ -578,7 +506,42 @@ msgstr ""
 msgid "system | version"
 msgstr ""
 
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__wkhtml2pdf_I_lib_path
-msgid "wkhtml2pdf | lib_path"
-msgstr ""
+#~ msgid "custom_ged | ged_folder"
+#~ msgstr "custom_ged | ged_folder"
+
+#~ msgid "external_service | CONSTA"
+#~ msgstr "external_service | CONSTA"
+
+#~ msgid "external_service | CONSTB"
+#~ msgstr "external_service | CONSTB"
+
+#~ msgid "external_service | CONSTC"
+#~ msgstr "external_service | CONSTC"
+
+#, fuzzy
+#~ msgid "external_service_ftp | in_path"
+#~ msgstr "external_service.ftp | in_path"
+
+#, fuzzy
+#~ msgid "external_service_ftp | out_path"
+#~ msgstr "external_service.ftp | out_path"
+
+#, fuzzy
+#~ msgid "external_service_ftp | password"
+#~ msgstr "external_service.ftp | password"
+
+#, fuzzy
+#~ msgid "external_service_ftp | port"
+#~ msgstr "external_service.ftp | port"
+
+#, fuzzy
+#~ msgid "external_service_ftp | server"
+#~ msgstr "external_service.ftp | port"
+
+#, fuzzy
+#~ msgid "external_service_ftp | tls"
+#~ msgstr "external_service.ftp | port"
+
+#, fuzzy
+#~ msgid "external_service_ftp | user"
+#~ msgstr "external_service.ftp | port"
