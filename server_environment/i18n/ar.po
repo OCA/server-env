@@ -20,6 +20,11 @@ msgstr ""
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
 #. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__config
+msgid "Config"
+msgstr ""
+
+#. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__create_uid
 msgid "Created by"
 msgstr "أنشئ بواسطة"
