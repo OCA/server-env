@@ -1,0 +1,50 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * mail_environment
+#
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-29 11:14+0000\n"
+"PO-Revision-Date: 2019-09-03 01:23+0000\n"
+"Last-Translator: Rodrigo Macedo <rmsolucoeseminformatic4@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/"
+"OCA-server-tools-8-0/language/pt_BR/)\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.8\n"
+
+#. module: mail_environment
+#: selection:fetchmail.server,type:0
+msgid "IMAP Server"
+msgstr "Servidor IMAP"
+
+#. module: mail_environment
+#: model:ir.model,name:mail_environment.model_fetchmail_server
+msgid "Incoming Mail Server"
+msgstr "Servidor de Mensagens Recebidas"
+
+#. module: mail_environment
+#: selection:fetchmail.server,type:0
+msgid "Local Server"
+msgstr "Servidor Local"
+
+#. module: mail_environment
+#: model:ir.model,name:mail_environment.model_ir_mail_server
+msgid "Mail Server"
+msgstr "Servidor de E-mail"
+
+#. module: mail_environment
+#: selection:fetchmail.server,type:0
+msgid "POP Server"
+msgstr "Servidor POP"
+
+#. module: mail_environment
+#: model:ir.model.fields,field_description:mail_environment.field_fetchmail_server__type
+msgid "Server Type"
+msgstr "Tipo de Servidor"
