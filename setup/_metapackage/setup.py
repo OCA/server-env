@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-server-env Odoo addons",
     version=version,
     install_requires=[
+        'odoo13-addon-mail_environment',
         'odoo13-addon-server_environment',
     ],
     classifiers=[
