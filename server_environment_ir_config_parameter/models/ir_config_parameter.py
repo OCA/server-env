@@ -1,17 +1,17 @@
 # Copyright 2016-2018 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, models, _
+from odoo import _, api, models
 from odoo.exceptions import UserError
+
 from odoo.addons.server_environment import serv_config
 
-
-SECTION = 'ir.config_parameter'
+SECTION = "ir.config_parameter"
 
 
 class IrConfigParameter(models.Model):
 
-    _inherit = 'ir.config_parameter'
+    _inherit = "ir.config_parameter"
 
     @api.model
     def get_param(self, key, default=False):
@@ -19,9 +19,9 @@ class IrConfigParameter(models.Model):
         if serv_config.has_option(SECTION, key):
             cvalue = serv_config.get(SECTION, key)
             if not cvalue:
-                raise UserError(_("Key %s is empty in "
-                                  "server_environment_file") %
-                                (key, ))
+                raise UserError(
+                    _("Key %s is empty in " "server_environment_file") % (key,)
+                )
             if cvalue != value:
                 # we write in db on first access;
                 # should we have preloaded values in database at,
@@ -35,7 +35,7 @@ class IrConfigParameter(models.Model):
 
     @api.model
     def create(self, vals):
-        key = vals.get('key')
+        key = vals.get("key")
         if serv_config.has_option(SECTION, key):
             # enforce value from config file
             vals = dict(vals, value=serv_config.get(SECTION, key))
@@ -43,7 +43,7 @@ class IrConfigParameter(models.Model):
 
     def write(self, vals):
         for rec in self:
-            key = vals.get('key') or rec.key
+            key = vals.get("key") or rec.key
             if serv_config.has_option(SECTION, key):
                 # enforce value from config file
                 newvals = dict(vals, value=serv_config.get(SECTION, key))
