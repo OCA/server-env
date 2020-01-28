@@ -27,4 +27,4 @@ class IrMailServer(models.Model):
 
         Can be customized in your model
         """
-        return 'outgoing_mail'
+        return "outgoing_mail"
