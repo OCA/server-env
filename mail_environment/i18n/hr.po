@@ -21,19 +21,8 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: mail_environment
-#: selection:fetchmail.server,type:0
-#, fuzzy
-msgid "IMAP Server"
-msgstr "POP/IMAP Server"
-
-#. module: mail_environment
 #: model:ir.model,name:mail_environment.model_fetchmail_server
 msgid "Incoming Mail Server"
-msgstr ""
-
-#. module: mail_environment
-#: selection:fetchmail.server,type:0
-msgid "Local Server"
 msgstr ""
 
 #. module: mail_environment
@@ -43,12 +32,14 @@ msgid "Mail Server"
 msgstr "ir.mail_server"
 
 #. module: mail_environment
-#: selection:fetchmail.server,type:0
-#, fuzzy
-msgid "POP Server"
-msgstr "POP/IMAP Server"
-
-#. module: mail_environment
-#: model:ir.model.fields,field_description:mail_environment.field_fetchmail_server__type
+#: model:ir.model.fields,field_description:mail_environment.field_fetchmail_server__server_type
 msgid "Server Type"
 msgstr ""
+
+#, fuzzy
+#~ msgid "IMAP Server"
+#~ msgstr "POP/IMAP Server"
+
+#, fuzzy
+#~ msgid "POP Server"
+#~ msgstr "POP/IMAP Server"

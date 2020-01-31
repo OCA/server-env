@@ -19,18 +19,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: mail_environment
-#: selection:fetchmail.server,type:0
-msgid "IMAP Server"
-msgstr ""
-
-#. module: mail_environment
 #: model:ir.model,name:mail_environment.model_fetchmail_server
 msgid "Incoming Mail Server"
-msgstr ""
-
-#. module: mail_environment
-#: selection:fetchmail.server,type:0
-msgid "Local Server"
 msgstr ""
 
 #. module: mail_environment
@@ -40,11 +30,6 @@ msgid "Mail Server"
 msgstr "ir.mail_server"
 
 #. module: mail_environment
-#: selection:fetchmail.server,type:0
-msgid "POP Server"
-msgstr ""
-
-#. module: mail_environment
-#: model:ir.model.fields,field_description:mail_environment.field_fetchmail_server__type
+#: model:ir.model.fields,field_description:mail_environment.field_fetchmail_server__server_type
 msgid "Server Type"
 msgstr ""
