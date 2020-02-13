@@ -430,8 +430,8 @@ msgid "odoo | update"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_upgrades_paths
-msgid "odoo | upgrades_paths"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_upgrade_path
+msgid "odoo | upgrade_path"
 msgstr ""
 
 #. module: server_environment
