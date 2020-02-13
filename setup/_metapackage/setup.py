@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo13-addon-mail_environment',
         'odoo13-addon-server_environment',
+        'odoo13-addon-server_environment_ir_config_parameter',
     ],
     classifiers=[
         'Programming Language :: Python',
