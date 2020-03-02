@@ -39,7 +39,7 @@ class FetchmailServer(models.Model):
         return "incoming_mail"
 
     @api.model
-    def _search_type(self, oper, value):
+    def _search_server_type(self, oper, value):
         operators = {
             "=": operator.eq,
             "!=": operator.ne,
