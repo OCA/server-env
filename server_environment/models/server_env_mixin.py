@@ -8,6 +8,8 @@ from functools import partialmethod
 from lxml import etree
 
 from odoo import api, fields, models
+from odoo.addons.base_sparse_field.models.fields import Serialized
+
 from ..serv_config import serv_config
 
 _logger = logging.getLogger(__name__)
@@ -99,7 +101,7 @@ class ServerEnvMixin(models.AbstractModel):
     _name = 'server.env.mixin'
     _description = 'Mixin to add server environment in existing models'
 
-    server_env_defaults = fields.Serialized()
+    server_env_defaults = Serialized()
 
     _server_env_getter_mapping = {
         'integer': 'getint',
