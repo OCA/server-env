@@ -4,7 +4,7 @@
 
 {
     "name": "server configuration environment files",
-    "version": "11.0.2.0.0",
+    "version": "11.0.2.0.1",
     "depends": [
         "base",
         "base_sparse_field",
