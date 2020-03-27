@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo12-addon-carrier_environment',
+        'odoo12-addon-data_encryption',
         'odoo12-addon-mail_environment',
         'odoo12-addon-pos_environment',
         'odoo12-addon-server_environment',
