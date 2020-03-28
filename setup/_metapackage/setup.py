@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo12-addon-mail_environment',
         'odoo12-addon-pos_environment',
         'odoo12-addon-server_environment',
+        'odoo12-addon-server_environment_data_encryption',
         'odoo12-addon-server_environment_ir_config_parameter',
     ],
     classifiers=[
