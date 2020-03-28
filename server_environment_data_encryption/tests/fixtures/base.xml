@@ -1,0 +1,15 @@
+<form string="Test">
+    <header>
+        <button string="Reset Confirmation"
+                type="object" name="set_draft"
+                states="done"/>
+    </header>
+    <sheet>
+        <group col="4">
+            <field name="test" modifiers="{&quot;required&quot;: true}"/>
+            <field name="test2" attrs="{'readonly': [('type_env_is_editable', '=', False)]}"
+                   on_change="1" modifiers="{&quot;readonly&quot;: [[&quot;type_env_is_editable&quot;, &quot;=&quot;, false]]}"/>
+            <field name="date" modifiers="{&quot;readonly&quot;: true}"/>
+        </group>
+    </sheet>
+</form>
