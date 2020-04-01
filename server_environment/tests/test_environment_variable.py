@@ -2,11 +2,22 @@
 # License GPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
+from unittest.mock import patch
+
+from odoo.tools.config import config as odoo_config
+
 from odoo.addons.server_environment import server_env
 
 from .common import ServerEnvironmentCase
 
 
+class TestRunningEnvDefault(ServerEnvironmentCase):
+    def test_running_env_default(self):
+        """When var is not provided it defaults to `test`."""
+        self.assertEqual(odoo_config["running_env"], "test")
+
+
+@patch.dict(odoo_config.options, {"running_env": "testing"})
 class TestEnvironmentVariables(ServerEnvironmentCase):
     def test_env_variables(self):
         public = "[section]\n" "foo=bar\n" "bar=baz\n"
