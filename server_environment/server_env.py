@@ -58,14 +58,20 @@ _boolean_states = {
     "off": False,
 }
 
-if not system_base_config.get("running_env", False):
-    raise Exception(
-        "The parameter 'running_env' has not be set neither in base config "
-        "file option -c or in openerprc.\n"
-        "We strongly recommend against using the rc file but instead use an "
-        "explicit config file with this content:\n"
-        "[options]\nrunning_env = dev"
-    )
+
+def _load_running_env():
+    if not system_base_config.get("running_env"):
+        _logger.warning("`running_env` not found. Using default = `test`.")
+        _logger.warning(
+            "We strongly recommend against using the rc file but instead use an "
+            "explicit config file or env variable."
+        )
+        # safe default
+        system_base_config["running_env"] = "test"
+
+
+_load_running_env()
+
 
 ck_path = None
 if _dir:
