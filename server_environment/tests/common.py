@@ -6,22 +6,12 @@ from contextlib import contextmanager
 from unittest.mock import patch
 
 from odoo.tests import common
-from odoo.tools.config import config
 
 import odoo.addons.server_environment.models.server_env_mixin as server_env_mixin
 from odoo.addons.server_environment import server_env
 
 
 class ServerEnvironmentCase(common.SavepointCase):
-    def setUp(self):
-        super().setUp()
-        self._original_running_env = config.get("running_env")
-        config["running_env"] = "testing"
-
-    def tearDown(self):
-        super().tearDown()
-        config["running_env"] = self._original_running_env
-
     @contextmanager
     def set_config_dir(self, path):
         original_dir = server_env._dir
