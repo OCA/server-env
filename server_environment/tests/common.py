@@ -7,26 +7,12 @@ from unittest.mock import patch
 
 from odoo.tests import common
 from odoo.addons.server_environment import server_env
-from odoo.tools.config import config
 
 import odoo.addons.server_environment.models.server_env_mixin as \
     server_env_mixin
 
 
 class ServerEnvironmentCase(common.SavepointCase):
-
-    _test_case_running_env = "testing"
-
-    def setUp(self):
-        super().setUp()
-        self._original_running_env = config.get('running_env')
-        if self._test_case_running_env is not None:
-            config['running_env'] = self._test_case_running_env
-        server_env._load_running_env()
-
-    def tearDown(self):
-        super().tearDown()
-        config['running_env'] = self._original_running_env
 
     @contextmanager
     def set_config_dir(self, path):
