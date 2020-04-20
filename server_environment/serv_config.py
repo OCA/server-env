@@ -26,6 +26,7 @@ from itertools import chain
 
 from odoo import api, models, fields
 from odoo.tools.config import config as system_base_config
+from odoo.addons.base_sparse_field.models.fields import Serialized
 
 from .system_info import get_server_environment
 
@@ -161,6 +162,8 @@ class ServerConfiguration(models.TransientModel):
     _description = 'Display server configuration'
     _conf_defaults = _Defaults()
 
+    config = Serialized()
+
     @classmethod
     def _build_model(cls, pool, cr):
         """Add columns to model dynamically
@@ -199,6 +202,7 @@ class ServerConfiguration(models.TransientModel):
                     col_name,
                     fields.Char(
                         string=cls._format_key_display_name(col_name),
+                        sparse='config',
                         readonly=True)
                     )
             cls._conf_defaults[col_name] = value
