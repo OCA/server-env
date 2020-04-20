@@ -19,6 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__config
+msgid "Config"
+msgstr ""
+
+#. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__create_uid
 msgid "Created by"
 msgstr "Vytvoril"
