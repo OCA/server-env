@@ -9,7 +9,7 @@
         "base",
         "base_sparse_field",
     ],
-    "author": "Camptocamp,Odoo Community Association (OCA)",
+    "author": "Camptocamp,GRAP,Odoo Community Association (OCA)",
     "summary": "move some configurations out of the database",
     "website": "http://github.com/OCA/server-env",
     "license": "GPL-3 or any later version",

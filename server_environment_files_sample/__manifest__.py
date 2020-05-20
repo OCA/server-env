@@ -5,11 +5,13 @@
 {
     "name": "Example server configuration environment files repository module",
     "version": "12.0.1.0.1",
-    "depends": ["base"],
-    "author": "Camptocamp,Odoo Community Association (OCA)",
+    "depends": ["server_environment", "web"],
+    "author": "Camptocamp,GRAP,Odoo Community Association (OCA)",
     "summary": "sample config file for server_environment",
     "website": "http://github.com/OCA/server-env",
     "license": "GPL-3 or any later version",
     "category": "Tools",
-    "data": [],
+    "data": [
+        'views/templates.xml',
+    ],
 }

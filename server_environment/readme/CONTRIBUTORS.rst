@@ -9,3 +9,4 @@
 * Guewen Baconnier <guewen.baconnier@camptocamp.com>
 * Thomas Binfeld <thomas.binsfeld@acsone.eu>
 * Stéphane Bidoul <stefane.bidoul@acsone.com>
+* Sylvain LE GAL (https://www.twitter.com/legalsylvain)

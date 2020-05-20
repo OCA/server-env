@@ -89,3 +89,28 @@ Keychain integration
 
 Read the documentation of the class `models/server_env_mixin.py
 <models/server_env_mixin.py>`_.
+
+
+
+Loading static files
+--------------------
+
+This module provides also the possibility to load static files depending
+on the environment.
+
+Create a file view/templates.xml, and insert a css file
+::
+    <odoo>
+        <template id="login_layout_no_db" name="Login Layout"
+                inherit_id="web.login_layout" >
+            <xpath expr="." position="inside">
+                <link rel="stylesheet"
+                href="/server_environment_files/static/RUNNING_ENV/css.css"/>
+            </xpath>
+        </template>
+    </odoo>
+Then, create css files for each environment you have. exemple:
+::
+    /server_environment_files/static/dev/css.css
+    /server_environment_files/static/prod/css.css
+    ...

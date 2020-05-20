@@ -18,6 +18,7 @@
 #
 ##############################################################################
 from . import models
+from . import controllers
 # TODO when migrating to 12, fix the import of serv_config by renaming the
 # file?
 # Add an alias to access to the 'serv_config' module as it is shadowed
