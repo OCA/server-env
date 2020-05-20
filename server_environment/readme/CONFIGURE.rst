@@ -99,7 +99,9 @@ This module provides also the possibility to load static files depending
 on the environment.
 
 Create a file view/templates.xml, and insert a css file
-::
+
+```
+
     <odoo>
         <template id="login_layout_no_db" name="Login Layout"
                 inherit_id="web.login_layout" >
@@ -109,8 +111,14 @@ Create a file view/templates.xml, and insert a css file
             </xpath>
         </template>
     </odoo>
+
+```
+
 Then, create css files for each environment you have. exemple:
-::
+
+```
     /server_environment_files/static/dev/css.css
     /server_environment_files/static/prod/css.css
     ...
+
+```
