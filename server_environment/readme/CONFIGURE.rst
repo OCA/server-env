@@ -100,7 +100,6 @@ on the environment.
 
 Create a file view/templates.xml, and insert a css file
 
-```
 
     <odoo>
         <template id="login_layout_no_db" name="Login Layout"
@@ -112,13 +111,20 @@ Create a file view/templates.xml, and insert a css file
         </template>
     </odoo>
 
-```
 
 Then, create css files for each environment you have. exemple:
 
-```
+
     /server_environment_files/static/dev/css.css
     /server_environment_files/static/prod/css.css
     ...
 
-```
+**Note**
+
+Since Odoo handles bundle of assets, it is not possible to target all the qweb templates, but only
+the main ones :
+
+* ``web.login_layout`` for the login page
+* ``web.webclient_bootstrap`` for the main backend part
+* ``point_of_sale.index`` for the PoS front end part
+* ...
