@@ -36,6 +36,7 @@ msgstr "Created on"
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__display_name
 #: model:ir.model.fields,field_description:server_environment.field_server_env_mixin__display_name
+#: model:ir.model.fields,field_description:server_environment.field_server_env_techname_mixin__display_name
 msgid "Display Name"
 msgstr "Izena erakutsi"
 
@@ -47,12 +48,14 @@ msgstr ""
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__id
 #: model:ir.model.fields,field_description:server_environment.field_server_env_mixin__id
+#: model:ir.model.fields,field_description:server_environment.field_server_env_techname_mixin__id
 msgid "ID"
 msgstr "ID"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config____last_update
 #: model:ir.model.fields,field_description:server_environment.field_server_env_mixin____last_update
+#: model:ir.model.fields,field_description:server_environment.field_server_env_techname_mixin____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -83,8 +86,28 @@ msgid "Server Environment"
 msgstr ""
 
 #. module: server_environment
+#: model:ir.model,name:server_environment.model_server_env_techname_mixin
+msgid "Server environment technical name"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_env_techname_mixin__tech_name
+msgid "Tech Name"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,help:server_environment.field_server_env_techname_mixin__tech_name
+msgid "Unique name for technical purposes. Eg: server env keys."
+msgstr ""
+
+#. module: server_environment
 #: model:res.groups,name:server_environment.has_server_configuration_access
 msgid "View Server Environment Configuration"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.constraint,message:server_environment.constraint_server_env_techname_mixin_tech_name_uniq
+msgid "`tech_name` must be unique!"
 msgstr ""
 
 #. module: server_environment
