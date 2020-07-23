@@ -4,7 +4,7 @@
 
 {
     "name": "server configuration environment files",
-    "version": "13.0.2.2.1",
+    "version": "13.0.2.3.0",
     "depends": ["base", "base_sparse_field"],
     "author": "Camptocamp,Odoo Community Association (OCA)",
     "summary": "move some configurations out of the database",
