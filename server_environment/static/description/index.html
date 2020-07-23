@@ -463,7 +463,7 @@ export DB_MAXCONN=5
 
 # server environment options
 export SERVER_ENV_CONFIG=&quot;
-[storage_backend.my-sftp]
+[storage_backend.my_sftp]
 sftp_server=10.10.10.10
 sftp_login=foo
 sftp_port=22200
@@ -477,10 +477,16 @@ directory_path=Odoo
 export DB_PASSWORD='xxxxxxxxx'
 # server environment options
 export SERVER_ENV_CONFIG_SECRET=&quot;
-[storage_backend.my-sftp]
+[storage_backend.my_sftp]
 sftp_password=xxxxxxxxx
 &quot;
 </pre>
+<p><strong>WARNING</strong></p>
+<blockquote>
+<cite>my_sftp</cite> must match the name of the record.
+If you want something more reliable use <cite>server.env.techname.mixin</cite>
+and use <cite>tech_name</cite> field to reference records.
+See “USAGE”.</blockquote>
 </div>
 <div class="section" id="default-values">
 <h2><a class="toc-backref" href="#id5">Default values</a></h2>
@@ -510,6 +516,14 @@ class StorageBackend(models.Model):
         return {&quot;directory_path&quot;: {}}
 </pre>
 <p>Read the documentation of the class and methods in <a class="reference external" href="models/server_env_mixin.py">models/server_env_mixin.py</a>.</p>
+<p>If you want to have a technical name to reference:</p>
+<pre class="literal-block">
+class StorageBackend(models.Model):
+    _name = &quot;storage.backend&quot;
+    _inherit = [&quot;storage.backend&quot;, &quot;server.env.techname.mixin&quot;, &quot;server.env.mixin&quot;]
+
+    [...]
+</pre>
 </div>
 <div class="section" id="known-issues-roadmap">
 <h1><a class="toc-backref" href="#id8">Known issues / Roadmap</a></h1>
@@ -517,6 +531,8 @@ class StorageBackend(models.Model):
 <li>it is not possible to set the environment from the command line. A
 configuration file must be used.</li>
 <li>the module does not allow to set low level attributes such as database server, etc.</li>
+<li><cite>server.env.techname.mixin</cite>’s <cite>tech_name</cite> field could leverage the new option
+for computable / writable fields and get rid of some onchange / read / write code.</li>
 </ul>
 </div>
 <div class="section" id="bug-tracker">
@@ -549,6 +565,7 @@ If you spotted it first, help us smashing it by providing a detailed and welcome
 <li>Guewen Baconnier &lt;<a class="reference external" href="mailto:guewen.baconnier&#64;camptocamp.com">guewen.baconnier&#64;camptocamp.com</a>&gt;</li>
 <li>Thomas Binfeld &lt;<a class="reference external" href="mailto:thomas.binsfeld&#64;acsone.eu">thomas.binsfeld&#64;acsone.eu</a>&gt;</li>
 <li>Stéphane Bidoul &lt;<a class="reference external" href="mailto:stefane.bidoul&#64;acsone.com">stefane.bidoul&#64;acsone.com</a>&gt;</li>
+<li>Simone Orsi &lt;<a class="reference external" href="mailto:simahawk&#64;gmail.com">simahawk&#64;gmail.com</a>&gt;</li>
 </ul>
 </div>
 <div class="section" id="maintainers">
