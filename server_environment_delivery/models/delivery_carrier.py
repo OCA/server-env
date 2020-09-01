@@ -5,7 +5,7 @@ from odoo import models
 
 class DeliveryCarrier(models.Model):
     _name = "delivery.carrier"
-    _inherit = ["delivery.carrier", "server.env.mixin"]
+    _inherit = ["delivery.carrier", "server.env.techname.mixin", "server.env.mixin"]
 
     @property
     def _server_env_fields(self):
