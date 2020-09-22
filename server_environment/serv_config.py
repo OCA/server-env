@@ -49,8 +49,8 @@ _boolean_states = {'1': True, 'yes': True, 'true': True, 'on': True,
 
 def _load_running_env():
     if not system_base_config.get("running_env"):
-        _logger.warning("`running_env` not found. Using default = `test`.")
-        _logger.warning(
+        _logger.info("`running_env` not found. Using default = `test`.")
+        _logger.info(
             "We strongly recommend against using the rc file but instead use an "
             "explicit config file or env variable."
         )
