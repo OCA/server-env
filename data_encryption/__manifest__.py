@@ -3,7 +3,7 @@
 {
     "name": "Encryption data",
     "summary": "Store accounts and credentials encrypted by environment",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "development_status": "Alpha",
     "category": "Tools",
     "website": "https://github/oca/server-env",
@@ -11,7 +11,7 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "external_dependencies": {"python": ["cryptography"],},
-    "depends": ["base",],
-    "data": ["security/ir.model.access.csv",],
+    "external_dependencies": {"python": ["cryptography"]},
+    "depends": ["base"],
+    "data": ["security/ir.model.access.csv"],
 }
