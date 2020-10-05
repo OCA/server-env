@@ -1,7 +1,7 @@
 In order to use this module properly, each environment should have their own encryption key
-and the production environment should have the keys of all environments. 
+and the production environment should have the keys of all environments.
 
-Example : 
+Example :
 Development environment ::
 
   [options]
@@ -21,4 +21,3 @@ Production environment ::
   encryption_key_dev=XXX
   encryption_key_preprod=YYY
   encryption_key_prod=ZZZ
-
