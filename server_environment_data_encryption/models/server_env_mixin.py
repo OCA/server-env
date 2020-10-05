@@ -1,9 +1,9 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+import json
 import logging
 
 from lxml import etree
-from odoo.osv.orm import setup_modifiers
 
 from odoo import _, api, models
 from odoo.exceptions import ValidationError
@@ -106,7 +106,7 @@ class ServerEnvMixin(models.AbstractModel):
             if field_name in env_fields:
                 continue
             field.set("readonly", "1")
-            setup_modifiers(field, self.fields_get(field_name))
+            field.set("modifiers", json.dumps({"readonly": True}))
 
     def _update_form_view_from_env(self, arch, view_type):
         if view_type != "form":
