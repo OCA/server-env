@@ -9,7 +9,9 @@ exclude: |
   # Repos using Sphinx to generate docs don't need prettying
   ^docs/_templates/.*\.html$|
   # You don't usually want a bot to modify your legal texts
-  (LICENSE.*|COPYING.*)
+  (LICENSE.*|COPYING.*)|
+  # server_environment_data_encryption tests files
+  ^server_environment_data_encryption/tests/fixtures/.*$
 default_language_version:
   python: python3
 repos:
