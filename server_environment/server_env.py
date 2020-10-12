@@ -1,22 +1,8 @@
-##############################################################################
-#
-#    Adapted by Nicolas Bessi. Copyright Camptocamp SA
-#    Based on Florent Xicluna original code. Copyright Wingo SA
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# Copyright 2020 Camptocamp (http://www.camptocamp.com)
+# @author Nicolas Bessi
+# Based on Florent Xicluna original code. Copyright Wingo SA
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 
 import configparser
 import logging
@@ -149,7 +135,7 @@ def _load_config_from_env(config_p):
 
 def _load_config():
     """Load the configuration and return a ConfigParser instance."""
-    config_p = configparser.SafeConfigParser()
+    config_p = configparser.ConfigParser()
     # options are case-sensitive
     config_p.optionxform = str
 
@@ -188,7 +174,7 @@ class ServerConfiguration(models.TransientModel):
         and init some properties
 
         """
-        ModelClass = super(ServerConfiguration, cls)._build_model(pool, cr)
+        ModelClass = super()._build_model(pool, cr)
         ModelClass._add_columns()
         ModelClass._arch = None
         ModelClass._build_osv()
@@ -306,10 +292,10 @@ class ServerConfiguration(models.TransientModel):
     ):
         """Overwrite the default method to render the custom view."""
         res = super().fields_view_get(view_id, view_type, toolbar)
-        View = self.env["ir.ui.view"]
+        View = self.env["ir.ui.view"].browse(view_id)
         if view_type == "form":
             arch_node = self._arch
-            xarch, xfields = View.postprocess_and_fields(self._name, arch_node, view_id)
+            xarch, xfields = View.postprocess_and_fields(arch_node, model=self._name)
             res["arch"] = xarch
             res["fields"] = xfields
         return res

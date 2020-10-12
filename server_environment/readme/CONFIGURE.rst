@@ -92,8 +92,8 @@ When the default field is used, the field is made editable on Odoo.
 Note: empty environment keys always take precedence over default fields
 
 
-Keychain integration
-~~~~~~~~~~~~~~~~~~~~
+Server environment integration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Read the documentation of the class `models/server_env_mixin.py
 <models/server_env_mixin.py>`_.
