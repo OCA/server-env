@@ -32,8 +32,8 @@ class ServerEnvMixin(models.AbstractModel):
 
     def _inverse_server_env(self, field_name):
         """
-            When this module is installed, we store values into encrypted data
-            env instead of a default field in database (not env dependent).
+        When this module is installed, we store values into encrypted data
+        env instead of a default field in database (not env dependent).
         """
         is_editable_field = self._server_env_is_editable_fieldname(field_name)
         encrypted_data_obj = self.env["encrypted.data"].sudo()
@@ -150,7 +150,10 @@ class ServerEnvMixin(models.AbstractModel):
         self, view_id=None, view_type="form", toolbar=False, submenu=False
     ):
         res = super().fields_view_get(
-            view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu,
+            view_id=view_id,
+            view_type=view_type,
+            toolbar=toolbar,
+            submenu=submenu,
         )
         res["arch"] = self._update_form_view_from_env(res["arch"], view_type)
         return res
