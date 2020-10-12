@@ -24,7 +24,9 @@ class EncryptedData(models.Model):
 
     name = fields.Char(required=True, readonly=True, index=True, help="Technical name")
     environment = fields.Char(
-        required=True, index=True, help="Concerned Odoo environment (prod, preprod...)",
+        required=True,
+        index=True,
+        help="Concerned Odoo environment (prod, preprod...)",
     )
     encrypted_data = fields.Binary(attachment=False)
 
@@ -83,7 +85,7 @@ class EncryptedData(models.Model):
     @staticmethod
     def _retrieve_env():
         """Return the current environment
-           Raise if none is found
+        Raise if none is found
         """
         current = config.get("running_env", False)
         if not current:
