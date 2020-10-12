@@ -29,7 +29,11 @@ class ServerEnvTechNameMixin(models.AbstractModel):
     _name = "server.env.techname.mixin"
     _description = "Server environment technical name"
     _sql_constraints = [
-        ("tech_name_uniq", "unique(tech_name)", "`tech_name` must be unique!",)
+        (
+            "tech_name_uniq",
+            "unique(tech_name)",
+            "`tech_name` must be unique!",
+        )
     ]
     # TODO: could leverage the new option for computable / writable fields
     # and get rid of some onchange / read / write code.
