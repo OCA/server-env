@@ -7,8 +7,8 @@ from unittest.mock import patch
 
 from odoo.tests import common
 
-import odoo.addons.server_environment.models.server_env_mixin as server_env_mixin
-from odoo.addons.server_environment import server_env
+from .. import server_env
+from ..models import server_env_mixin as server_env_mixin
 
 
 class ServerEnvironmentCase(common.SavepointCase):

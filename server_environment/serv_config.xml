@@ -1,11 +1,10 @@
 <?xml version="1.0" ?>
 <odoo>
-    <act_window
-        id="act_show_config_window"
-        name="Server Environment"
-        res_model="server.config"
-        view_mode="form"
-    />
+    <record model="ir.actions.act_window" id="act_show_config_window">
+        <field name="name">Server Environment</field>
+        <field name="res_model">server.config</field>
+        <field name="view_mode">form</field>
+    </record>
     <menuitem
         parent="base.menu_ir_property"
         sequence="90"

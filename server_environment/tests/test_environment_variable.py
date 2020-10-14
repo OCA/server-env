@@ -6,8 +6,7 @@ from unittest.mock import patch
 
 from odoo.tools.config import config as odoo_config
 
-from odoo.addons.server_environment import server_env
-
+from .. import server_env
 from .common import ServerEnvironmentCase
 
 

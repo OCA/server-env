@@ -149,7 +149,7 @@ def _load_config_from_env(config_p):
 
 def _load_config():
     """Load the configuration and return a ConfigParser instance."""
-    config_p = configparser.SafeConfigParser()
+    config_p = configparser.ConfigParser()
     # options are case-sensitive
     config_p.optionxform = str
 
@@ -306,10 +306,10 @@ class ServerConfiguration(models.TransientModel):
     ):
         """Overwrite the default method to render the custom view."""
         res = super().fields_view_get(view_id, view_type, toolbar)
-        View = self.env["ir.ui.view"]
-        if view_type == "form":
+        view = self.env["ir.ui.view"].browse(view_id)
+        if view and view_type == "form":
             arch_node = self._arch
-            xarch, xfields = View.postprocess_and_fields(self._name, arch_node, view_id)
+            xarch, xfields = view.postprocess_and_fields(arch_node, model=self._name)
             res["arch"] = xarch
             res["fields"] = xfields
         return res
