@@ -1,6 +1,12 @@
 <odoo>
-  <record model="ir.config_parameter" id="some_record_id">
-    <field name="key">ircp_from_config</field>
-    <field name="value">value_from_xml</field>
+  <record model="ir.config_parameter" id="some_record_id_1">
+    <field name="key">ircp_from_xml</field>
+    <field name="value">value_1_from_xml</field>
   </record>
+
+  <record model="ir.config_parameter" id="some_record_id_2">
+    <field name="key">ircp_from_config</field>
+    <field name="value">value_2_from_xml</field>
+  </record>
+
 </odoo>

@@ -11,7 +11,11 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="inherit_id" ref="base.view_ir_config_list"/>
         <field name="arch" type="xml">
             <field name="value" position="after">
-                <field name="is_environment"/>
+                <field name="environment_value"/>
+                <field name="is_environment" invisible="1"/>
+            </field>
+            <field name="value" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_environment', '=', True)]}</attribute>
             </field>
         </field>
     </record>
@@ -21,13 +25,14 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="inherit_id" ref="base.view_ir_config_form"/>
         <field name="arch" type="xml">
             <field name="value" position="after">
+                <field name="environment_value" attrs="{'invisible': [('is_environment', '=', False)]}"/>
                 <field name="is_environment"/>
             </field>
             <field name="key" position="attributes">
                 <attribute name="attrs">{'readonly': [('is_environment', '=', True)]}</attribute>
             </field>
             <field name="value" position="attributes">
-                <attribute name="attrs">{'readonly': [('is_environment', '=', True)]}</attribute>
+                <attribute name="attrs">{'invisible': [('is_environment', '=', True)]}</attribute>
             </field>
         </field>
     </record>
