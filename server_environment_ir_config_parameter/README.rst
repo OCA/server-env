@@ -23,7 +23,7 @@ Server Environment Ir Config Parameter
     :target: https://runbot.odoo-community.org/runbot/254/16.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 Override System Parameters from server environment file.
 
@@ -91,6 +91,7 @@ Contributors
 * Stéphane Bidoul <stephane.bidoul@acsone.eu> (https://acsone.eu)
 * Thierry Ducrest <thierry.ducrest@camptocamp.com>
 * Gilles Meyomesse <gilles.meyomesse@acsone.eu> (https://acsone.eu)
+* Sylvain LE GAL (https://www.twitter.com/legalsylvain)
 
 Other credits
 ~~~~~~~~~~~~~

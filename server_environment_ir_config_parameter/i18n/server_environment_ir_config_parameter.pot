@@ -14,6 +14,19 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: server_environment_ir_config_parameter
+#: model:ir.model.fields,field_description:server_environment_ir_config_parameter.field_ir_config_parameter__is_environment
+msgid "Defined by environment"
+msgstr ""
+
+#. module: server_environment_ir_config_parameter
+#: model:ir.model.fields,help:server_environment_ir_config_parameter.field_ir_config_parameter__is_environment
+msgid ""
+"If check, the value in the database will be ignored and alternatively, the "
+"system will use the key defined in your odoo.cfg environment file."
+msgstr ""
+
+#. module: server_environment_ir_config_parameter
+#. odoo-python
 #: code:addons/server_environment_ir_config_parameter/models/ir_config_parameter.py:0
 #, python-format
 msgid "Key %s is empty in server_environment_file"
