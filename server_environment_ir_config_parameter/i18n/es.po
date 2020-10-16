@@ -31,7 +31,6 @@ msgid ""
 msgstr ""
 
 #. module: server_environment_ir_config_parameter
-#: code:addons/server_environment_ir_config_parameter/models/ir_config_parameter.py:22
 #: code:addons/server_environment_ir_config_parameter/models/ir_config_parameter.py:35
 #, python-format
 msgid "Key %s is empty in server_environment_file"
