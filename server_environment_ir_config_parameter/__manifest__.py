@@ -10,4 +10,7 @@
     "author": "ACSONE SA/NV, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-env",
     "depends": ["server_environment"],
+    "data": [
+        "views/view_ir_config_parameter.xml",
+    ],
 }
