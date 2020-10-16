@@ -13,6 +13,7 @@
         'server_environment',
     ],
     'data': [
+        'views/view_ir_config_parameter.xml',
     ],
     'demo': [
     ],
