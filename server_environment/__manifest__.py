@@ -8,7 +8,7 @@
     "depends": ["base", "base_sparse_field"],
     "author": "Camptocamp,Odoo Community Association (OCA)",
     "summary": "move some configurations out of the database",
-    "website": "http://github.com/OCA/server-env",
+    "website": "https://github.com/OCA/server-env",
     "license": "GPL-3 or any later version",
     "category": "Tools",
     "data": [
