@@ -19,6 +19,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
+[mail_environment](mail_environment/) | 14.0.1.0.0 | Configure mail servers with server_environment_files
 [server_environment](server_environment/) | 14.0.1.0.0 | move some configurations out of the database
 [server_environment_ir_config_parameter](server_environment_ir_config_parameter/) | 14.0.1.0.0 | Override System Parameters from server environment file
 
