@@ -90,7 +90,6 @@ msgstr "Strežniško okolje"
 #. module: server_environment
 #: model:ir.model,name:server_environment.model_server_env_techname_mixin
 #, fuzzy
-#| msgid "Server Environment"
 msgid "Server environment technical name"
 msgstr "Strežniško okolje"
 
