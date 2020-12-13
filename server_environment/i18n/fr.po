@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-27 01:37+0000\n"
-"PO-Revision-Date: 2016-02-26 17:03+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"PO-Revision-Date: 2020-12-13 18:56+0000\n"
+"Last-Translator: Stéphane Bidoul (ACSONE) <stephane.bidoul@acsone.eu>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-server-tools-9-0/"
 "language/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__config
@@ -93,7 +94,7 @@ msgstr ""
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_env_techname_mixin__tech_name
 msgid "Tech Name"
-msgstr ""
+msgstr "Nom technique"
 
 #. module: server_environment
 #: model:ir.model.fields,help:server_environment.field_server_env_techname_mixin__tech_name
