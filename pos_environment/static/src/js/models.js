@@ -18,7 +18,6 @@ odoo.define('pos_environment.models', function (require) {
                 this.pos.config.receipt_environment_header;
             res.receipt_environment_footer =
                 this.pos.config.receipt_environment_footer;
-            console.log(res);
             return res;
         },
     });
