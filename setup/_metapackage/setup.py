@@ -8,8 +8,10 @@ setuptools.setup(
     description="Meta package for oca-server-env Odoo addons",
     version=version,
     install_requires=[
+        'odoo14-addon-data_encryption',
         'odoo14-addon-mail_environment',
         'odoo14-addon-server_environment',
+        'odoo14-addon-server_environment_data_encryption',
         'odoo14-addon-server_environment_ir_config_parameter',
     ],
     classifiers=[
