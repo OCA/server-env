@@ -4,7 +4,7 @@
 {
     'name': 'Point of Sale - Custom Bill by Environment',
     'summary': "Custom messages on the bill depending on the environment",
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.0.1',
     'category': 'Point of Sale',
     'author': 'GRAP,Odoo Community Association (OCA)',
     'website': 'https://github.com/oca/server-env',
