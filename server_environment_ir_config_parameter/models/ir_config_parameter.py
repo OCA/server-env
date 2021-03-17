@@ -15,53 +15,36 @@ class IrConfigParameter(models.Model):
 
     is_environment = fields.Boolean(
         string="Defined by environment",
-        compute="_compute_is_environment",
+        compute="_compute_environment",
         help="If check, the value in the database will be ignored"
         " and alternatively, the system will use the key defined"
         " in your odoo.cfg environment file.")
 
+    value = fields.Text(string="Database Value")
+
+    environment_value = fields.Text(
+        string="Environment Value",
+        compute="_compute_environment",
+        help="Alternative value, set in your odoo.cfg environment file.")
+
     @api.multi
-    def _compute_is_environment(self):
+    def _compute_environment(self):
         for parameter in self:
             parameter.is_environment = serv_config.has_option(
                 SECTION, parameter.key)
+            if parameter.is_environment:
+                parameter.environment_value = serv_config.get(
+                    SECTION, parameter.key)
+            else:
+                parameter.environment_value = False
 
     @api.model
     def get_param(self, key, default=False):
-        value = super().get_param(key, default=None)
         if serv_config.has_option(SECTION, key):
             cvalue = serv_config.get(SECTION, key)
             if not cvalue:
                 raise UserError(_("Key %s is empty in "
                                   "server_environment_file") %
                                 (key, ))
-            if cvalue != value:
-                # we write in db on first access;
-                # should we have preloaded values in database at,
-                # server startup, modules loading their parameters
-                # from data files would break on unique key error.
-                self.sudo().set_param(key, cvalue)
-                value = cvalue
-        if value is None:
-            return default
-        return value
-
-    @api.model
-    def create(self, vals):
-        key = vals.get('key')
-        if serv_config.has_option(SECTION, key):
-            # enforce value from config file
-            vals = dict(vals, value=serv_config.get(SECTION, key))
-        return super().create(vals)
-
-    @api.multi
-    def write(self, vals):
-        for rec in self:
-            key = vals.get('key') or rec.key
-            if serv_config.has_option(SECTION, key):
-                # enforce value from config file
-                newvals = dict(vals, value=serv_config.get(SECTION, key))
-            else:
-                newvals = vals
-            super().write(newvals)
-        return True
+            return cvalue
+        return super().get_param(key, default=default)
