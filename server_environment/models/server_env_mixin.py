@@ -164,6 +164,8 @@ class ServerEnvMixin(models.AbstractModel):
         """
         return self._name.replace(".", "_")
 
+    _server_env_section_name_field = "name"
+
     @api.multi
     def _server_env_section_name(self):
         """Name of the section in the configuration files
@@ -171,8 +173,14 @@ class ServerEnvMixin(models.AbstractModel):
         Can be customized in your model
         """
         self.ensure_one()
+        val = self[self._server_env_section_name_field]
+        if not val:
+            # special case: we have onchanges relying on tech_name
+            # and we are testing them using `tests.common.Form`.
+            # when the for is initialized there's no value yet.
+            return
         base = self._server_env_global_section_name()
-        return ".".join((base, self.name))
+        return ".".join((base, val))
 
     @api.multi
     def _server_env_read_from_config(self, field_name, config_getter):
