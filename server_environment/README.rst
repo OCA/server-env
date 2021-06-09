@@ -113,7 +113,7 @@ A public file, containing that will contain public variables::
 
     # server environment options
     export SERVER_ENV_CONFIG="
-    [storage_backend.my-sftp]
+    [storage_backend.my_sftp]
     sftp_server=10.10.10.10
     sftp_login=foo
     sftp_port=22200
@@ -127,9 +127,17 @@ A second file which is encrypted and contains secrets::
     export DB_PASSWORD='xxxxxxxxx'
     # server environment options
     export SERVER_ENV_CONFIG_SECRET="
-    [storage_backend.my-sftp]
+    [storage_backend.my_sftp]
     sftp_password=xxxxxxxxx
     "
+
+**WARNING**
+
+  `my_sftp` must match the name of the record.
+  If you want something more reliable use `server.env.techname.mixin`
+  and use `tech_name` field to reference records.
+  See "USAGE".
+
 
 Default values
 ~~~~~~~~~~~~~~
@@ -169,12 +177,23 @@ by an override of ``_server_env_fields``.
 Read the documentation of the class and methods in `models/server_env_mixin.py
 <models/server_env_mixin.py>`__.
 
+
+If you want to have a technical name to reference::
+
+    class StorageBackend(models.Model):
+        _name = "storage.backend"
+        _inherit = ["storage.backend", "server.env.techname.mixin", "server.env.mixin"]
+
+        [...]
+
 Known issues / Roadmap
 ======================
 
 * it is not possible to set the environment from the command line. A
   configuration file must be used.
 * the module does not allow to set low level attributes such as database server, etc.
+* `server.env.techname.mixin`'s `tech_name` field could leverage the new option
+  for computable / writable fields and get rid of some onchange / read / write code.
 
 Bug Tracker
 ===========
@@ -208,6 +227,7 @@ Contributors
 * Guewen Baconnier <guewen.baconnier@camptocamp.com>
 * Thomas Binfeld <thomas.binsfeld@acsone.eu>
 * Stéphane Bidoul <stefane.bidoul@acsone.com>
+* Simone Orsi <simahawk@gmail.com>
 
 Maintainers
 ~~~~~~~~~~~
