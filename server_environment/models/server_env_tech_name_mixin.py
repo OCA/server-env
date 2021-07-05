@@ -2,7 +2,8 @@
 # @author Simone Orsi <simahawk@gmail.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 from odoo.addons.http_routing.models.ir_http import slugify
 
@@ -25,41 +26,58 @@ class ServerEnvTechNameMixin(models.AbstractModel):
     _sql_constraints = [
         ("tech_name_uniq", "unique(tech_name)", "`tech_name` must be unique!",)
     ]
-    # TODO: could leverage the new option for computable / writable fields
-    # and get rid of some onchange / read / write code.
+
     tech_name = fields.Char(
-        help="Unique name for technical purposes. Eg: server env keys.",
+        string="Environment Technical Name",
+        help="Unique name for server environment configuration keys.",
+        compute="_compute_tech_name",
+        store=True,
+        readonly=False,
     )
 
     _server_env_section_name_field = "tech_name"
 
-    @api.onchange("name")
-    def _onchange_name_for_tech(self):
-        # Keep this specific name for the method to avoid possible overrides
-        # of existing `_onchange_name` methods
-        if self.name and not self.tech_name:
-            self.tech_name = self.name
+    @api.depends("name")
+    def _compute_tech_name(self):
+        for rec in self:
+            # Update tech_name only if it hasn't been set or if we're
+            # dealing with a new record.
+            if not rec.tech_name or not rec._origin.id:
+                rec.tech_name = self._normalize_tech_name(rec.name)
 
     @api.onchange("tech_name")
     def _onchange_tech_name(self):
-        if self.tech_name:
-            # make sure is normalized
-            self.tech_name = self._normalize_tech_name(self.tech_name)
+        # make sure it's normalized
+        res = {}
+        normalized = self._normalize_tech_name(self.tech_name)
+        if self.tech_name != normalized:
+            res = {
+                "warning": {
+                    "title": _("Technical Name"),
+                    "message": _(
+                        "Environment Technical Name '%s' can't "
+                        "contain special characters."
+                    )
+                    % self.tech_name,
+                }
+            }
+            self.tech_name = normalized
+        return res
 
-    @api.model
-    def create(self, vals):
-        self._handle_tech_name(vals)
-        return super().create(vals)
-
-    def write(self, vals):
-        self._handle_tech_name(vals)
-        return super().write(vals)
-
-    def _handle_tech_name(self, vals):
-        # make sure technical names are always there
-        if not vals.get("tech_name") and vals.get("name"):
-            vals["tech_name"] = self._normalize_tech_name(vals["name"])
+    @api.constrains("tech_name")
+    def _check_tech_name(self):
+        for rec in self.filtered("tech_name"):
+            if rec.tech_name != self._normalize_tech_name(rec.tech_name):
+                raise ValidationError(
+                    _(
+                        "Environment Technical Name '%s' can't "
+                        "contain special characters."
+                    )
+                    % rec.tech_name
+                )
 
     @staticmethod
     def _normalize_tech_name(name):
+        if not name:
+            return name
         return slugify(name).replace("-", "_")
