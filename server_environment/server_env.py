@@ -1,8 +1,6 @@
-# Copyright 2020 Camptocamp (http://www.camptocamp.com)
-# @author Nicolas Bessi
 # Based on Florent Xicluna original code. Copyright Wingo SA
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
+# Adapted by Nicolas Bessi. Copyright Camptocamp SA
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html)
 
 import configparser
 import logging
