@@ -1,5 +1,5 @@
 # Copyright 2018 Camptocamp (https://www.camptocamp.com).
-# License GPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html)
 
 
 from unittest.mock import patch
