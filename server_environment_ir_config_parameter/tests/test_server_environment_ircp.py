@@ -30,7 +30,7 @@ class TestEnv(ServerEnvironmentCase):
         )
 
     def test_get_param(self):
-        """ Get system parameter from config """
+        """Get system parameter from config"""
         with self.load_config(
             public=self.env_config, serv_config_class=ir_config_parameter
         ):
@@ -46,7 +46,7 @@ class TestEnv(ServerEnvironmentCase):
             self.assertEqual(res.value, "config_value")
 
     def test_set_param_1(self):
-        """ We can't set parameters that are in config file """
+        """We can't set parameters that are in config file"""
         with self.load_config(
             public=self.env_config, serv_config_class=ir_config_parameter
         ):
@@ -73,7 +73,7 @@ class TestEnv(ServerEnvironmentCase):
             self.assertEqual(len(res), 1)
 
     def test_set_param_2(self):
-        """ We can set parameters that are not in config file """
+        """We can set parameters that are not in config file"""
         with self.load_config(
             public=self.env_config, serv_config_class=ir_config_parameter
         ):
@@ -85,7 +85,7 @@ class TestEnv(ServerEnvironmentCase):
             self.assertFalse(res)
 
     def test_empty(self):
-        """ Empty config values cause error """
+        """Empty config values cause error"""
         with self.load_config(
             public=self.env_config, serv_config_class=ir_config_parameter
         ):
