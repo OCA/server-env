@@ -18,7 +18,9 @@ class TestEnv(common.ServerEnvironmentCase):
     def _test_default(self, hidden_pwd=False):
         model = self.env["server.config"]
         rec = model.create({})
-        defaults = rec.default_get([])
+        fields = model.fields_view_get()["fields"]
+        self.assertTrue(fields)
+        defaults = rec.default_get(list(fields))
         self.assertTrue(defaults)
         self.assertIsInstance(defaults, dict)
         pass_checked = False
