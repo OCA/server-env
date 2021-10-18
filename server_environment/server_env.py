@@ -111,7 +111,9 @@ def _load_config_from_server_env_files(config_p):
     try:
         config_p.read(conf_files)
     except Exception as e:
-        raise Exception('Cannot read config files "{}":  {}'.format(conf_files, e))
+        raise Exception(
+            'Cannot read config files "{}":  {}'.format(conf_files, e)
+        ) from e
 
 
 def _load_config_from_rcfile(config_p):
@@ -128,7 +130,7 @@ def _load_config_from_env(config_p):
             except configparser.Error as err:
                 raise Exception(
                     "{} content could not be parsed: {}".format(varname, err)
-                )
+                ) from err
 
 
 def _load_config():
@@ -213,7 +215,7 @@ class ServerConfiguration(models.TransientModel):
 
     @classmethod
     def _get_base_cols(cls):
-        """ Compute base fields"""
+        """Compute base fields"""
         res = {}
         for col, item in list(system_base_config.options.items()):
             key = cls._format_key("odoo", col)
@@ -222,7 +224,7 @@ class ServerConfiguration(models.TransientModel):
 
     @classmethod
     def _get_env_cols(cls, sections=None):
-        """ Compute base fields"""
+        """Compute base fields"""
         res = {}
         sections = sections if sections else serv_config.sections()
         for section in sections:
@@ -233,7 +235,7 @@ class ServerConfiguration(models.TransientModel):
 
     @classmethod
     def _get_system_cols(cls):
-        """ Compute system fields"""
+        """Compute system fields"""
         res = {}
         for col, item in get_server_environment():
             key = cls._format_key("system", col)
@@ -316,6 +318,8 @@ class ServerConfiguration(models.TransientModel):
         ):
             return res
         for key in self._conf_defaults:
+            if key not in fields_list:
+                continue
             if not self.show_passwords and self._is_secret(key=key):
                 res[key] = "**********"
             else:

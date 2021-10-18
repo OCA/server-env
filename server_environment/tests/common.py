@@ -11,7 +11,7 @@ import odoo.addons.server_environment.models.server_env_mixin as server_env_mixi
 from odoo.addons.server_environment import server_env
 
 
-class ServerEnvironmentCase(common.SavepointCase):
+class ServerEnvironmentCase(common.TransactionCase):
     @contextmanager
     def set_config_dir(self, path):
         original_dir = server_env._dir
