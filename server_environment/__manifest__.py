@@ -1,6 +1,6 @@
 # Copyright Wingo SA
 # Copyright 2018 Camptocamp (https://www.camptocamp.com).
-# License GPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html)
 
 {
     "name": "server configuration environment files",
@@ -9,7 +9,7 @@
     "author": "Camptocamp,Odoo Community Association (OCA)",
     "summary": "move some configurations out of the database",
     "website": "https://github.com/OCA/server-env",
-    "license": "GPL-3 or any later version",
+    "license": "LGPL-3",
     "category": "Tools",
     "data": [
         "security/ir.model.access.csv",
