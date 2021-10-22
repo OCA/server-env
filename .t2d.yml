@@ -5,10 +5,10 @@ cache:
     - $HOME/.cache/pre-commit
 
 python:
-  - "3.8"
+  - "3.7"
 
 addons:
-  postgresql: "9.6"
+  postgresql: "11"
   apt:
     packages:
       - expect-dev # provides unbuffer utility
@@ -27,13 +27,13 @@ jobs:
 env:
   global:
     - VERSION="15.0" TESTS="0" LINT_CHECK="0" MAKEPOT="0"
-    - MQT_DEP=PIP
 
 install:
   - git clone --depth=1 https://github.com/OCA/maintainer-quality-tools.git
     ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
+  - pip install -U coverage==4.5.4
 
 script:
   - travis_run_tests
