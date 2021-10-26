@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Docutils: http://docutils.sourceforge.net/" />
+<meta name="generator" content="Docutils 0.15.1: http://docutils.sourceforge.net/" />
 <title>Auth SAML environement</title>
 <style type="text/css">
 
@@ -368,7 +368,7 @@ ul.auto-toc {
 !! changes will be overwritten.                   !!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 <p><a class="reference external" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external" href="https://github.com/OCA/server-env/tree/14.0/auth_saml_environment"><img alt="OCA/server-env" src="https://img.shields.io/badge/github-OCA%2Fserver--env-lightgray.png?logo=github" /></a> <a class="reference external" href="https://translation.odoo-community.org/projects/server-env-14-0/server-env-14-0-auth_saml_environment"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external" href="https://runbot.odoo-community.org/runbot/254/14.0"><img alt="Try me on Runbot" src="https://img.shields.io/badge/runbot-Try%20me-875A7B.png" /></a></p>
-<p>This module allows to use server env for saml configuration</p>
+<p>This module allows to use server env for SAML configuration</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -393,14 +393,24 @@ properly configured: <cite>server_environment module</cite> <cite>auth_saml</cit
 <div class="section" id="configuration">
 <h1><a class="toc-backref" href="#id2">Configuration</a></h1>
 <p>To configure this module, you need to:</p>
-<p>TODO</p>
+<p>Create a module server_environment_file with a cfg file or set the environment variable
+SERVER_ENV_CONFIG with the following section:</p>
+<p>[auth_saml_provider.&lt;name&gt;]</p>
+<p>Where &lt;name&gt; is optional and must be equal to the name field you defined in Odoo for the IDP.</p>
 <p>Example of configuration</p>
-<p>TODO</p>
+<p>[auth_saml_provider.my_idp]</p>
+<p>idp_metadata=&lt;…&gt;
+sp_baseurl=https://odoo-community.org
+sp_pem_public_path=/data/cert.pem
+sp_pem_private_path=/data/key.pem</p>
 </div>
 <div class="section" id="usage">
 <h1><a class="toc-backref" href="#id3">Usage</a></h1>
 <p>Once configured, Odoo will read the Auth SAML Providers values from the
 configuration.</p>
+<p>Note that visibility of login button for SAML is changed and differs from <cite>auth_saml</cite> module,
+instead of relying on which fields are filled or not, all providers will be displayed as long
+as their configuration in Odoo are set to active.</p>
 </div>
 <div class="section" id="known-issues-roadmap">
 <h1><a class="toc-backref" href="#id4">Known issues / Roadmap</a></h1>
