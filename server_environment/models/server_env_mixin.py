@@ -376,7 +376,7 @@ class ServerEnvMixin(models.AbstractModel):
         # (inherits), we want to override it with a new one
         if fieldname not in self._fields or self._fields[fieldname].inherited:
             base_field_cls = base_field.__class__
-            field_args = base_field.args.copy()
+            field_args = base_field.args.copy() if base_field.args else {}
             field_args.pop("_sequence", None)
             field_args.update({"sparse": "server_env_defaults", "automatic": True})
 
