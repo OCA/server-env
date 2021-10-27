@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo-addon-server_environment>=15.0dev,<15.1dev',
+        'odoo-addon-server_environment_ir_config_parameter>=15.0dev,<15.1dev',
     ],
     classifiers=[
         'Programming Language :: Python',
