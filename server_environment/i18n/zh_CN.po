@@ -110,6 +110,7 @@ msgid "View Server Environment Configuration"
 msgstr "服务器环境"
 
 #. module: server_environment
+#: model:ir.model.constraint,message:server_environment.constraint_payment_acquirer_tech_name_uniq
 #: model:ir.model.constraint,message:server_environment.constraint_server_env_techname_mixin_tech_name_uniq
 msgid "`tech_name` must be unique!"
 msgstr ""
