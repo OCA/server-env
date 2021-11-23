@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo13-addon-mail_environment',
+        'odoo13-addon-payment_environment',
         'odoo13-addon-server_environment',
         'odoo13-addon-server_environment_ir_config_parameter',
     ],
