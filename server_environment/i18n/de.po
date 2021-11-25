@@ -81,7 +81,7 @@ msgid "Server Env Defaults"
 msgstr "Server-Umfeld"
 
 #. module: server_environment
-#: model:ir.actions.act_window,name:server_environment.act_show_config_window
+#: model:ir.actions.act_window,name:server_environment.server_env_act_show_config
 #: model:ir.ui.menu,name:server_environment.menu_server_show_config
 msgid "Server Environment"
 msgstr "Server-Umfeld"
@@ -89,7 +89,6 @@ msgstr "Server-Umfeld"
 #. module: server_environment
 #: model:ir.model,name:server_environment.model_server_env_techname_mixin
 #, fuzzy
-#| msgid "Server Environment"
 msgid "Server environment technical name"
 msgstr "Server-Umfeld"
 
@@ -110,6 +109,7 @@ msgid "View Server Environment Configuration"
 msgstr "Server-Umfeld"
 
 #. module: server_environment
+#: model:ir.model.constraint,message:server_environment.constraint_payment_acquirer_tech_name_uniq
 #: model:ir.model.constraint,message:server_environment.constraint_server_env_techname_mixin_tech_name_uniq
 msgid "`tech_name` must be unique!"
 msgstr ""
@@ -427,6 +427,11 @@ msgstr ""
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_test_tags
 msgid "odoo | test_tags"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_transient_age_limit
+msgid "odoo | transient_age_limit"
 msgstr ""
 
 #. module: server_environment
