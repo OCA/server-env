@@ -10,6 +10,7 @@
     "summary": "move some configurations out of the database",
     "website": "http://github.com/OCA/server-env",
     "license": "LGPL-3",
+    "development_status": "Production/Stable",
     "category": "Tools",
     "data": ["security/res_groups.xml", "serv_config.xml"],
     "installable": True,
