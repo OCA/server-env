@@ -10,6 +10,7 @@
     "summary": "move some configurations out of the database",
     "website": "https://github.com/OCA/server-env",
     "license": "LGPL-3",
+    "development_status": "Production/Stable",
     "category": "Tools",
     "data": [
         "security/ir.model.access.csv",
