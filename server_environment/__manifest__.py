@@ -4,12 +4,13 @@
 
 {
     "name": "server configuration environment files",
-    "version": "15.0.1.0.1",
+    "version": "15.0.1.1.0",
     "depends": ["base", "base_sparse_field"],
     "author": "Camptocamp,Odoo Community Association (OCA)",
     "summary": "move some configurations out of the database",
     "website": "https://github.com/OCA/server-env",
     "license": "LGPL-3",
+    "development_status": "Production/Stable",
     "category": "Tools",
     "data": [
         "security/ir.model.access.csv",
