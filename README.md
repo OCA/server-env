@@ -25,7 +25,7 @@ addon | version | maintainers | summary
 [payment_environment](payment_environment/) | 14.0.1.0.0 | [![ivantodorovich](https://github.com/ivantodorovich.png?size=30px)](https://github.com/ivantodorovich) | Configure payment acquirers with server_environment
 [server_environment](server_environment/) | 14.0.2.0.1 |  | move some configurations out of the database
 [server_environment_data_encryption](server_environment_data_encryption/) | 14.0.1.0.0 |  | Server Environment Data Encryption
-[server_environment_ir_config_parameter](server_environment_ir_config_parameter/) | 14.0.1.0.0 |  | Override System Parameters from server environment file
+[server_environment_ir_config_parameter](server_environment_ir_config_parameter/) | 14.0.1.1.0 |  | Override System Parameters from server environment file
 
 [//]: # (end addons)
 
