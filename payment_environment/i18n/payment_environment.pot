@@ -24,6 +24,15 @@ msgid "ID"
 msgstr ""
 
 #. module: payment_environment
+#: model:ir.model.fields,help:payment_environment.field_payment_acquirer__state
+msgid ""
+"In test mode, a fake payment is processed through a test\n"
+"             payment interface. This mode is advised when setting up the\n"
+"             acquirer. Watch out, test and production modes require\n"
+"             different credentials."
+msgstr ""
+
+#. module: payment_environment
 #: model:ir.model.fields,field_description:payment_environment.field_payment_acquirer____last_update
 msgid "Last Modified on"
 msgstr ""
@@ -36,6 +45,11 @@ msgstr ""
 #. module: payment_environment
 #: model:ir.model.fields,field_description:payment_environment.field_payment_acquirer__server_env_defaults
 msgid "Server Env Defaults"
+msgstr ""
+
+#. module: payment_environment
+#: model:ir.model.fields,field_description:payment_environment.field_payment_acquirer__state
+msgid "State"
 msgstr ""
 
 #. module: payment_environment
