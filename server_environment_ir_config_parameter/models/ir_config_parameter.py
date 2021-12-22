@@ -27,8 +27,18 @@ class IrConfigParameter(models.Model):
                 # should we have preloaded values in database at,
                 # server startup, modules loading their parameters
                 # from data files would break on unique key error.
-                self.sudo().set_param(key, cvalue)
-                value = cvalue
+                if not self.env.context.get("_from_get_param", 0):
+                    # the check is to avoid recursion, for instance the mail
+                    # addon has an override in ir.config_parameter::write which
+                    # calls get_param if we are setting mail.catchall.alias and
+                    # this will cause an infinite recursion. We cut that
+                    # recursion by using the context check.
+                    #
+                    # The mail addon call to get_param expects to get the value
+                    # *before* the change, so we have to return the database
+                    # value in that case
+                    self.sudo().with_context(_from_get_param=1).set_param(key, cvalue)
+                    value = cvalue
         if value is None:
             return default
         return value
