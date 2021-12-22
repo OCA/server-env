@@ -14,9 +14,10 @@ class TestEnv(ServerEnvironmentCase):
     def setUp(self):
         super().setUp()
         self.ICP = self.env["ir.config_parameter"]
-        self.env_config = (
-            "[ir.config_parameter]\n" "ircp_from_config=config_value\n" "ircp_empty=\n"
-        )
+        self.env_config = """[ir.config_parameter]
+ircp_from_config=config_value
+ircp_empty=
+mail.catchall.alias=my_alias"""
 
     def _load_xml(self, module, filepath):
         convert_file(
@@ -102,3 +103,16 @@ class TestEnv(ServerEnvironmentCase):
             )
             value = self.ICP.get_param("ircp_from_config")
             self.assertEqual(value, "config_value")
+
+    def test_read_mail_catchall_alias(self):
+        """read mail.catchall.alias from server env:
+
+        this must not break the mail addon's overload"""
+        with self.load_config(
+            public=self.env_config, serv_config_class=ir_config_parameter
+        ):
+            value = self.ICP.get_param("mail.catchall.alias")
+            self.assertEqual(value, "my_alias")
+            res = self.ICP.search([("key", "=", "mail.catchall.alias")])
+            self.assertEqual(len(res), 1)
+            self.assertEqual(res.value, "my_alias")
