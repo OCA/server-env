@@ -133,7 +133,7 @@ def _load_config_from_env(config_p):
 
 def _load_config():
     """Load the configuration and return a ConfigParser instance."""
-    config_p = configparser.ConfigParser()
+    config_p = configparser.ConfigParser(interpolation=None)
     # options are case-sensitive
     config_p.optionxform = str
 
