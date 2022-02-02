@@ -56,7 +56,9 @@ class ServerEnvMixin(models.AbstractModel):
             # We don't know which action we are using... take default one
             action = self.get_formview_action()
         else:
-            action = self.env["ir.actions.act_window"].browse(action_id).read()[0]
+            action = (
+                self.env["ir.actions.act_window"].browse(action_id).sudo().read()[0]
+            )
             action["view_mode"] = "form"
         action["res_id"] = self.id
         views_form = []
