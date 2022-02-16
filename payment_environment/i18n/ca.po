@@ -1,0 +1,64 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* payment_environment
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. module: payment_environment
+#: model:ir.model.fields,field_description:payment_environment.field_payment_acquirer__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: payment_environment
+#: model:ir.model.fields,field_description:payment_environment.field_payment_acquirer__id
+msgid "ID"
+msgstr ""
+
+#. module: payment_environment
+#: model:ir.model.fields,help:payment_environment.field_payment_acquirer__state
+msgid ""
+"In test mode, a fake payment is processed through a test\n"
+"             payment interface. This mode is advised when setting up the\n"
+"             acquirer. Watch out, test and production modes require\n"
+"             different credentials."
+msgstr ""
+
+#. module: payment_environment
+#: model:ir.model.fields,field_description:payment_environment.field_payment_acquirer____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: payment_environment
+#: model:ir.model,name:payment_environment.model_payment_acquirer
+msgid "Payment Acquirer"
+msgstr ""
+
+#. module: payment_environment
+#: model:ir.model.fields,field_description:payment_environment.field_payment_acquirer__server_env_defaults
+msgid "Server Env Defaults"
+msgstr ""
+
+#. module: payment_environment
+#: model:ir.model.fields,field_description:payment_environment.field_payment_acquirer__state
+msgid "State"
+msgstr ""
+
+#. module: payment_environment
+#: model:ir.model.fields,field_description:payment_environment.field_payment_acquirer__tech_name
+msgid "Tech Name"
+msgstr ""
+
+#. module: payment_environment
+#: model:ir.model.fields,help:payment_environment.field_payment_acquirer__tech_name
+msgid "Unique name for technical purposes. Eg: server env keys."
+msgstr ""
