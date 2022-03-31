@@ -16,7 +16,7 @@ class ServerEnvMixin(models.AbstractModel):
     _inherit = "server.env.mixin"
 
     def _compute_server_env_from_default(self, field_name, options):
-        """ First return database encrypted value then default value """
+        """First return database encrypted value then default value"""
         self.ensure_one()
         encrypted_data_name = "{},{}".format(self._name, self.id)
         env = self.env.context.get("environment", None)
