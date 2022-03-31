@@ -213,7 +213,7 @@ class ServerConfiguration(models.TransientModel):
 
     @classmethod
     def _get_base_cols(cls):
-        """ Compute base fields"""
+        """Compute base fields"""
         res = {}
         for col, item in list(system_base_config.options.items()):
             key = cls._format_key("odoo", col)
@@ -222,7 +222,7 @@ class ServerConfiguration(models.TransientModel):
 
     @classmethod
     def _get_env_cols(cls, sections=None):
-        """ Compute base fields"""
+        """Compute base fields"""
         res = {}
         sections = sections if sections else serv_config.sections()
         for section in sections:
@@ -233,7 +233,7 @@ class ServerConfiguration(models.TransientModel):
 
     @classmethod
     def _get_system_cols(cls):
-        """ Compute system fields"""
+        """Compute system fields"""
         res = {}
         for col, item in get_server_environment():
             key = cls._format_key("system", col)
