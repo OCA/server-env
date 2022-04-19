@@ -2,7 +2,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 {
-    "name": "Auth SAML environement",
+    "name": "Auth SAML environment",
     "summary": "Allows system administrator to authenticate with any account",
     "version": "14.0.1.0.0",
     "category": "base",
