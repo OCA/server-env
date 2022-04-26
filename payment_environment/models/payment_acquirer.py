@@ -13,6 +13,7 @@ class PaymentAcquirer(models.Model):
         "server.env.techname.mixin",
         "server.env.mixin",
     ]
+    _order = "module_state, sequence, name"
 
     @property
     def _server_env_fields(self):
