@@ -14,6 +14,20 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: payment_environment
+#: model:ir.model.fields,help:payment_environment.field_payment_acquirer__state
+msgid ""
+"In test mode, a fake payment is processed through a test\n"
+"             payment interface. This mode is advised when setting up the\n"
+"             acquirer. Watch out, test and production modes require\n"
+"             different credentials."
+msgstr ""
+
+#. module: payment_environment
 #: model:ir.model,name:payment_environment.model_payment_acquirer
 msgid "Payment Acquirer"
+msgstr ""
+
+#. module: payment_environment
+#: model:ir.model.fields,field_description:payment_environment.field_payment_acquirer__state
+msgid "State"
 msgstr ""
