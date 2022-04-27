@@ -30,7 +30,7 @@ msgstr ""
 
 #. module: auth_saml_environment
 #: model:ir.model,name:auth_saml_environment.model_auth_saml_provider
-msgid "SAML2 provider"
+msgid "SAML2 Provider"
 msgstr ""
 
 #. module: auth_saml_environment
