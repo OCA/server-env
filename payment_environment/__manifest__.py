@@ -6,7 +6,7 @@
     "name": "Payment Acquirers' configuration with server_environment",
     "summary": "Configure payment acquirers with server_environment",
     "category": "Tools",
-    "version": "14.0.1.0.1",
+    "version": "14.0.1.0.2",
     "license": "LGPL-3",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-env",
