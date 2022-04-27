@@ -1,5 +1,5 @@
 # Do NOT update manually; changes here will be overwritten by Copier
-_commit: v1.5.2
+_commit: v1.6.1
 _src_path: gh:oca/oca-addons-repo-template
 ci: Travis
 dependency_installation_mode: PIP
@@ -13,5 +13,6 @@ repo_description: null
 repo_name: server-env
 repo_slug: server-env
 repo_website: https://github.com/OCA/server-env
-travis_apt_packages: []
+travis_apt_packages:
+- xmlsec1
 travis_apt_sources: []
