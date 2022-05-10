@@ -15,11 +15,29 @@ _logger = logging.getLogger(__name__)
 class ServerEnvMixin(models.AbstractModel):
     _inherit = "server.env.mixin"
 
+    def _current_env_encrypted_key_exists(self):
+        env = self.env["encrypted.data"]._retrieve_env()
+        key_name = "encryption_key_%s" % env
+        key_str = config.get(key_name)
+        key_exists = key_str and True or False
+        if not key_exists:
+            logging.warning(
+                "The minimal configuration is missing. You need at least to add an "
+                "encryption key for the current environment  : %s. While the "
+                "configuration is missing, the module has no effect",
+                env,
+            )
+        return key_exists
+
     def _compute_server_env_from_default(self, field_name, options):
         """First return database encrypted value then default value"""
-        self.ensure_one()
+        # in case of bad configuration (no encryption key for current env) the module
+        # is useless, we do fallback directly on serven_environement behavior
+        if not self._current_env_encrypted_key_exists():
+            return super()._compute_server_env_from_default(field_name, options)
         encrypted_data_name = "{},{}".format(self._name, self.id)
         env = self.env.context.get("environment", None)
+
         vals = (
             self.env["encrypted.data"]
             .sudo()
@@ -35,6 +53,10 @@ class ServerEnvMixin(models.AbstractModel):
         When this module is installed, we store values into encrypted data
         env instead of a default field in database (not env dependent).
         """
+        # in case of bad configuration (no encryption key for current env) the module
+        # is useless, we do fallback directly on serven_environement behavior
+        if not self._current_env_encrypted_key_exists():
+            return super()._inverse_server_env(field_name)
         is_editable_field = self._server_env_is_editable_fieldname(field_name)
         encrypted_data_obj = self.env["encrypted.data"].sudo()
         env = self.env.context.get("environment", None)
@@ -69,6 +91,26 @@ class ServerEnvMixin(models.AbstractModel):
         return action
 
     def _get_extra_environment_info_div(self, current_env, extra_envs):
+        # if the module configuration is missing (no current env encryption key)
+        # display a warning instead as the module has no effect.
+        if not self._current_env_encrypted_key_exists():
+            button_div = "<div>"
+            warning_string = _(
+                "The encryption key for current environement is not defined"
+            )
+            elem = etree.fromstring(
+                """
+                  <div class="d-flex justify-content-between">
+                  <div class="alert lead {} text-center d-inline">
+                      <strong>{}</strong>
+                    </div>
+                  </div>
+            """.format(
+                    "alert-danger", warning_string
+                )
+            )
+            return elem
+
         # TODO we could use a qweb template here
         button_div = "<div>"
         button_string = _("Define values for ")
