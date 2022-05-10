@@ -48,6 +48,12 @@ msgstr ""
 #. module: server_environment_data_encryption
 #: code:addons/server_environment_data_encryption/models/server_env_mixin.py:0
 #, python-format
+msgid "The encryption key for current environement is not defined"
+msgstr ""
+
+#. module: server_environment_data_encryption
+#: code:addons/server_environment_data_encryption/models/server_env_mixin.py:0
+#, python-format
 msgid ""
 "you need to define the running_env entry in your odoo configuration file"
 msgstr ""
