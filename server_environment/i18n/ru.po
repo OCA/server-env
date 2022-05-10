@@ -37,8 +37,6 @@ msgstr "Создан"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__display_name
-#: model:ir.model.fields,field_description:server_environment.field_server_env_mixin__display_name
-#: model:ir.model.fields,field_description:server_environment.field_server_env_techname_mixin__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -49,15 +47,11 @@ msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__id
-#: model:ir.model.fields,field_description:server_environment.field_server_env_mixin__id
-#: model:ir.model.fields,field_description:server_environment.field_server_env_techname_mixin__id
 msgid "ID"
 msgstr "ID"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config____last_update
-#: model:ir.model.fields,field_description:server_environment.field_server_env_mixin____last_update
-#: model:ir.model.fields,field_description:server_environment.field_server_env_techname_mixin____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -82,7 +76,7 @@ msgid "Server Env Defaults"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.actions.act_window,name:server_environment.act_show_config_window
+#: model:ir.actions.act_window,name:server_environment.server_env_act_show_config
 #: model:ir.ui.menu,name:server_environment.menu_server_show_config
 msgid "Server Environment"
 msgstr ""
@@ -198,8 +192,18 @@ msgid "odoo | email_from"
 msgstr ""
 
 #. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_from_filter
+msgid "odoo | from_filter"
+msgstr ""
+
+#. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_geoip_database
 msgid "odoo | geoip_database"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_gevent_port
+msgid "odoo | gevent_port"
 msgstr ""
 
 #. module: server_environment
@@ -398,6 +402,16 @@ msgid "odoo | smtp_ssl"
 msgstr ""
 
 #. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_smtp_ssl_certificate_filename
+msgid "odoo | smtp_ssl_certificate_filename"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_smtp_ssl_private_key_filename
+msgid "odoo | smtp_ssl_private_key_filename"
+msgstr ""
+
+#. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_smtp_user
 msgid "odoo | smtp_user"
 msgstr ""
@@ -425,6 +439,11 @@ msgstr ""
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_test_tags
 msgid "odoo | test_tags"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_transient_age_limit
+msgid "odoo | transient_age_limit"
 msgstr ""
 
 #. module: server_environment
@@ -458,6 +477,21 @@ msgid "odoo | upgrade_path"
 msgstr ""
 
 #. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_websocket_keep_alive_timeout
+msgid "odoo | websocket_keep_alive_timeout"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_websocket_rate_limit_burst
+msgid "odoo | websocket_rate_limit_burst"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_websocket_rate_limit_delay
+msgid "odoo | websocket_rate_limit_delay"
+msgstr ""
+
+#. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_without_demo
 msgid "odoo | without_demo"
 msgstr ""
@@ -465,6 +499,11 @@ msgstr ""
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_workers
 msgid "odoo | workers"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_x_sendfile
+msgid "odoo | x_sendfile"
 msgstr ""
 
 #. module: server_environment
