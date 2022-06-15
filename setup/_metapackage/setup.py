@@ -14,6 +14,7 @@ setuptools.setup(
         'odoo14-addon-payment_environment',
         'odoo14-addon-server_environment',
         'odoo14-addon-server_environment_data_encryption',
+        'odoo14-addon-server_environment_iap',
         'odoo14-addon-server_environment_ir_config_parameter',
     ],
     classifiers=[
