@@ -1,0 +1,7 @@
+<odoo>
+    <record model="iap.account" id="some_record_id">
+        <field name="tech_name">account_xml</field>
+        <field name="service_name">iap_from_config</field>
+        <field name="account_token">value_from_xml</field>
+    </record>
+</odoo>
