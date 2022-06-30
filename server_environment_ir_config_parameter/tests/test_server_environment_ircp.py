@@ -15,7 +15,10 @@ class TestEnv(ServerEnvironmentCase):
         super().setUp()
         self.ICP = self.env["ir.config_parameter"]
         self.env_config = (
-            "[ir.config_parameter]\n" "ircp_from_config=config_value\n" "ircp_empty=\n"
+            "[ir.config_parameter.ircp_from_config]\n"
+            "value=config_value\n\n"
+            "[ir.config_parameter.ircp_empty]\n"
+            "value=\n\n"
         )
 
     def _load_xml(self, module, filepath):
@@ -49,7 +52,7 @@ class TestEnv(ServerEnvironmentCase):
         """We can't set parameters that are in config file"""
         with self.load_config(
             public=self.env_config, serv_config_class=ir_config_parameter
-        ):
+        ), self.load_config(public=self.env_config):
             # when creating, the value is overridden by config file
             self.ICP.set_param("ircp_from_config", "new_value")
             value = self.ICP.get_param("ircp_from_config")
