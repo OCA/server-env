@@ -195,9 +195,9 @@ class ServerEnvMixin(models.AbstractModel):
                 value = getter(section_name, field_name)
             else:
                 value = getter(global_section_name, field_name)
-        except Exception:
-            _logger.exception(
-                "error trying to read field %s in section %s", field_name, section_name
+        except Exception as e:
+            _logger.error(
+                "Unable to read field %s in section %s: %s", field_name, section_name, e
             )
             return False
         return value
