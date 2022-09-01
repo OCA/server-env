@@ -57,10 +57,11 @@ class ServerEnvTechNameMixin(models.AbstractModel):
             # make sure is normalized
             self.tech_name = self._normalize_tech_name(self.tech_name)
 
-    @api.model
-    def create(self, vals):
-        self._handle_tech_name(vals)
-        return super().create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            self._handle_tech_name(vals)
+        return super().create(vals_list)
 
     def write(self, vals):
         self._handle_tech_name(vals)
