@@ -12,13 +12,13 @@ from . import common
 class TestEnv(common.ServerEnvironmentCase):
     def test_view(self):
         model = self.env["server.config"]
-        view = model.fields_view_get()
+        view = model.get_view()
         self.assertTrue(view)
 
     def _test_default(self, hidden_pwd=False):
         model = self.env["server.config"]
         rec = model.create({})
-        fields = model.fields_view_get()["fields"]
+        fields = model.fields_get()
         self.assertTrue(fields)
         defaults = rec.default_get(list(fields))
         self.assertTrue(defaults)
