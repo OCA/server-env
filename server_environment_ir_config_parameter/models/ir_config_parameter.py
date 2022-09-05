@@ -33,13 +33,14 @@ class IrConfigParameter(models.Model):
             return default
         return value
 
-    @api.model
-    def create(self, vals):
-        key = vals.get("key")
-        if serv_config.has_option(SECTION, key):
-            # enforce value from config file
-            vals = dict(vals, value=serv_config.get(SECTION, key))
-        return super().create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            key = vals.get("key")
+            if serv_config.has_option(SECTION, key):
+                # enforce value from config file
+                vals = dict(vals, value=serv_config.get(SECTION, key))
+        return super().create(vals_list)
 
     def write(self, vals):
         for rec in self:
