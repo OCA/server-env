@@ -44,14 +44,14 @@ class EncryptedData(models.Model):
         cipher = self._get_cipher(env)
         try:
             return cipher.decrypt(self.encrypted_data).decode()
-        except InvalidToken:
+        except InvalidToken as exc:
             raise ValidationError(
                 _(
                     "Password has been encrypted with a different "
                     "key. Unless you can recover the previous key, "
                     "this password is unreadable."
                 )
-            )
+            ) from exc
 
     @api.model
     @ormcache("self._uid", "name", "env")
@@ -77,10 +77,10 @@ class EncryptedData(models.Model):
             return {}
         try:
             return json.loads(data)
-        except (ValueError, TypeError):
+        except (ValueError, TypeError) as exc:
             raise ValidationError(
                 _("The data you are trying to read are not in a json format")
-            )
+            ) from exc
 
     @staticmethod
     def _retrieve_env():
@@ -107,8 +107,11 @@ class EncryptedData(models.Model):
         key_str = config.get(key_name)
         if not key_str:
             raise ValidationError(
-                _("No '%s' entry found in config file. " "Use a key similar to: %s")
-                % (key_name, Fernet.generate_key())
+                _(
+                    "No '%(key_name)s' entry found in config file. "
+                    "Use a key similar to: %(key)s"
+                )
+                % {"key_name": key_name, "key": Fernet.generate_key()}
             )
         # key should be in bytes format
         key = key_str.encode()
