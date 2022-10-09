@@ -1,6 +1,11 @@
 <form string="Test">
     <header>
-        <button string="Reset Confirmation" type="object" name="set_draft" states="done"/>
+        <button
+            string="Reset Confirmation"
+            type="object"
+            name="set_draft"
+            states="done"
+        />
     </header>
     <sheet>
         <div class="d-flex justify-content-between">
@@ -8,14 +13,31 @@
                   <strong>Modify values for test environment</strong>
                 </div>
                 <div>
-            <button name="action_change_env_data_encrypted_fields" type="object" string="Define values for preprod" class="btn btn-lg btn-primary ml-2" context="{'environment': 'preprod'}"/>
-            
-            <button name="action_change_env_data_encrypted_fields" type="object" string="Define values for prod" class="btn btn-lg btn-primary ml-2" context="{'environment': 'prod'}"/>
+            <button
+                    name="action_change_env_data_encrypted_fields"
+                    type="object"
+                    string="Define values for preprod"
+                    class="btn btn-lg btn-primary ml-2"
+                    context="{'environment': 'preprod'}"
+                />
+
+            <button
+                    name="action_change_env_data_encrypted_fields"
+                    type="object"
+                    string="Define values for prod"
+                    class="btn btn-lg btn-primary ml-2"
+                    context="{'environment': 'prod'}"
+                />
             </div>
               </div><group col="4">
-            <field name="test" modifiers="{&quot;required&quot;: true}"/>
-            <field name="test2" attrs="{'readonly': [('type_env_is_editable', '=', False)]}" on_change="1" modifiers="{&quot;readonly&quot;: [[&quot;type_env_is_editable&quot;, &quot;=&quot;, false]]}"/>
-            <field name="date" modifiers="{&quot;readonly&quot;: true}"/>
+            <field name="test" modifiers="{&quot;required&quot;: true}" />
+            <field
+                name="test2"
+                attrs="{'readonly': [('type_env_is_editable', '=', False)]}"
+                on_change="1"
+                modifiers="{&quot;readonly&quot;: [[&quot;type_env_is_editable&quot;, &quot;=&quot;, false]]}"
+            />
+            <field name="date" modifiers="{&quot;readonly&quot;: true}" />
         </group>
     </sheet>
 </form>
