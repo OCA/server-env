@@ -175,29 +175,27 @@ class ServerEnvMixin(models.AbstractModel):
                     "configuration file"
                 )
             )
-        doc = etree.XML(arch)
-        node = doc.xpath("//sheet")
+        node = arch.xpath("//sheet")
         if node:
             node = node[0]
             elem = self._get_extra_environment_info_div(current_env, other_environments)
             node.insert(0, elem)
 
             if current_env != config.get("running_env"):
-                self._set_readonly_form_view(doc)
-            arch = etree.tostring(doc, pretty_print=True, encoding="unicode")
+                self._set_readonly_form_view(arch)
         else:
             _logger.error("Missing sheet for form view on object {}".format(self._name))
         return arch
 
     @api.model
-    def fields_view_get(
-        self, view_id=None, view_type="form", toolbar=False, submenu=False
-    ):
-        res = super().fields_view_get(
-            view_id=view_id,
-            view_type=view_type,
-            toolbar=toolbar,
-            submenu=submenu,
+    def _get_view(self, view_id=None, view_type="form", **options):
+        arch, view = super()._get_view(view_id=view_id, view_type=view_type, **options)
+        arch = self._update_form_view_from_env(arch, view_type)
+        return arch, view
+
+    def _get_view_cache_key(self, view_id=None, view_type="form", **options):
+        res = super()._get_view_cache_key(
+            view_id=view_id, view_type=view_type, **options
         )
-        res["arch"] = self._update_form_view_from_env(res["arch"], view_type)
+        res += (self.env.context.get("environment", False),)
         return res
