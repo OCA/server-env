@@ -93,6 +93,10 @@ mail.catchall.alias=my_alias"""
             with self.assertRaises(UserError):
                 self.ICP.get_param("ircp_empty")
             self.assertEqual(self.ICP.get_param("ircp_nonexistant"), False)
+            # bypass empty: no error
+            self.ICP.with_context(icp_get_param__allow_empty=True).get_param(
+                "ircp_empty"
+            )
 
     def test_override_xmldata(self):
         with self.load_config(

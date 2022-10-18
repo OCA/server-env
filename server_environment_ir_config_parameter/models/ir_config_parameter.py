@@ -29,8 +29,9 @@ class IrConfigParameter(models.Model):
     def get_param(self, key, default=False):
         value = super().get_param(key, default=None)
         if serv_config.has_option(SECTION, key):
+            allow_empty = self.env.context.get("icp_get_param__allow_empty")
             cvalue = serv_config.get(SECTION, key)
-            if not cvalue:
+            if not cvalue and not allow_empty:
                 raise UserError(
                     _("Key %s is empty in " "server_environment_file") % (key,)
                 )
