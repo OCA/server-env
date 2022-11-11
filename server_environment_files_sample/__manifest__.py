@@ -4,7 +4,7 @@
 
 {
     "name": "Example server configuration environment files repository module",
-    "version": "12.0.1.0.1",
+    "version": "15.0.1.0.0",
     "depends": ["base"],
     "author": "Camptocamp,Odoo Community Association (OCA)",
     "summary": "sample config file for server_environment",
