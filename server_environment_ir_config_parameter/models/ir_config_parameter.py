@@ -50,7 +50,7 @@ class IrConfigParameter(models.Model):
                     # *before* the change, so we have to return the database
                     # value in that case
                     self.sudo().with_context(_from_get_param=1).set_param(key, cvalue)
-                    value = cvalue
+                value = cvalue
         if value is None:
             return default
         return value
