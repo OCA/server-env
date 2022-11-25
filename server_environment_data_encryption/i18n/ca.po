@@ -15,6 +15,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #. module: server_environment_data_encryption
+#. odoo-python
 #: code:addons/server_environment_data_encryption/models/server_env_mixin.py:0
 #, python-format
 msgid "Define values for "
@@ -26,18 +27,21 @@ msgid "Mixin to add server environment in existing models"
 msgstr ""
 
 #. module: server_environment_data_encryption
+#. odoo-python
 #: code:addons/server_environment_data_encryption/models/server_env_mixin.py:0
 #, python-format
 msgid "Modify values for {} environment"
 msgstr ""
 
 #. module: server_environment_data_encryption
+#. odoo-python
 #: code:addons/server_environment_data_encryption/models/server_env_mixin.py:0
 #, python-format
 msgid "The encryption key for current environement is not defined"
 msgstr ""
 
 #. module: server_environment_data_encryption
+#. odoo-python
 #: code:addons/server_environment_data_encryption/models/server_env_mixin.py:0
 #, python-format
 msgid ""
