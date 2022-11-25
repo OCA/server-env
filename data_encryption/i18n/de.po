@@ -42,6 +42,7 @@ msgid "Encrypted Data"
 msgstr ""
 
 #. module: data_encryption
+#. odoo-python
 #: code:addons/data_encryption/models/encrypted_data.py:0
 #, python-format
 msgid "Encrypted data can only be read with suspended security (sudo)"
@@ -78,6 +79,7 @@ msgid "Name"
 msgstr "Bezeichnung"
 
 #. module: data_encryption
+#. odoo-python
 #: code:addons/data_encryption/models/encrypted_data.py:0
 #, python-format
 msgid ""
@@ -85,6 +87,7 @@ msgid ""
 msgstr ""
 
 #. module: data_encryption
+#. odoo-python
 #: code:addons/data_encryption/models/encrypted_data.py:0
 #, python-format
 msgid ""
@@ -93,11 +96,12 @@ msgid ""
 msgstr ""
 
 #. module: data_encryption
+#. odoo-python
 #: code:addons/data_encryption/models/encrypted_data.py:0
 #, python-format
 msgid ""
-"Password has been encrypted with a different key. Unless you can recover the"
-" previous key, this password is unreadable."
+"Password has been encrypted with a different key. Unless you can recover the "
+"previous key, this password is unreadable."
 msgstr ""
 
 #. module: data_encryption
@@ -111,6 +115,7 @@ msgid "Technical name"
 msgstr "Technischer Name"
 
 #. module: data_encryption
+#. odoo-python
 #: code:addons/data_encryption/models/encrypted_data.py:0
 #, python-format
 msgid "The data you are trying to read are not in a json format"
@@ -124,6 +129,7 @@ msgid ""
 msgstr ""
 
 #. module: data_encryption
+#. odoo-python
 #: code:addons/data_encryption/models/encrypted_data.py:0
 #, python-format
 msgid "You can only encrypt data with suspended security (sudo)"
