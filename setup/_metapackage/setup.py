@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo-addon-data_encryption>=16.0dev,<16.1dev',
+        'odoo-addon-mail_environment>=16.0dev,<16.1dev',
         'odoo-addon-server_environment>=16.0dev,<16.1dev',
         'odoo-addon-server_environment_data_encryption>=16.0dev,<16.1dev',
         'odoo-addon-server_environment_ir_config_parameter>=16.0dev,<16.1dev',
