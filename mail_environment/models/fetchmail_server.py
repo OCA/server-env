@@ -24,6 +24,9 @@ class FetchmailServer(models.Model):
             "is_ssl": {},
             "attach": {},
             "original": {},
+            "microsoft_outlook_refresh_token": {},
+            "microsoft_outlook_access_token": {},
+            "microsoft_outlook_access_token_expiration": {},
         }
         mail_fields.update(base_fields)
         return mail_fields
