@@ -73,7 +73,7 @@ Example of config file ::
   [incoming_mail.odoo_pop_mail1]
   server = mail.myserver.com
   port = 110
-  type = pop
+  server_type = pop
   is_ssl = 0
   attach = 0
   original = 0
