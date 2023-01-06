@@ -390,6 +390,12 @@ class ServerEnvMixin(models.AbstractModel):
             if hasattr(base_field, "selection"):
                 field_args["selection"] = base_field.selection
             field = base_field_cls(**field_args)
+            # inverse method is not set on readonly field by Odoo
+            # even there is a states attributes on this field
+            # here we ensure the inverse method is set if the field 
+            # is editable
+            if not field.inverse and field.is_editable():
+                field.inverse = field._inverse_sparse
             self._add_field(fieldname, field)
 
     @api.model
