@@ -38,3 +38,10 @@ Example of config file ::
 You will need to create 2 records in the database, one outgoing mail
 server with the field `name` set to "odoo_smtp_server1" and one
 incoming mail server with the field `name` set to "odoo_pop_mail1".
+
+It is possible to use a SSL certificate for SMTP authentication. In this case,
+you need to set the following entries in the configuration entry ::
+
+  smtp_authentication = certificate
+  smtp_ssl_certificate = <base64 encoded certificate>
+  smtp_ssl_private_key = <base64 encoded certificate>
