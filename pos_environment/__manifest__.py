@@ -7,7 +7,7 @@
     'version': '12.0.1.0.1',
     'category': 'Point of Sale',
     'author': 'GRAP,Odoo Community Association (OCA)',
-    'website': 'https://github.com/oca/server-env',
+    'website': 'https://github.com/OCA/server-env',
     'license': 'AGPL-3',
     'depends': [
         'point_of_sale',
