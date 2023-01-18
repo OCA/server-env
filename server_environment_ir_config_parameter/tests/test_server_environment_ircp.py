@@ -1,10 +1,10 @@
 # Copyright 2016-2018 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.exceptions import UserError
 from odoo.tests import common
 from odoo.tools import convert_file
 from odoo.modules.module import get_resource_path
+from odoo.exceptions import UserError
 
 
 class TestEnv(common.TransactionCase):
