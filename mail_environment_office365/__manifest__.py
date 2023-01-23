@@ -6,7 +6,7 @@
     "name": "Server environment configuration for Office365",
     "summary": """ Configure Office365 parameters with environment variables
     via server_environment""",
-    "version": "15.0.1.0.0",
+    "version": "13.0.1.0.0",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-env",
     "license": "AGPL-3",
