@@ -7,9 +7,9 @@
 
 <!-- /!\ do not modify above this line -->
 
-# server-env
+# Odoo server environment
 
-None
+This repository hosts official server environment management modules provided by the OCA.
 
 <!-- /!\ do not modify below this line -->
 
