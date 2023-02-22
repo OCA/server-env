@@ -8,7 +8,7 @@
     'version': '12.0.1.0.1',
     'license': 'AGPL-3',
     'author': 'ACSONE SA/NV, Odoo Community Association (OCA)',
-    'website': 'https://github.com/OCA/server-env/',
+    'website': 'https://github.com/OCA/server-env',
     'depends': [
         'server_environment',
     ],

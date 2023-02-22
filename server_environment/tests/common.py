@@ -8,8 +8,7 @@ from unittest.mock import patch
 from odoo.tests import common
 from odoo.addons.server_environment import server_env
 
-import odoo.addons.server_environment.models.server_env_mixin as \
-    server_env_mixin
+import odoo.addons.server_environment.models.server_env_mixin as server_env_mixin
 
 
 class ServerEnvironmentCase(common.SavepointCase):
@@ -36,14 +35,13 @@ class ServerEnvironmentCase(common.SavepointCase):
             yield
 
     @contextmanager
-    def load_config(self, public=None, secret=None):
-        original_serv_config = server_env_mixin.serv_config
+    def load_config(self, public=None, secret=None, serv_config_class=server_env_mixin):
+        original_serv_config = serv_config_class.serv_config
         try:
-            with self.set_config_dir(None), \
-                    self.set_env_variables(public, secret):
+            with self.set_config_dir(None), self.set_env_variables(public, secret):
                 parser = server_env._load_config()
-                server_env_mixin.serv_config = parser
+                serv_config_class.serv_config = parser
                 yield
 
         finally:
-            server_env_mixin.serv_config = original_serv_config
+            serv_config_class.serv_config = original_serv_config
