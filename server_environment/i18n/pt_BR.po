@@ -130,88 +130,6 @@ msgid "`tech_name` must be unique!"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__custom_ged_I_ged_folder
-msgid "custom_ged | ged_folder"
-msgstr "custom_ged | ged_folder"
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_I_CONSTA
-msgid "external_service | CONSTA"
-msgstr "external_service | CONSTA"
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_I_CONSTB
-msgid "external_service | CONSTB"
-msgstr "external_service | CONSTB"
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_I_CONSTC
-msgid "external_service | CONSTC"
-msgstr "external_service | CONSTC"
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_ftp_I_in_path
-#, fuzzy
-msgid "external_service_ftp | in_path"
-msgstr "external_service.ftp | in_path"
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_ftp_I_out_path
-#, fuzzy
-msgid "external_service_ftp | out_path"
-msgstr "external_service.ftp | out_path"
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_ftp_I_password
-#, fuzzy
-msgid "external_service_ftp | password"
-msgstr "external_service.ftp | password"
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_ftp_I_port
-#, fuzzy
-msgid "external_service_ftp | port"
-msgstr "external_service.ftp | port"
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_ftp_I_server
-#, fuzzy
-msgid "external_service_ftp | server"
-msgstr "external_service.ftp | port"
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_ftp_I_tls
-#, fuzzy
-msgid "external_service_ftp | tls"
-msgstr "external_service.ftp | port"
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__external_service_ftp_I_user
-#, fuzzy
-msgid "external_service_ftp | user"
-msgstr "external_service.ftp | port"
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__ir_config_parameter_I_ircp_empty
-msgid "ir_config_parameter | ircp_empty"
-msgstr ""
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__ir_config_parameter_I_ircp_from_config
-msgid "ir_config_parameter | ircp_from_config"
-msgstr ""
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__misc_I_completed_state
-msgid "misc | completed_state"
-msgstr ""
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__misc_I_smtp_server
-msgid "misc | smtp_server"
-msgstr ""
-
-#. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_addons_path
 msgid "odoo | addons_path"
 msgstr ""
@@ -557,61 +475,6 @@ msgid "odoo | workers"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__pos_environment_footer_I_line_1
-msgid "pos_environment_footer | line_1"
-msgstr ""
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__pos_environment_footer_I_line_2
-msgid "pos_environment_footer | line_2"
-msgstr ""
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__pos_environment_footer_I_line_3
-msgid "pos_environment_footer | line_3"
-msgstr ""
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__pos_environment_footer_I_line_4
-msgid "pos_environment_footer | line_4"
-msgstr ""
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__pos_environment_footer_I_line_5
-msgid "pos_environment_footer | line_5"
-msgstr ""
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__pos_environment_footer_I_line_6
-msgid "pos_environment_footer | line_6"
-msgstr ""
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__pos_environment_footer_I_line_7
-msgid "pos_environment_footer | line_7"
-msgstr ""
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__pos_environment_header_I_line_1
-msgid "pos_environment_header | line_1"
-msgstr ""
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__pos_environment_header_I_line_2
-msgid "pos_environment_header | line_2"
-msgstr ""
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__pos_environment_header_I_line_3
-msgid "pos_environment_header | line_3"
-msgstr ""
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__pos_environment_header_I_line_4
-msgid "pos_environment_header | line_4"
-msgstr ""
-
-#. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__system_I_architecture
 msgid "system | architecture"
 msgstr ""
@@ -661,7 +524,42 @@ msgstr ""
 msgid "system | version"
 msgstr ""
 
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__wkhtml2pdf_I_lib_path
-msgid "wkhtml2pdf | lib_path"
-msgstr ""
+#~ msgid "custom_ged | ged_folder"
+#~ msgstr "custom_ged | ged_folder"
+
+#~ msgid "external_service | CONSTA"
+#~ msgstr "external_service | CONSTA"
+
+#~ msgid "external_service | CONSTB"
+#~ msgstr "external_service | CONSTB"
+
+#~ msgid "external_service | CONSTC"
+#~ msgstr "external_service | CONSTC"
+
+#, fuzzy
+#~ msgid "external_service_ftp | in_path"
+#~ msgstr "external_service.ftp | in_path"
+
+#, fuzzy
+#~ msgid "external_service_ftp | out_path"
+#~ msgstr "external_service.ftp | out_path"
+
+#, fuzzy
+#~ msgid "external_service_ftp | password"
+#~ msgstr "external_service.ftp | password"
+
+#, fuzzy
+#~ msgid "external_service_ftp | port"
+#~ msgstr "external_service.ftp | port"
+
+#, fuzzy
+#~ msgid "external_service_ftp | server"
+#~ msgstr "external_service.ftp | port"
+
+#, fuzzy
+#~ msgid "external_service_ftp | tls"
+#~ msgstr "external_service.ftp | port"
+
+#, fuzzy
+#~ msgid "external_service_ftp | user"
+#~ msgstr "external_service.ftp | port"
