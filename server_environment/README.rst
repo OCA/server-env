@@ -74,6 +74,14 @@ used values are 'dev', 'test', 'production':
    [options]
    running_env=dev
 
+Or set the ``RUNNING_ENV`` or ``ODOO_STAGE`` environment variable. If
+both all are set config file will take the precedence on environment and
+``RUNNING_ENV`` over ``ODOO_STAGE``.
+
+``ODOO_STAGE`` is used for odoo.sh platform where we can't set
+``RUNNING_ENV``, possible observed values are ``production``,
+``staging`` and ``dev``
+
 Values associated to keys containing 'passw' are only displayed in the
 'dev' environment.
 

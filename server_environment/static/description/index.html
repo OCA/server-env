@@ -424,6 +424,12 @@ used values are ‘dev’, ‘test’, ‘production’:</p>
 [options]
 running_env=dev
 </pre>
+<p>Or set the <tt class="docutils literal">RUNNING_ENV</tt> or <tt class="docutils literal">ODOO_STAGE</tt> environment variable. If
+both all are set config file will take the precedence on environment and
+<tt class="docutils literal">RUNNING_ENV</tt> over <tt class="docutils literal">ODOO_STAGE</tt>.</p>
+<p><tt class="docutils literal">ODOO_STAGE</tt> is used for odoo.sh platform where we can’t set
+<tt class="docutils literal">RUNNING_ENV</tt>, possible observed values are <tt class="docutils literal">production</tt>,
+<tt class="docutils literal">staging</tt> and <tt class="docutils literal">dev</tt></p>
 <p>Values associated to keys containing ‘passw’ are only displayed in the
 ‘dev’ environment.</p>
 <p>If you don’t provide any value, test is used as a safe default.</p>
