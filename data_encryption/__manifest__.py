@@ -3,7 +3,7 @@
 {
     "name": "Encryption data",
     "summary": "Store accounts and credentials encrypted by environment",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.0.1",
     "development_status": "Alpha",
     "category": "Tools",
     "website": "https://github.com/OCA/server-env",

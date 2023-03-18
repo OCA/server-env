@@ -18,4 +18,4 @@ In the configuration file of your production environment, you may want to config
 all your other environments encryption key. This way, from production you can encrypt and decrypt
 data for all environments.
 
-You can generate keys with python -c 'from cryptography.fernet import Fernet; print Fernet.generate_key()'.
+You can generate keys with python -c 'from cryptography.fernet import Fernet; print(Fernet.generate_key())'.
