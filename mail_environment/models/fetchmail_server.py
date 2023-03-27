@@ -4,6 +4,7 @@
 import operator
 
 from odoo import api, fields, models
+from odoo.osv.expression import FALSE_DOMAIN
 
 
 class FetchmailServer(models.Model):
@@ -28,6 +29,7 @@ class FetchmailServer(models.Model):
         mail_fields.update(base_fields)
         return mail_fields
 
+    is_ssl = fields.Boolean(search="_search_is_ssl")
     server_type = fields.Selection(search="_search_server_type")
 
     @api.model
@@ -37,6 +39,20 @@ class FetchmailServer(models.Model):
         Can be customized in your model
         """
         return "incoming_mail"
+
+    @api.model
+    def _search_is_ssl(self, oper, value):
+        """Keep the is_ssl field searchable to allow domain in search view."""
+        if not isinstance(value, bool):
+            return FALSE_DOMAIN
+        operators = {
+            "=": operator.eq,
+            "!=": operator.ne,
+        }
+        if oper not in operators:
+            return FALSE_DOMAIN
+        servers = self.search([]).filtered(lambda s: operators[oper](value, s.is_ssl))
+        return [("id", "in", servers.ids)]
 
     @api.model
     def _search_server_type(self, oper, value):
