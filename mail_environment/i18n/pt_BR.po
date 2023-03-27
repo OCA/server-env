@@ -20,6 +20,13 @@ msgstr ""
 "X-Generator: Weblate 3.8\n"
 
 #. module: mail_environment
+#: model:ir.model.fields,help:mail_environment.field_fetchmail_server__is_ssl
+msgid ""
+"Connections are encrypted with SSL/TLS through a dedicated port (default: "
+"IMAPS=993, POP3S=995)"
+msgstr ""
+
+#. module: mail_environment
 #: model:ir.model,name:mail_environment.model_fetchmail_server
 msgid "Incoming Mail Server"
 msgstr "Servidor de Mensagens Recebidas"
@@ -28,6 +35,11 @@ msgstr "Servidor de Mensagens Recebidas"
 #: model:ir.model,name:mail_environment.model_ir_mail_server
 msgid "Mail Server"
 msgstr "Servidor de E-mail"
+
+#. module: mail_environment
+#: model:ir.model.fields,field_description:mail_environment.field_fetchmail_server__is_ssl
+msgid "SSL/TLS"
+msgstr ""
 
 #. module: mail_environment
 #: model:ir.model.fields,field_description:mail_environment.field_fetchmail_server__server_env_defaults
