@@ -15,6 +15,27 @@ from ..server_env import serv_config
 _logger = logging.getLogger(__name__)
 
 
+class _partialmethod(partialmethod):
+    """Custom implementation of partialmethod.
+
+    ``odoo.fields.determine`` requires inverse methods to have ``__name__`` attribute.
+    Unfortunately with ``partialmethod`` this attribute is not propagated
+    even by using ``functools.update_wrapper``.
+
+    Introduced by https://github.com/odoo/odoo/commit/36544651f2049bcf18777091dbf02c9631b33243
+    """
+
+    def __init__(self, func, *args, **keywords):
+        self.__name__ = keywords.pop("__name__", None)
+        super().__init__(func, *args, **keywords)
+
+    def __get__(self, obj, cls=None):
+        res = super().__get__(obj, cls=cls)
+        if self.__name__ is not None:
+            res.__name__ = self.__name__
+        return res
+
+
 class ServerEnvMixin(models.AbstractModel):
     """Mixin to add server environment in existing models
 
@@ -332,7 +353,9 @@ class ServerEnvMixin(models.AbstractModel):
         field.compute = "_compute_server_env"
 
         inverse_method_name = "_inverse_server_env_%s" % field.name
-        inverse_method = partialmethod(type(self)._inverse_server_env, field.name)
+        inverse_method = _partialmethod(
+            type(self)._inverse_server_env, field.name, __name__=inverse_method_name
+        )
         setattr(type(self), inverse_method_name, inverse_method)
         field.inverse = inverse_method_name
         field.store = False
