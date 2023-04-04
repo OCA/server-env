@@ -24,7 +24,7 @@ addon | version | maintainers | summary
 [data_encryption](data_encryption/) | 14.0.1.0.0 |  | Store accounts and credentials encrypted by environment
 [mail_environment](mail_environment/) | 14.0.1.0.1 |  | Configure mail servers with server_environment_files
 [payment_environment](payment_environment/) | 14.0.1.0.2 | [![ivantodorovich](https://github.com/ivantodorovich.png?size=30px)](https://github.com/ivantodorovich) | Configure payment acquirers with server_environment
-[server_environment](server_environment/) | 14.0.2.1.2 |  | move some configurations out of the database
+[server_environment](server_environment/) | 14.0.2.1.3 |  | move some configurations out of the database
 [server_environment_data_encryption](server_environment_data_encryption/) | 14.0.1.0.2 |  | Server Environment Data Encryption
 [server_environment_iap](server_environment_iap/) | 14.0.1.0.0 |  | Configure IAP Account with server_environment_files
 [server_environment_ir_config_parameter](server_environment_ir_config_parameter/) | 14.0.1.1.1 |  | Override System Parameters from server environment file
