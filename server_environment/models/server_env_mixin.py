@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html)
 
 import logging
-from functools import partialmethod
+from functools import partial, update_wrapper
 
 from lxml import etree
 
@@ -332,8 +332,14 @@ class ServerEnvMixin(models.AbstractModel):
         field.compute = "_compute_server_env"
 
         inverse_method_name = "_inverse_server_env_%s" % field.name
-        inverse_method = partialmethod(type(self)._inverse_server_env, field.name)
-        setattr(type(self), inverse_method_name, inverse_method)
+        inverse_method = partial(
+            type(self)._inverse_server_env, self=self, field_name=field.name
+        )
+        setattr(
+            type(self),
+            inverse_method_name,
+            update_wrapper(inverse_method, type(self)._inverse_server_env),
+        )
         field.inverse = inverse_method_name
         field.store = False
         field.required = False
