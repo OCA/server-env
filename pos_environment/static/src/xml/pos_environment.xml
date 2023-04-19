@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <template>
 
     <!-- Non Proxy Bill -->
@@ -7,8 +7,11 @@
             <t t-if="widget.pos.config.receipt_environment_header">
                 <br />
                 <div style='text-align:center'>
-                    <t t-foreach="widget.pos.config.receipt_environment_header.split('\n')" t-as="line">
-                        <t t-esc="line"/>
+                    <t
+                        t-foreach="widget.pos.config.receipt_environment_header.split('\n')"
+                        t-as="line"
+                    >
+                        <t t-esc="line" />
                         <br />
                     </t>
                 </div>
@@ -19,8 +22,11 @@
             <t t-if="widget.pos.config.receipt_environment_footer">
                 <br />
                 <div style='text-align:center'>
-                    <t t-foreach="widget.pos.config.receipt_environment_footer.split('\n')" t-as="line">
-                        <t t-esc="line"/>
+                    <t
+                        t-foreach="widget.pos.config.receipt_environment_footer.split('\n')"
+                        t-as="line"
+                    >
+                        <t t-esc="line" />
                         <br />
                     </t>
                 </div>
@@ -35,8 +41,11 @@
             <t t-if="widget.pos.config.receipt_environment_header">
                 <br />
                 <div style='text-align:center'>
-                    <t t-foreach="widget.pos.config.receipt_environment_header.split('\n')" t-as="line">
-                        <t t-esc="line"/>
+                    <t
+                        t-foreach="widget.pos.config.receipt_environment_header.split('\n')"
+                        t-as="line"
+                    >
+                        <t t-esc="line" />
                         <br />
                     </t>
                 </div>
@@ -47,8 +56,11 @@
             <t t-if="widget.pos.config.receipt_environment_footer">
                 <br />
                 <div style='text-align:center'>
-                    <t t-foreach="widget.pos.config.receipt_environment_footer.split('\n')" t-as="line">
-                        <t t-esc="line"/>
+                    <t
+                        t-foreach="widget.pos.config.receipt_environment_footer.split('\n')"
+                        t-as="line"
+                    >
+                        <t t-esc="line" />
                         <br />
                     </t>
                 </div>
