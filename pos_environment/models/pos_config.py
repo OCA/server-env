@@ -9,25 +9,20 @@ from odoo.addons.server_environment import serv_config
 class PosConfig(models.Model):
     _inherit = "pos.config"
 
-    # Columns section
     receipt_environment_header = fields.Text(
-        string="Receipt Environment Header",
         compute="_compute_receipt_environment_header",
     )
 
     receipt_environment_footer = fields.Text(
-        string="Receipt Environment Footer",
         compute="_compute_receipt_environment_footer",
     )
 
-    @api.multi
     def _compute_receipt_environment_header(self):
         for config in self:
             config.receipt_environment_header = self._get_receipt_environment_part(
                 "header"
             )
 
-    @api.multi
     def _compute_receipt_environment_footer(self):
         for config in self:
             config.receipt_environment_footer = self._get_receipt_environment_part(
