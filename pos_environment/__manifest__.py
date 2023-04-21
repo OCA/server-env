@@ -4,9 +4,10 @@
 {
     "name": "Point of Sale - Custom Bill by Environment",
     "summary": "Custom messages on the bill depending on the environment",
-    "version": "12.0.1.0.1",
+    "version": "16.0.1.0.1",
     "category": "Point of Sale",
     "author": "GRAP,Odoo Community Association (OCA)",
+    "maintainers": ["legalsylvain"],
     "website": "https://github.com/OCA/server-env",
     "license": "AGPL-3",
     "depends": [
@@ -14,11 +15,12 @@
         "server_environment",
     ],
     "data": [
-        "views/templates.xml",
-        "views/view_pos_config.xml",
+        "views/res_config_settings_views.xml",
     ],
-    "qweb": [
-        "static/src/xml/pos_environment.xml",
-    ],
+    "assets": {
+        "point_of_sale.assets": [
+            "pos_environment/static/src/xml/ReceiptScreen.xml",
+        ],
+    },
     "installable": True,
 }

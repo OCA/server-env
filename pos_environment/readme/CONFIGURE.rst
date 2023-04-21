@@ -42,4 +42,4 @@ To be sure that your server is correctly configured, you can check the settings
 in the Point of Sale configuration.
 
 
-.. figure:: ../static/description/pos_config_form.png
+.. figure:: ../static/description/res_config_settings_form.png
