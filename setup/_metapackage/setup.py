@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-server-env Odoo addons",
     version=version,
     install_requires=[
+        'odoo-addon-auth_saml_environment>=15.0dev,<15.1dev',
         'odoo-addon-mail_environment>=15.0dev,<15.1dev',
         'odoo-addon-mail_environment_google_gmail>=15.0dev,<15.1dev',
         'odoo-addon-mail_environment_office365>=15.0dev,<15.1dev',
