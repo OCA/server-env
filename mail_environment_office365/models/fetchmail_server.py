@@ -1,10 +1,7 @@
 # Copyright 2023 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-import operator
-
-from odoo import api, fields, models
-from odoo.osv.expression import FALSE_DOMAIN
+from odoo import models
 
 
 class FetchmailServer(models.Model):
