@@ -59,18 +59,18 @@ class IrConfigParameter(models.Model):
     def create(self, vals_list):
         for vals in vals_list:
             key = vals.get("key")
-            if serv_config.has_option(SECTION, key):
+            if key and serv_config.has_option(SECTION, key):
                 # enforce value from config file
-                vals = dict(vals, value=serv_config.get(SECTION, key))
+                vals.update(value=serv_config.get(SECTION, key))
         return super().create(vals_list)
 
     def write(self, vals):
         for rec in self:
-            key = vals.get("key") or rec.key
+            key = vals.get("key", rec.key)
             if serv_config.has_option(SECTION, key):
                 # enforce value from config file
                 newvals = dict(vals, value=serv_config.get(SECTION, key))
             else:
                 newvals = vals
-            super().write(newvals)
+            super(IrConfigParameter, rec).write(newvals)
         return True
