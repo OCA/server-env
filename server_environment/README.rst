@@ -36,7 +36,8 @@ environments are stored in the ``server_environment_files`` companion
 module.
 
 The ``server_environment_files`` module is optional, the values can be set using
-an environment variable with a fallback on default values in the database.
+an environment variable with a fallback on default values in the database. you
+will be able to overwrite some odoo options.
 
 The configuration read from the files are visible under the Configuration
 menu.  If you are not in the 'dev' environment you will not be able to
@@ -96,6 +97,12 @@ You can edit the settings you need in the ``server_environment_files`` addon. Th
   and can override or extend default values;
 * you can override or extend values in the main configuration
   file of your instance;
+* In some platforms (like odoo.sh where production config file is copied to staging)
+  it can be usefull to overwrite options write in the `[options]` section. You must
+  allow the overwrite by adding `server_environment_allow_overwrite_options_section = True``
+  to the former `odoo.cfg` config file or through the environment variable:
+  `export SERVER_ENVIRONMENT_ALLOW_OVERWRITE_OPTIONS_SECTION=True` (if both are set
+  config file take precedent).
 
 Environment variable
 ~~~~~~~~~~~~~~~~~~~~
