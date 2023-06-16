@@ -107,6 +107,19 @@ def _listconf(env_path):
     return files
 
 
+def _update_odoo_config_options(config_p):
+    allow_overwrite = system_base_config.get(
+        "server_environment_allow_overwrite_options_section",
+        os.environ.get("SERVER_ENVIRONMENT_ALLOW_OVERWRITE_OPTIONS_SECTION"),
+    )
+    if isinstance(allow_overwrite, str) and allow_overwrite:
+        allow_overwrite = _boolean_states.get(allow_overwrite.lower(), False)
+    if allow_overwrite and config_p.has_section("options"):
+        system_base_config.options.update(
+            {k: v for k, v in config_p["options"].items()}
+        )
+
+
 def _load_config_from_server_env_files(config_p):
     default = os.path.join(_dir, "default")
     running_env = os.path.join(_dir, system_base_config["running_env"])
@@ -119,6 +132,7 @@ def _load_config_from_server_env_files(config_p):
         config_p.read(conf_files)
     except Exception as e:
         raise Exception(f'Cannot read config files "{conf_files}":  {e}') from e
+    _update_odoo_config_options(config_p)
 
 
 def _load_config_from_rcfile(config_p):
