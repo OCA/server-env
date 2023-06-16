@@ -431,6 +431,13 @@ password = uas1ohV0
 <p>You will need to create 2 records in the database, one outgoing mail
 server with the field <cite>name</cite> set to “odoo_smtp_server1” and one
 incoming mail server with the field <cite>name</cite> set to “odoo_pop_mail1”.</p>
+<p>It is possible to use a SSL certificate for SMTP authentication. In this case,
+you need to set the following entries in the configuration entry</p>
+<pre class="literal-block">
+smtp_authentication = certificate
+smtp_ssl_certificate = &lt;base64 encoded certificate&gt;
+smtp_ssl_private_key = &lt;base64 encoded certificate&gt;
+</pre>
 </div>
 <div class="section" id="usage">
 <h1><a class="toc-backref" href="#id3">Usage</a></h1>
