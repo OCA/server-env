@@ -29,7 +29,7 @@ def get_server_environment():
         except Exception:
             rev_id = "Can not retrieve revison from git or bzr"
 
-    os_lang = ".".join([x for x in locale.getdefaultlocale() if x])
+    os_lang = ".".join([x for x in locale.getlocale() if x])
     if not os_lang:
         os_lang = "NOT SET"
     if os.name == "posix" and platform.system() == "Linux":
