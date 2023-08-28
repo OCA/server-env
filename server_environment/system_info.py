@@ -6,6 +6,7 @@ import locale
 import os
 import platform
 import subprocess
+from functools import lru_cache
 
 from odoo import release
 from odoo.tools.config import config
@@ -19,6 +20,7 @@ def _get_output(cmd):
     return p.communicate()[0].rstrip()
 
 
+@lru_cache(maxsize=1)
 def get_server_environment():
     # inspired by server/bin/service/web_services.py
     try:
