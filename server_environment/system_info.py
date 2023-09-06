@@ -6,6 +6,7 @@ import locale
 import os
 import platform
 import subprocess
+from functools import lru_cache
 
 from odoo import release
 from odoo.tools.config import config
@@ -19,6 +20,7 @@ def _get_output(cmd):
     return p.communicate()[0].rstrip()
 
 
+@lru_cache(maxsize=1)
 def get_server_environment():
     # inspired by server/bin/service/web_services.py
     try:
@@ -29,7 +31,7 @@ def get_server_environment():
         except Exception:
             rev_id = "Can not retrieve revison from git or bzr"
 
-    os_lang = ".".join([x for x in locale.getdefaultlocale() if x])
+    os_lang = ".".join([x for x in locale.getlocale() if x])
     if not os_lang:
         os_lang = "NOT SET"
     if os.name == "posix" and platform.system() == "Linux":
