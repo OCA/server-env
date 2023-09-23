@@ -401,7 +401,11 @@ class ServerEnvMixin(models.AbstractModel):
             base_field_cls = base_field.__class__
             field_args = base_field.args.copy() if base_field.args else {}
             field_args.pop("_sequence", None)
-            fieldlabel = "{} {}".format(field_args.get("string", ""), "Env Default")
+            if hasattr(base_field, "string"):
+                base_label = base_field.string
+            else:
+                base_label = field_args.get("string", "")
+            fieldlabel = "{} {}".format(base_label, "Env Default")
             field_args.update(
                 {
                     "sparse": "server_env_defaults",
