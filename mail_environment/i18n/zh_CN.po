@@ -31,6 +31,12 @@ msgid "Mail Server"
 msgstr "POP/IMAP 服务器"
 
 #. module: mail_environment
+#: model:ir.model.fields,field_description:mail_environment.field_fetchmail_server__server_env_defaults
+#: model:ir.model.fields,field_description:mail_environment.field_ir_mail_server__server_env_defaults
+msgid "Server Env Defaults"
+msgstr ""
+
+#. module: mail_environment
 #: model:ir.model.fields,field_description:mail_environment.field_fetchmail_server__server_type
 msgid "Server Type"
 msgstr ""
