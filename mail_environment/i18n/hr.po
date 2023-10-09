@@ -21,8 +21,26 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: mail_environment
+#: model:ir.model.fields,field_description:mail_environment.field_fetchmail_server__display_name
+#: model:ir.model.fields,field_description:mail_environment.field_ir_mail_server__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: mail_environment
+#: model:ir.model.fields,field_description:mail_environment.field_fetchmail_server__id
+#: model:ir.model.fields,field_description:mail_environment.field_ir_mail_server__id
+msgid "ID"
+msgstr ""
+
+#. module: mail_environment
 #: model:ir.model,name:mail_environment.model_fetchmail_server
 msgid "Incoming Mail Server"
+msgstr ""
+
+#. module: mail_environment
+#: model:ir.model.fields,field_description:mail_environment.field_fetchmail_server____last_update
+#: model:ir.model.fields,field_description:mail_environment.field_ir_mail_server____last_update
+msgid "Last Modified on"
 msgstr ""
 
 #. module: mail_environment
@@ -30,6 +48,12 @@ msgstr ""
 #, fuzzy
 msgid "Mail Server"
 msgstr "ir.mail_server"
+
+#. module: mail_environment
+#: model:ir.model.fields,field_description:mail_environment.field_fetchmail_server__server_env_defaults
+#: model:ir.model.fields,field_description:mail_environment.field_ir_mail_server__server_env_defaults
+msgid "Server Env Defaults"
+msgstr ""
 
 #. module: mail_environment
 #: model:ir.model.fields,field_description:mail_environment.field_fetchmail_server__server_type
