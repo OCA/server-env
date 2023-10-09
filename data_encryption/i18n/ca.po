@@ -93,8 +93,8 @@ msgstr ""
 #: code:addons/data_encryption/models/encrypted_data.py:0
 #, python-format
 msgid ""
-"Password has been encrypted with a different key. Unless you can recover the"
-" previous key, this password is unreadable."
+"Password has been encrypted with a different key. Unless you can recover the "
+"previous key, this password is unreadable."
 msgstr ""
 
 #. module: data_encryption
