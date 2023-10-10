@@ -67,7 +67,8 @@ msgstr "Última actualización en"
 #. module: server_environment
 #: model:ir.model,name:server_environment.model_server_env_mixin
 msgid "Mixin to add server environment in existing models"
-msgstr "Combinación para añadir un entorno de servidor a los modelos existentes"
+msgstr ""
+"Combinación para añadir un entorno de servidor a los modelos existentes"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_env_mixin__server_env_defaults
