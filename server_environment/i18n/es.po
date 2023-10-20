@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-27 01:37+0000\n"
-"PO-Revision-Date: 2021-02-11 21:44+0000\n"
-"Last-Translator: Mat-moran <amadeo.moran@gmail.com>\n"
+"PO-Revision-Date: 2023-10-28 16:03+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-9-0/"
 "language/es/)\n"
 "Language: es\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__config
@@ -67,40 +67,41 @@ msgstr "Última actualización en"
 #. module: server_environment
 #: model:ir.model,name:server_environment.model_server_env_mixin
 msgid "Mixin to add server environment in existing models"
-msgstr ""
+msgstr "Mezclador para añadir entorno de servidor en modelos existentes"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_env_mixin__server_env_defaults
 msgid "Server Env Defaults"
-msgstr ""
+msgstr "Valores por defecto del Entorno de Servidor"
 
 #. module: server_environment
 #: model:ir.actions.act_window,name:server_environment.server_env_act_show_config
 #: model:ir.ui.menu,name:server_environment.menu_server_show_config
 msgid "Server Environment"
-msgstr ""
+msgstr "Entorno del Servidor"
 
 #. module: server_environment
 #: model:ir.model,name:server_environment.model_server_env_techname_mixin
 msgid "Server environment technical name"
-msgstr ""
+msgstr "Nombre técnico del entorno de servidor"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_env_techname_mixin__tech_name
 msgid "Tech Name"
-msgstr ""
+msgstr "Nombre Técnico"
 
 #. module: server_environment
 #: model:ir.model.fields,help:server_environment.field_server_env_techname_mixin__tech_name
 msgid "Unique name for technical purposes. Eg: server env keys."
 msgstr ""
+"Nombre único con fines técnicos. Por ejemplo: claves de entorno del servidor."
 
 #. module: server_environment
 #: model:res.groups,name:server_environment.has_server_configuration_access
 msgid "View Server Environment Configuration"
-msgstr ""
+msgstr "Configuración del Entorno de Visualización del Servidor"
 
 #. module: server_environment
 #: model:ir.model.constraint,message:server_environment.constraint_server_env_techname_mixin_tech_name_uniq
 msgid "`tech_name` must be unique!"
-msgstr ""
+msgstr "¡El `nombre_técnico` debe ser único!"
