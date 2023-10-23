@@ -9,14 +9,22 @@ from odoo.addons.server_environment.tests.common import ServerEnvironmentCase
 
 from ..models import ir_config_parameter
 
+CONFIG = """
+    [ir.config_parameter]
+    ircp_from_config=config_value
+    other_ircp_from_config=other_config_value
+    ircp_without_record=config_value_without_record
+    other_ircp_without_record=other_config_value_without_record
+    ircp_empty=
+    mail.catchall.alias=my_alias
+"""
+
 
 class TestEnv(ServerEnvironmentCase):
     def setUp(self):
         super().setUp()
         self.ICP = self.env["ir.config_parameter"]
-        self.env_config = (
-            "[ir.config_parameter]\n" "ircp_from_config=config_value\n" "ircp_empty=\n"
-        )
+        self.env_config = CONFIG
 
     def _load_xml(self, module, filepath):
         convert_file(
@@ -102,3 +110,60 @@ class TestEnv(ServerEnvironmentCase):
             )
             value = self.ICP.get_param("ircp_from_config")
             self.assertEqual(value, "config_value")
+
+    def test_read_mail_catchall_alias(self):
+        """read mail.catchall.alias from server env:
+
+        this must not break the mail addon's overload"""
+        with self.load_config(
+            public=self.env_config, serv_config_class=ir_config_parameter
+        ):
+            value = self.ICP.get_param("mail.catchall.alias")
+            self.assertEqual(value, "my_alias")
+            res = self.ICP.search([("key", "=", "mail.catchall.alias")])
+            self.assertEqual(len(res), 1)
+            self.assertEqual(res.value, "my_alias")
+
+    def test_write(self):
+        # there's a write override, test it here
+        self._load_xml(
+            "server_environment_ir_config_parameter", "tests/config_param_test.xml"
+        )
+        with self.load_config(
+            public=self.env_config, serv_config_class=ir_config_parameter
+        ):
+            ICP = self.ICP
+            icp1 = ICP.search([("key", "=", "ircp_from_config")])
+            self.assertEqual(icp1.value, "value_from_xml")
+            icp2 = ICP.search([("key", "=", "other_ircp_from_config")])
+            self.assertEqual(icp2.value, "other_value_from_xml")
+            # Ensures that each record has its own value at write
+            (icp1 | icp2).write({"value": "test"})
+            self.assertEqual(icp1.value, "config_value")
+            self.assertEqual(icp2.value, "other_config_value")
+            self.assertEqual(ICP.get_param(icp1.key), "config_value")
+            self.assertEqual(ICP.get_param(icp2.key), "other_config_value")
+
+    def test_create(self):
+        self._load_xml(
+            "server_environment_ir_config_parameter", "tests/config_param_test.xml"
+        )
+        with self.load_config(
+            public=self.env_config, serv_config_class=ir_config_parameter
+        ):
+            vals = [
+                {
+                    "key": "ircp_without_record",
+                    "value": "NOPE",
+                },
+                {
+                    "key": "other_ircp_without_record",
+                    "value": "NOPE",
+                },
+            ]
+            records = self.ICP.create(vals)
+            # Ensures each record has its own value at create
+            self.assertEqual(
+                records.mapped("value"),
+                ["config_value_without_record", "other_config_value_without_record"],
+            )

@@ -39,8 +39,18 @@ class IrConfigParameter(models.Model):
                 # should we have preloaded values in database at,
                 # server startup, modules loading their parameters
                 # from data files would break on unique key error.
-                self.sudo().set_param(key, cvalue)
-                value = cvalue
+                if not self.env.context.get("_from_get_param", 0):
+                    # the check is to avoid recursion, for instance the mail
+                    # addon has an override in ir.config_parameter::write which
+                    # calls get_param if we are setting mail.catchall.alias and
+                    # this will cause an infinite recursion. We cut that
+                    # recursion by using the context check.
+                    #
+                    # The mail addon call to get_param expects to get the value
+                    # *before* the change, so we have to return the database
+                    # value in that case
+                    self.sudo().with_context(_from_get_param=1).set_param(key, cvalue)
+                    value = cvalue
         if value is None:
             return default
         return value
@@ -49,18 +59,18 @@ class IrConfigParameter(models.Model):
     def create(self, vals_list):
         for vals in vals_list:
             key = vals.get("key")
-            if serv_config.has_option(SECTION, key):
+            if key and serv_config.has_option(SECTION, key):
                 # enforce value from config file
-                vals = dict(vals, value=serv_config.get(SECTION, key))
+                vals.update(value=serv_config.get(SECTION, key))
         return super().create(vals_list)
 
     def write(self, vals):
         for rec in self:
-            key = vals.get("key") or rec.key
+            key = vals.get("key", rec.key)
             if serv_config.has_option(SECTION, key):
                 # enforce value from config file
                 newvals = dict(vals, value=serv_config.get(SECTION, key))
             else:
                 newvals = vals
-            super().write(newvals)
+            super(IrConfigParameter, rec).write(newvals)
         return True
