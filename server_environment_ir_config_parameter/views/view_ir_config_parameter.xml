@@ -24,14 +24,10 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 <field name="is_environment" />
             </field>
             <field name="key" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'readonly': [('is_environment', '=', True)]}</attribute>
+                <attribute name="readonly">'is_environment'</attribute>
             </field>
             <field name="value" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'readonly': [('is_environment', '=', True)]}</attribute>
+                <attribute name="readonly">'is_environment'</attribute>
             </field>
         </field>
     </record>
