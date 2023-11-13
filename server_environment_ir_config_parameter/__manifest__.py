@@ -5,7 +5,7 @@
     "name": "Server Environment Ir Config Parameter",
     "summary": """
         Override System Parameters from server environment file""",
-    "version": "16.0.1.1.0",
+    "version": "17.0.1.0.0",
     "license": "AGPL-3",
     "author": "ACSONE SA/NV, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-env",

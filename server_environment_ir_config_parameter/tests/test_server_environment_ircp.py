@@ -1,9 +1,9 @@
 # Copyright 2016-2018 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+from os import path
 
 from odoo.exceptions import UserError
-from odoo.modules.module import get_resource_path
-from odoo.tools import convert_file
+from odoo.tools import convert_file, file_path
 
 from odoo.addons.server_environment.tests.common import ServerEnvironmentCase
 
@@ -28,9 +28,9 @@ class TestEnv(ServerEnvironmentCase):
 
     def _load_xml(self, module, filepath):
         convert_file(
-            self.env.cr,
+            self.env,
             module,
-            get_resource_path(module, filepath),
+            path.join(file_path(module), filepath),
             {},
             mode="init",
             noupdate=False,
