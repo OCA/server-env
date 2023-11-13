@@ -17,13 +17,13 @@ Server Environment Ir Config Parameter
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--env-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-env/tree/16.0/server_environment_ir_config_parameter
+    :target: https://github.com/OCA/server-env/tree/17.0/server_environment_ir_config_parameter
     :alt: OCA/server-env
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-env-16-0/server-env-16-0-server_environment_ir_config_parameter
+    :target: https://translation.odoo-community.org/projects/server-env-17-0/server-env-17-0-server_environment_ir_config_parameter
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-env&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-env&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -38,20 +38,22 @@ Override System Parameters from server environment file.
 Configuration
 =============
 
-To configure this module, you need to add a section ``[ir.config_parameter]`` to
-you server_environment_files configurations, where the keys are the same
-as would normally be set in the Systems Parameter Odoo menu.
+To configure this module, you need to add a section
+``[ir.config_parameter]`` to you server_environment_files
+configurations, where the keys are the same as would normally be set in
+the Systems Parameter Odoo menu.
 
-When first using a value, the system will read it from the configuration file
-and override any value that would be present in the database, so the configuration
-file has precedence.
+When first using a value, the system will read it from the configuration
+file and override any value that would be present in the database, so
+the configuration file has precedence.
 
-When creating or modifying values that are in the configuration file, the
-module replace changes, enforcing the configuration value.
+When creating or modifying values that are in the configuration file,
+the module replace changes, enforcing the configuration value.
 
-For example you can use this module in combination with web_environment_ribbon:
+For example you can use this module in combination with
+web_environment_ribbon:
 
-.. code::
+::
 
    [ir.config_parameter]
    ribbon.name=DEV
@@ -67,8 +69,8 @@ Known issues / Roadmap
 
 When the user modifies System Parameters that are defined in the config
 file, the changes are ignored. It would be nice to display which system
-parameters come from the config file and possibly make their key and value
-readonly in the user interface.
+parameters come from the config file and possibly make their key and
+value readonly in the user interface.
 
 Bug Tracker
 ===========
@@ -76,7 +78,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-env/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/server-env/issues/new?body=module:%20server_environment_ir_config_parameter%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/server-env/issues/new?body=module:%20server_environment_ir_config_parameter%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -84,26 +86,25 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * ACSONE SA/NV
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Stéphane Bidoul <stephane.bidoul@acsone.eu> (https://acsone.eu)
-* Thierry Ducrest <thierry.ducrest@camptocamp.com>
-* Gilles Meyomesse <gilles.meyomesse@acsone.eu> (https://acsone.eu)
-* Sylvain LE GAL (https://www.twitter.com/legalsylvain)
+-  Stéphane Bidoul <stephane.bidoul@acsone.eu> (https://acsone.eu)
+-  Thierry Ducrest <thierry.ducrest@camptocamp.com>
+-  Gilles Meyomesse <gilles.meyomesse@acsone.eu> (https://acsone.eu)
+-  Sylvain LE GAL (https://www.twitter.com/legalsylvain)
 
 Other credits
-~~~~~~~~~~~~~
+-------------
 
-This module is maintained by:
-* Odoo Community Association
+This module is maintained by: \* Odoo Community Association
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -115,6 +116,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/server-env <https://github.com/OCA/server-env/tree/16.0/server_environment_ir_config_parameter>`_ project on GitHub.
+This module is part of the `OCA/server-env <https://github.com/OCA/server-env/tree/17.0/server_environment_ir_config_parameter>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
