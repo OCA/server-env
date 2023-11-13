@@ -369,19 +369,19 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:681af9ccb320ef4e5866b4dfcb9ed2d8d19abae84f71d251cdc8376303f40c01
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Production/Stable" src="https://img.shields.io/badge/maturity-Production%2FStable-green.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/lgpl-3.0-standalone.html"><img alt="License: LGPL-3" src="https://img.shields.io/badge/licence-LGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-env/tree/16.0/server_environment"><img alt="OCA/server-env" src="https://img.shields.io/badge/github-OCA%2Fserver--env-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-env-16-0/server-env-16-0-server_environment"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-env&amp;target_branch=16.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Production/Stable" src="https://img.shields.io/badge/maturity-Production%2FStable-green.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/lgpl-3.0-standalone.html"><img alt="License: LGPL-3" src="https://img.shields.io/badge/licence-LGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-env/tree/17.0/server_environment"><img alt="OCA/server-env" src="https://img.shields.io/badge/github-OCA%2Fserver--env-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-env-17-0/server-env-17-0-server_environment"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-env&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p>This module provides a way to define an environment in the main Odoo
-configuration file and to read some configurations from files
-depending on the configured environment: you define the environment in
-the main configuration file, and the values for the various possible
-environments are stored in the <tt class="docutils literal">server_environment_files</tt> companion
-module.</p>
-<p>The <tt class="docutils literal">server_environment_files</tt> module is optional, the values can be set using
-an environment variable with a fallback on default values in the database.</p>
-<p>The configuration read from the files are visible under the Configuration
-menu.  If you are not in the ‘dev’ environment you will not be able to
-see the values contained in the defined secret keys
-(by default : ‘<em>passw</em>’, ‘<em>key</em>’, ‘<em>secret</em>’ and ‘<em>token</em>’).</p>
+configuration file and to read some configurations from files depending
+on the configured environment: you define the environment in the main
+configuration file, and the values for the various possible environments
+are stored in the <tt class="docutils literal">server_environment_files</tt> companion module.</p>
+<p>The <tt class="docutils literal">server_environment_files</tt> module is optional, the values can be
+set using an environment variable with a fallback on default values in
+the database.</p>
+<p>The configuration read from the files are visible under the
+Configuration menu. If you are not in the ‘dev’ environment you will not
+be able to see the values contained in the defined secret keys (by
+default : ‘<em>passw</em>’, ‘<em>key</em>’, ‘<em>secret</em>’ and ‘<em>token</em>’).</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -407,13 +407,14 @@ see the values contained in the defined secret keys
 <div class="section" id="installation">
 <h1><a class="toc-backref" href="#toc-entry-1">Installation</a></h1>
 <p>By itself, this module does little. See for instance the
-<tt class="docutils literal">mail_environment</tt> addon which depends on this one to allow configuring
-the incoming and outgoing mail servers depending on the environment.</p>
+<tt class="docutils literal">mail_environment</tt> addon which depends on this one to allow
+configuring the incoming and outgoing mail servers depending on the
+environment.</p>
 <p>You can store your configuration values in a companion module called
 <tt class="docutils literal">server_environment_files</tt>. You can copy and customize the provided
-<tt class="docutils literal">server_environment_files_sample</tt> module for this purpose. Alternatively, you
-can provide them in environment variables <tt class="docutils literal">SERVER_ENV_CONFIG</tt> and
-<tt class="docutils literal">SERVER_ENV_CONFIG_SECRET</tt>.</p>
+<tt class="docutils literal">server_environment_files_sample</tt> module for this purpose.
+Alternatively, you can provide them in environment variables
+<tt class="docutils literal">SERVER_ENV_CONFIG</tt> and <tt class="docutils literal">SERVER_ENV_CONFIG_SECRET</tt>.</p>
 </div>
 <div class="section" id="configuration">
 <h1><a class="toc-backref" href="#toc-entry-2">Configuration</a></h1>
@@ -424,34 +425,37 @@ used values are ‘dev’, ‘test’, ‘production’:</p>
 [options]
 running_env=dev
 </pre>
-<p>Values associated to keys containing ‘passw’ are only displayed in the ‘dev’
-environment.</p>
-<p>If you don’t provide any value, <cite>test</cite> is used as a safe default.</p>
+<p>Values associated to keys containing ‘passw’ are only displayed in the
+‘dev’ environment.</p>
+<p>If you don’t provide any value, test is used as a safe default.</p>
 <p>You have several possibilities to set configuration values:</p>
 <div class="section" id="server-environment-files">
 <h2><a class="toc-backref" href="#toc-entry-3">server_environment_files</a></h2>
-<p>You can edit the settings you need in the <tt class="docutils literal">server_environment_files</tt> addon. The
-<tt class="docutils literal">server_environment_files_sample</tt> can be used as an example:</p>
+<p>You can edit the settings you need in the <tt class="docutils literal">server_environment_files</tt>
+addon. The <tt class="docutils literal">server_environment_files_sample</tt> can be used as an
+example:</p>
 <ul class="simple">
 <li>values common to all / most environments can be stored in the
 <tt class="docutils literal">default/</tt> directory using the .ini file syntax;</li>
 <li>each environment you need to define is stored in its own directory
 and can override or extend default values;</li>
-<li>you can override or extend values in the main configuration
-file of your instance;</li>
+<li>you can override or extend values in the main configuration file of
+your instance;</li>
 </ul>
 </div>
 <div class="section" id="environment-variable">
 <h2><a class="toc-backref" href="#toc-entry-4">Environment variable</a></h2>
-<p>You can define configuration in the environment variable <tt class="docutils literal">SERVER_ENV_CONFIG</tt>
-and/or <tt class="docutils literal">SERVER_ENV_CONFIG_SECRET</tt>. The 2 variables are handled the exact same
-way, this is only a convenience for the deployment where you can isolate the
-secrets in a different, encrypted, file. They are multi-line environment variables
-in the same configparser format than the files.
-If you used options in <tt class="docutils literal">server_environment_files</tt>, the options set in the
-environment variable override them.</p>
-<p>The options in the environment variable are not dependent of <tt class="docutils literal">running_env</tt>,
-the content of the variable must be set accordingly to the running environment.</p>
+<p>You can define configuration in the environment variable
+<tt class="docutils literal">SERVER_ENV_CONFIG</tt> and/or <tt class="docutils literal">SERVER_ENV_CONFIG_SECRET</tt>. The 2
+variables are handled the exact same way, this is only a convenience for
+the deployment where you can isolate the secrets in a different,
+encrypted, file. They are multi-line environment variables in the same
+configparser format than the files. If you used options in
+<tt class="docutils literal">server_environment_files</tt>, the options set in the environment
+variable override them.</p>
+<p>The options in the environment variable are not dependent of
+<tt class="docutils literal">running_env</tt>, the content of the variable must be set accordingly to
+the running environment.</p>
 <p>Example of setup:</p>
 <p>A public file, containing that will contain public variables:</p>
 <pre class="literal-block">
@@ -485,15 +489,14 @@ sftp_password=xxxxxxxxx
 </pre>
 <p><strong>WARNING</strong></p>
 <blockquote>
-<cite>my_sftp</cite> must match the name of the record.
-If you want something more reliable use <cite>server.env.techname.mixin</cite>
-and use <cite>tech_name</cite> field to reference records.
-See “USAGE”.</blockquote>
+my_sftp must match the name of the record. If you want something more
+reliable use server.env.techname.mixin and use tech_name field to
+reference records. See “USAGE”.</blockquote>
 </div>
 <div class="section" id="default-values">
 <h2><a class="toc-backref" href="#toc-entry-5">Default values</a></h2>
-<p>When using the <tt class="docutils literal">server.env.mixin</tt> mixin, for each env-computed field, a
-companion field <tt class="docutils literal">&lt;field&gt;_env_default</tt> is created. This field is not
+<p>When using the <tt class="docutils literal">server.env.mixin</tt> mixin, for each env-computed field,
+a companion field <tt class="docutils literal">&lt;field&gt;_env_default</tt> is created. This field is not
 environment-dependent. It’s a fallback value used when no key is set in
 configuration files / environment variable.</p>
 <p>When the default field is used, the field is made editable on Odoo.</p>
@@ -501,13 +504,14 @@ configuration files / environment variable.</p>
 </div>
 <div class="section" id="server-environment-integration">
 <h2><a class="toc-backref" href="#toc-entry-6">Server environment integration</a></h2>
-<p>Read the documentation of the class <a class="reference external" href="models/server_env_mixin.py">models/server_env_mixin.py</a>.</p>
+<p>Read the documentation of the class
+<a class="reference external" href="models/server_env_mixin.py">models/server_env_mixin.py</a>.</p>
 </div>
 </div>
 <div class="section" id="usage">
 <h1><a class="toc-backref" href="#toc-entry-7">Usage</a></h1>
-<p>You can include a mixin in your model and configure the env-computed fields
-by an override of <tt class="docutils literal">_server_env_fields</tt>.</p>
+<p>You can include a mixin in your model and configure the env-computed
+fields by an override of <tt class="docutils literal">_server_env_fields</tt>.</p>
 <pre class="literal-block">
 class StorageBackend(models.Model):
     _name = &quot;storage.backend&quot;
@@ -517,7 +521,8 @@ class StorageBackend(models.Model):
     def _server_env_fields(self):
         return {&quot;directory_path&quot;: {}}
 </pre>
-<p>Read the documentation of the class and methods in <a class="reference external" href="models/server_env_mixin.py">models/server_env_mixin.py</a>.</p>
+<p>Read the documentation of the class and methods in
+<a class="reference external" href="models/server_env_mixin.py">models/server_env_mixin.py</a>.</p>
 <p>If you want to have a technical name to reference:</p>
 <pre class="literal-block">
 class StorageBackend(models.Model):
@@ -532,9 +537,11 @@ class StorageBackend(models.Model):
 <ul class="simple">
 <li>it is not possible to set the environment from the command line. A
 configuration file must be used.</li>
-<li>the module does not allow to set low level attributes such as database server, etc.</li>
-<li><cite>server.env.techname.mixin</cite>’s <cite>tech_name</cite> field could leverage the new option
-for computable / writable fields and get rid of some onchange / read / write code.</li>
+<li>the module does not allow to set low level attributes such as
+database server, etc.</li>
+<li>server.env.techname.mixin’s tech_name field could leverage the new
+option for computable / writable fields and get rid of some onchange
+/ read / write code.</li>
 </ul>
 </div>
 <div class="section" id="bug-tracker">
@@ -542,7 +549,7 @@ for computable / writable fields and get rid of some onchange / read / write cod
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/server-env/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/server-env/issues/new?body=module:%20server_environment%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/server-env/issues/new?body=module:%20server_environment%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -577,7 +584,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/server-env/tree/16.0/server_environment">OCA/server-env</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/server-env/tree/17.0/server_environment">OCA/server-env</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>

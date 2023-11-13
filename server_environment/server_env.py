@@ -111,9 +111,7 @@ def _load_config_from_server_env_files(config_p):
     try:
         config_p.read(conf_files)
     except Exception as e:
-        raise Exception(
-            'Cannot read config files "{}":  {}'.format(conf_files, e)
-        ) from e
+        raise Exception(f'Cannot read config files "{conf_files}":  {e}') from e
 
 
 def _load_config_from_rcfile(config_p):
@@ -129,7 +127,7 @@ def _load_config_from_env(config_p):
                 config_p.read_string(env_config)
             except configparser.Error as err:
                 raise Exception(
-                    "{} content could not be parsed: {}".format(varname, err)
+                    f"{varname} content could not be parsed: {err}"
                 ) from err
 
 
@@ -182,7 +180,7 @@ class ServerConfiguration(models.TransientModel):
 
     @classmethod
     def _format_key(cls, section, key):
-        return "{}_I_{}".format(section, key)
+        return f"{section}_I_{key}"
 
     @property
     def show_passwords(self):
