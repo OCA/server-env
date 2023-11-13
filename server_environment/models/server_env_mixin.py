@@ -313,7 +313,7 @@ class ServerEnvMixin(models.AbstractModel):
             for elem in view_arch.findall(field_xpath % field):
                 # set env-computed fields to readonly if the configuration
                 # files have a key set for this field
-                elem.set("attrs", str({"readonly": [(is_editable_field, "=", False)]}))
+                elem.set("readonly", "not is_editable_field")
             if not view_arch.findall(field_xpath % is_editable_field):
                 # add the _is_editable fields in the view for the 'attrs'
                 # domain
