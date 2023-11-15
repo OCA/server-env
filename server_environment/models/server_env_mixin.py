@@ -338,7 +338,7 @@ class ServerEnvMixin(models.AbstractModel):
         options = self._server_env_fields[base_field_name]
         if options and options.get("no_default_field"):
             return ""
-        return f"{base_field_name}_env_default"
+        return f"x_{base_field_name}_env_default"
 
     def _server_env_is_editable_fieldname(self, base_field_name):
         """Return the name of the field for "is editable"
@@ -346,7 +346,7 @@ class ServerEnvMixin(models.AbstractModel):
         This is the field used to tell if the env-computed field can
         be edited.
         """
-        return f"{base_field_name}_env_is_editable"
+        return f"x_{base_field_name}_env_is_editable"
 
     def _server_env_transform_field_to_read_from_env(self, field):
         """Transform the original field in a computed field"""
