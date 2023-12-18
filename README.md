@@ -25,7 +25,7 @@ addon | version | maintainers | summary
 [data_encryption](data_encryption/) | 12.0.1.0.0 |  | Store accounts and credentials encrypted by environment
 [mail_environment](mail_environment/) | 12.0.1.0.0 |  | Configure mail servers with server_environment_files
 [pos_environment](pos_environment/) | 12.0.1.0.1 |  | Custom messages on the bill depending on the environment
-[server_environment](server_environment/) | 12.0.2.0.6 |  | move some configurations out of the database
+[server_environment](server_environment/) | 12.0.2.0.8 |  | move some configurations out of the database
 [server_environment_data_encryption](server_environment_data_encryption/) | 12.0.1.0.0 |  | Server Environment Data Encryption
 [server_environment_files_sample](server_environment_files_sample/) | 12.0.1.0.1 |  | sample config file for server_environment
 [server_environment_ir_config_parameter](server_environment_ir_config_parameter/) | 12.0.1.0.1 |  | Override System Parameters from server environment file
