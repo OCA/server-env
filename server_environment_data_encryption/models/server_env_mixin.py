@@ -105,9 +105,7 @@ class ServerEnvMixin(models.AbstractModel):
                       <strong>{}</strong>
                     </div>
                   </div>
-            """.format(
-                    "alert-danger", warning_string
-                )
+            """.format("alert-danger", warning_string)
             )
             return elem
 
@@ -120,9 +118,7 @@ class ServerEnvMixin(models.AbstractModel):
                     type="object" string="{}{}"
                     class="btn btn-lg btn-primary ml-2"
                     context="{}"/>
-            """.format(
-                button_string, environment, {"environment": environment}
-            )
+            """.format(button_string, environment, {"environment": environment})
             button_div += "{}".format(button)
         button_div += "</div>"
         alert_string = _("Modify values for {} environment").format(current_env)
@@ -137,9 +133,7 @@ class ServerEnvMixin(models.AbstractModel):
                 </div>
                 {}
               </div>
-        """.format(
-                alert_type, alert_string, button_div
-            )
+        """.format(alert_type, alert_string, button_div)
         )
         return elem
 

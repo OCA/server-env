@@ -10,7 +10,6 @@ SECTION = "ir.config_parameter"
 
 
 class IrConfigParameter(models.Model):
-
     _inherit = "ir.config_parameter"
 
     is_environment = fields.Boolean(

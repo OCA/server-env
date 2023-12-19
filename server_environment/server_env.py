@@ -118,7 +118,9 @@ def _load_config_from_server_env_files(config_p):
     try:
         config_p.read(conf_files)
     except Exception as e:
-        raise Exception('Cannot read config files "{}":  {}'.format(conf_files, e))
+        raise Exception(
+            'Cannot read config files "{}":  {}'.format(conf_files, e)
+        ) from e
 
 
 def _load_config_from_rcfile(config_p):
@@ -135,7 +137,7 @@ def _load_config_from_env(config_p):
             except configparser.Error as err:
                 raise Exception(
                     "{} content could not be parsed: {}".format(varname, err)
-                )
+                ) from err
 
 
 def _load_config():
