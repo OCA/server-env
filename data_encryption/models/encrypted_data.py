@@ -44,14 +44,14 @@ class EncryptedData(models.Model):
         cipher = self._get_cipher(env)
         try:
             return cipher.decrypt(self.encrypted_data).decode()
-        except InvalidToken:
+        except InvalidToken as err:
             raise ValidationError(
                 _(
                     "Password has been encrypted with a different "
                     "key. Unless you can recover the previous key, "
                     "this password is unreadable."
                 )
-            )
+            ) from err
 
     @api.model
     @ormcache("self._uid", "name", "env")
@@ -77,10 +77,10 @@ class EncryptedData(models.Model):
             return {}
         try:
             return json.loads(data)
-        except (ValueError, TypeError):
+        except (ValueError, TypeError) as err:
             raise ValidationError(
                 _("The data you are trying to read are not in a json format")
-            )
+            ) from err
 
     @staticmethod
     def _retrieve_env():
