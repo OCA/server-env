@@ -1,0 +1,144 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* data_encryption
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-01-03 17:35+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: data_encryption
+#: model:ir.model.fields,help:data_encryption.field_encrypted_data__environment
+msgid "Concerned Odoo environment (prod, preprod...)"
+msgstr "Riguardo all'ambinte Odoo (produzione, preproduzione...)"
+
+#. module: data_encryption
+#: model:ir.model.fields,field_description:data_encryption.field_encrypted_data__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: data_encryption
+#: model:ir.model.fields,field_description:data_encryption.field_encrypted_data__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: data_encryption
+#: model:ir.model.fields,field_description:data_encryption.field_encrypted_data__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: data_encryption
+#: model:ir.model.fields,field_description:data_encryption.field_encrypted_data__encrypted_data
+msgid "Encrypted Data"
+msgstr "Dati criptati"
+
+#. module: data_encryption
+#. odoo-python
+#: code:addons/data_encryption/models/encrypted_data.py:0
+#, python-format
+msgid "Encrypted data can only be read with suspended security (sudo)"
+msgstr "I dati criptati possono essere letti slo con la sicrezza sospesa (sudo)"
+
+#. module: data_encryption
+#: model:ir.model.fields,field_description:data_encryption.field_encrypted_data__environment
+msgid "Environment"
+msgstr "Ambiente"
+
+#. module: data_encryption
+#: model:ir.model.fields,field_description:data_encryption.field_encrypted_data__id
+msgid "ID"
+msgstr "ID"
+
+#. module: data_encryption
+#: model:ir.model.fields,field_description:data_encryption.field_encrypted_data____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: data_encryption
+#: model:ir.model.fields,field_description:data_encryption.field_encrypted_data__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: data_encryption
+#: model:ir.model.fields,field_description:data_encryption.field_encrypted_data__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: data_encryption
+#: model:ir.model.fields,field_description:data_encryption.field_encrypted_data__name
+msgid "Name"
+msgstr "Nome"
+
+#. module: data_encryption
+#. odoo-python
+#: code:addons/data_encryption/models/encrypted_data.py:0
+#, python-format
+msgid ""
+"No '%(key_name)s' entry found in config file. Use a key similar to: %(key)s"
+msgstr ""
+"Nessun valore trovato per '%(key_name)s' nel file configrazione. Usare una "
+"chiave simile a: %(key)s"
+
+#. module: data_encryption
+#. odoo-python
+#: code:addons/data_encryption/models/encrypted_data.py:0
+#, python-format
+msgid ""
+"No environment found, please check your running_env entry in your config "
+"file."
+msgstr ""
+"Nessun ambiente trovato, verificare il valore running_env nel file di "
+"configurazione."
+
+#. module: data_encryption
+#. odoo-python
+#: code:addons/data_encryption/models/encrypted_data.py:0
+#, python-format
+msgid ""
+"Password has been encrypted with a different key. Unless you can recover the"
+" previous key, this password is unreadable."
+msgstr ""
+"La password è stata criptata con un'altra chiave. Finché non si recupera la "
+"chiave precedente, la password non è leggibile."
+
+#. module: data_encryption
+#: model:ir.model,name:data_encryption.model_encrypted_data
+msgid "Store any encrypted data by environment"
+msgstr "Deposita ogni dato criptato per ambiente"
+
+#. module: data_encryption
+#: model:ir.model.fields,help:data_encryption.field_encrypted_data__name
+msgid "Technical name"
+msgstr "Nome tecnico"
+
+#. module: data_encryption
+#. odoo-python
+#: code:addons/data_encryption/models/encrypted_data.py:0
+#, python-format
+msgid "The data you are trying to read are not in a json format"
+msgstr "I dati che si sta cercando di leggere non sono in formato JSON"
+
+#. module: data_encryption
+#: model:ir.model.constraint,message:data_encryption.constraint_encrypted_data_name_environment_uniq
+msgid ""
+"You can not store multiple encrypted data for the same record and           "
+"environment"
+msgstr ""
+"Non si possono depositare dati criptati multipli per lo stesso record "
+"e            ambiente"
+
+#. module: data_encryption
+#. odoo-python
+#: code:addons/data_encryption/models/encrypted_data.py:0
+#, python-format
+msgid "You can only encrypt data with suspended security (sudo)"
+msgstr "Si possono criptare i dati solo con la sicurezza sospesa (sudo)"
