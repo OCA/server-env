@@ -1,9 +1,10 @@
 [project]
 name = "odoo-addons-oca-server-env"
-version = "17.0.20240125.0"
+version = "17.0.20240125.1"
 dependencies = [
     "odoo-addon-mail_environment>=17.0dev,<17.1dev",
     "odoo-addon-server_environment>=17.0dev,<17.1dev",
+    "odoo-addon-server_environment_ir_config_parameter>=17.0dev,<17.1dev",
 ]
 classifiers=[
     "Programming Language :: Python",
