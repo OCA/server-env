@@ -404,6 +404,7 @@ class ServerEnvMixin(models.AbstractModel):
             fieldlabel = "{} {}".format(base_field.string or "", "Env Default")
             field_args.update(
                 {
+                    "readonly": False,
                     "sparse": "server_env_defaults",
                     "automatic": True,
                     "string": fieldlabel,
