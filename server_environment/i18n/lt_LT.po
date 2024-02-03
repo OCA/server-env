@@ -51,11 +51,6 @@ msgid "ID"
 msgstr "ID"
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__write_uid
 msgid "Last Updated by"
 msgstr "Paskutinį kartą atnaujino"
@@ -142,6 +137,11 @@ msgid "odoo | db_maxconn"
 msgstr ""
 
 #. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_db_maxconn_gevent
+msgid "odoo | db_maxconn_gevent"
+msgstr ""
+
+#. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_db_name
 msgid "odoo | db_name"
 msgstr ""
@@ -197,8 +197,13 @@ msgid "odoo | from_filter"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_geoip_database
-msgid "odoo | geoip_database"
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_geoip_city_db
+msgid "odoo | geoip_city_db"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_geoip_country_db
+msgid "odoo | geoip_country_db"
 msgstr ""
 
 #. module: server_environment
@@ -304,11 +309,6 @@ msgstr ""
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_max_cron_threads
 msgid "odoo | max_cron_threads"
-msgstr ""
-
-#. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_osv_memory_age_limit
-msgid "odoo | osv_memory_age_limit"
 msgstr ""
 
 #. module: server_environment
