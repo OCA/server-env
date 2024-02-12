@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-27 01:37+0000\n"
-"PO-Revision-Date: 2023-09-03 13:35+0000\n"
+"PO-Revision-Date: 2024-02-12 22:36+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-9-0/"
 "language/es/)\n"
@@ -140,7 +140,7 @@ msgstr "odoo | db_maxconn"
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_db_maxconn_gevent
 msgid "odoo | db_maxconn_gevent"
-msgstr ""
+msgstr "odoo | db_maxconn_gevent"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_db_name
@@ -200,12 +200,12 @@ msgstr "odoo | from_filtro"
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_geoip_city_db
 msgid "odoo | geoip_city_db"
-msgstr ""
+msgstr "odoo | geoip_city_db"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_geoip_country_db
 msgid "odoo | geoip_country_db"
-msgstr ""
+msgstr "odoo | geoip_country_db"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_gevent_port
