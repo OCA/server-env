@@ -8,6 +8,11 @@ class AuthSamlProvider(models.Model):
     _name = "auth.saml.provider"
     _inherit = ["auth.saml.provider", "server.env.mixin"]
 
+    # Mandatory to be able to create objects
+    idp_metadata = fields.Text(required=False)
+    sp_pem_public = fields.Char(required=False)
+    sp_pem_private = fields.Char(required=False)
+
     sp_pem_public_path = fields.Char(
         string="sp_pem_public_path env config value",
     )
