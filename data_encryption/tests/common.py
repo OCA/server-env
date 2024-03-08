@@ -29,7 +29,7 @@ class CommonDataEncrypted(TransactionCase):
         # the key com from the config file and is not in a binary format.
         # So we decode here to avoid having a special behavior because of
         # the tests.
-        config["encryption_key_{}".format(environment)] = crypting_key.decode()
+        config[f"encryption_key_{environment}"] = crypting_key.decode()
 
     def tearDown(self):
         config["running_env"] = self.old_running_env
