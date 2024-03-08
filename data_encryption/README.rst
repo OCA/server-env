@@ -104,6 +104,7 @@ Contributors
 
 -  Raphaël Reverdy <raphael.reverdy@akretion.com>
 -  Florian da Costa <florian.dacosta@akretion.com>
+-  Marcos Oitabén <marcos.oitaben@dynapps.eu>
 
 Maintainers
 -----------
