@@ -12,7 +12,7 @@ class IrMailServer(models.Model):
     def _server_env_fields(self):
         base_fields = super()._server_env_fields
         office365_fields = {
-            "use_microsoft_outlook_service": {},
+            "smtp_authentication": {},
         }
         office365_fields.update(base_fields)
         return office365_fields
