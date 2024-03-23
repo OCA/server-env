@@ -6,7 +6,8 @@ environments are stored in the ``server_environment_files`` companion
 module.
 
 The ``server_environment_files`` module is optional, the values can be set using
-an environment variable with a fallback on default values in the database.
+an environment variable with a fallback on default values in the database. you
+will be able to overwrite some odoo options.
 
 The configuration read from the files are visible under the Configuration
 menu.  If you are not in the 'dev' environment you will not be able to

@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -377,7 +376,8 @@ the main configuration file, and the values for the various possible
 environments are stored in the <tt class="docutils literal">server_environment_files</tt> companion
 module.</p>
 <p>The <tt class="docutils literal">server_environment_files</tt> module is optional, the values can be set using
-an environment variable with a fallback on default values in the database.</p>
+an environment variable with a fallback on default values in the database. you
+will be able to overwrite some odoo options.</p>
 <p>The configuration read from the files are visible under the Configuration
 menu.  If you are not in the ‘dev’ environment you will not be able to
 see the values contained in the defined secret keys
@@ -443,6 +443,12 @@ environment.</p>
 and can override or extend default values;</li>
 <li>you can override or extend values in the main configuration
 file of your instance;</li>
+<li>In some platforms (like odoo.sh where production config file is copied to staging)
+it can be usefull to overwrite options write in the <cite>[options]</cite> section. You must
+allow the overwrite by adding <cite>server_environment_allow_overwrite_options_section = True`</cite>
+to the former <cite>odoo.cfg</cite> config file or through the environment variable:
+<cite>export SERVER_ENVIRONMENT_ALLOW_OVERWRITE_OPTIONS_SECTION=True</cite> (if both are set
+config file take precedent).</li>
 </ul>
 </div>
 <div class="section" id="environment-variable">
