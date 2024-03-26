@@ -1,8 +1,9 @@
 [project]
 name = "odoo-addons-oca-server-env"
-version = "17.0.20240125.1"
+version = "17.0.20240326.0"
 dependencies = [
     "odoo-addon-mail_environment>=17.0dev,<17.1dev",
+    "odoo-addon-mail_environment_office365>=17.0dev,<17.1dev",
     "odoo-addon-server_environment>=17.0dev,<17.1dev",
     "odoo-addon-server_environment_ir_config_parameter>=17.0dev,<17.1dev",
 ]
