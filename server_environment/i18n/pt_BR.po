@@ -320,11 +320,6 @@ msgid "odoo | logfile"
 msgstr ""
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_longpolling_port
-msgid "odoo | longpolling_port"
-msgstr ""
-
-#. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_max_cron_threads
 msgid "odoo | max_cron_threads"
 msgstr ""
