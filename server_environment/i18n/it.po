@@ -301,11 +301,6 @@ msgid "odoo | logfile"
 msgstr "odoo | logfile"
 
 #. module: server_environment
-#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_longpolling_port
-msgid "odoo | longpolling_port"
-msgstr "odoo | longpolling_port"
-
-#. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_max_cron_threads
 msgid "odoo | max_cron_threads"
 msgstr "odoo | max_cron_threads"
@@ -554,6 +549,9 @@ msgstr "system | revision"
 #: model:ir.model.fields,field_description:server_environment.field_server_config__system_I_version
 msgid "system | version"
 msgstr "system | version"
+
+#~ msgid "odoo | longpolling_port"
+#~ msgstr "odoo | longpolling_port"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Ultima modifica il"
