@@ -17,7 +17,12 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: pos_environment
-#: model_terms:ir.ui.view,arch_db:pos_environment.view_pos_config_form
+#: model:ir.model,name:pos_environment.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: pos_environment
+#: model_terms:ir.ui.view,arch_db:pos_environment.view_res_config_settings_form
 msgid "Environment Settings"
 msgstr "Paramétrages liés à l'environnement"
 
@@ -28,10 +33,12 @@ msgstr "Paramétrage du point de vente"
 
 #. module: pos_environment
 #: model:ir.model.fields,field_description:pos_environment.field_pos_config__receipt_environment_footer
+#: model:ir.model.fields,field_description:pos_environment.field_res_config_settings__receipt_environment_footer
 msgid "Receipt Environment Footer"
 msgstr "Pied du ticket (selon environnement)"
 
 #. module: pos_environment
 #: model:ir.model.fields,field_description:pos_environment.field_pos_config__receipt_environment_header
+#: model:ir.model.fields,field_description:pos_environment.field_res_config_settings__receipt_environment_header
 msgid "Receipt Environment Header"
 msgstr "Entête du ticket (selon environnement)"
