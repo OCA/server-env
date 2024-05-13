@@ -1,0 +1,42 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pos_environment
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. module: pos_environment
+#: model:ir.model,name:pos_environment.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: pos_environment
+#: model_terms:ir.ui.view,arch_db:pos_environment.view_res_config_settings_form
+msgid "Environment Settings"
+msgstr ""
+
+#. module: pos_environment
+#: model:ir.model,name:pos_environment.model_pos_config
+msgid "Point of Sale Configuration"
+msgstr ""
+
+#. module: pos_environment
+#: model:ir.model.fields,field_description:pos_environment.field_pos_config__receipt_environment_footer
+#: model:ir.model.fields,field_description:pos_environment.field_res_config_settings__receipt_environment_footer
+msgid "Receipt Environment Footer"
+msgstr ""
+
+#. module: pos_environment
+#: model:ir.model.fields,field_description:pos_environment.field_pos_config__receipt_environment_header
+#: model:ir.model.fields,field_description:pos_environment.field_res_config_settings__receipt_environment_header
+msgid "Receipt Environment Header"
+msgstr ""
