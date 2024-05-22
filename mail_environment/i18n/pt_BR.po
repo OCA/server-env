@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-29 11:14+0000\n"
-"PO-Revision-Date: 2019-09-03 01:23+0000\n"
-"Last-Translator: Rodrigo Macedo <rmsolucoeseminformatic4@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-"
-"tools-8-0/language/pt_BR/)\n"
+"PO-Revision-Date: 2024-05-22 15:44+0000\n"
+"Last-Translator: Rodrigo Macedo <sottomaiormacedotec@users.noreply."
+"translation.odoo-community.org>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/"
+"OCA-server-tools-8-0/language/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: mail_environment
 #: model:ir.model.fields,help:mail_environment.field_fetchmail_server__is_ssl
@@ -25,6 +26,8 @@ msgid ""
 "Connections are encrypted with SSL/TLS through a dedicated port (default: "
 "IMAPS=993, POP3S=995)"
 msgstr ""
+"As conexões são criptografadas com SSL/TLS através de uma porta dedicada "
+"(padrão: IMAPS=993, POP3S=995)"
 
 #. module: mail_environment
 #: model:ir.model,name:mail_environment.model_fetchmail_server
@@ -39,13 +42,13 @@ msgstr "Servidor de E-mail"
 #. module: mail_environment
 #: model:ir.model.fields,field_description:mail_environment.field_fetchmail_server__is_ssl
 msgid "SSL/TLS"
-msgstr ""
+msgstr "SSL/TLS"
 
 #. module: mail_environment
 #: model:ir.model.fields,field_description:mail_environment.field_fetchmail_server__server_env_defaults
 #: model:ir.model.fields,field_description:mail_environment.field_ir_mail_server__server_env_defaults
 msgid "Server Env Defaults"
-msgstr ""
+msgstr "Padrões de ambiente do servidor"
 
 #. module: mail_environment
 #: model:ir.model.fields,field_description:mail_environment.field_fetchmail_server__server_type
