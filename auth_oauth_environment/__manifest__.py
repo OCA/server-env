@@ -5,7 +5,7 @@
     'version': '11.0.1.0.0',
     'category': 'Tools',
     'summary': 'Configure mail servers with server_environment_files',
-    'author': "Camptocamp SA, Odoo Community Association (OCA)",
+    'author': "Camptocamp, Odoo Community Association (OCA)",
     'license': 'AGPL-3',
     'website': 'http://odoo-community.org',
     'depends': [
