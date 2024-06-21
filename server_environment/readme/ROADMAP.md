@@ -1,5 +1,5 @@
 - it is not possible to set the environment from the command line. A
-  configuration file must be used.
+  configuration file or environment variables must be used.
 - the module does not allow to set low level attributes such as database
   server, etc.
 - server.env.techname.mixin's tech_name field could leverage the new

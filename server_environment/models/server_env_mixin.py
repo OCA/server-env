@@ -2,6 +2,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html)
 
 import logging
+from ast import literal_eval
 from functools import partialmethod
 
 from lxml import etree
@@ -424,3 +425,40 @@ class ServerEnvMixin(models.AbstractModel):
             self._server_env_transform_field_to_read_from_env(field)
             self._server_env_add_is_editable_field(field)
         return
+
+    def _register_hook(self):
+        super()._register_hook()
+        for model_name in self.env:
+            model = self.env[model_name]
+            if hasattr(model, "_server_env_global_section_name"):
+                global_section_name = model._server_env_global_section_name()
+                for section in serv_config:
+                    if section.startswith(f"{global_section_name}."):
+                        if serv_config[section].get("__autocreate", None):
+                            name_value = section[len(global_section_name) + 1 :]
+                            domain = [
+                                (model._server_env_section_name_field, "=", name_value)
+                            ]
+                            count = model.with_context(active_test=False).search_count(
+                                domain
+                            )
+                            if count == 0:
+                                _logger.debug("Automatic creation of %s", section)
+                                values = literal_eval(
+                                    serv_config[section].get("__autocreate")
+                                )
+                                values[
+                                    model._server_env_section_name_field
+                                ] = name_value
+                                records = model.create([values])
+                                self.env["ir.model.data"].create(
+                                    [
+                                        {
+                                            "name": section,
+                                            "model": model_name,
+                                            "module": "__server_environment__",
+                                            "res_id": record.id,
+                                        }
+                                        for record in records
+                                    ]
+                                )
