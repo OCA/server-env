@@ -24,7 +24,7 @@ addon | version | maintainers | summary
 [data_encryption](data_encryption/) | 16.0.1.0.1 |  | Store accounts and credentials encrypted by environment
 [mail_environment](mail_environment/) | 16.0.1.0.1 |  | Configure mail servers with server_environment_files
 [pos_environment](pos_environment/) | 16.0.1.0.1 | [![legalsylvain](https://github.com/legalsylvain.png?size=30px)](https://github.com/legalsylvain) | Custom messages on the bill depending on the environment
-[server_environment](server_environment/) | 16.0.1.0.3 |  | move some configurations out of the database
+[server_environment](server_environment/) | 16.0.1.0.4 |  | move some configurations out of the database
 [server_environment_data_encryption](server_environment_data_encryption/) | 16.0.1.0.0 |  | Server Environment Data Encryption
 [server_environment_ir_config_parameter](server_environment_ir_config_parameter/) | 16.0.1.1.0 |  | Override System Parameters from server environment file
 
