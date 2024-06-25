@@ -23,7 +23,7 @@ addon | version | maintainers | summary
 --- | --- | --- | ---
 [mail_environment](mail_environment/) | 17.0.1.0.0 |  | Configure mail servers with server_environment_files
 [mail_environment_office365](mail_environment_office365/) | 17.0.1.0.0 |  | Configure Office365 parameters with environment variables via server_environment
-[server_environment](server_environment/) | 17.0.1.0.0 |  | move some configurations out of the database
+[server_environment](server_environment/) | 17.0.1.0.1 |  | move some configurations out of the database
 [server_environment_ir_config_parameter](server_environment_ir_config_parameter/) | 17.0.1.0.0 |  | Override System Parameters from server environment file
 
 [//]: # (end addons)
