@@ -254,7 +254,7 @@ class ServerEnvMixin(models.AbstractModel):
 
     def _compute_server_env_from_default(self, field_name, options):
         if options and options.get("compute_default"):
-            self[field_name] = getattr(self, options["compute_default"])()
+            getattr(self, options["compute_default"])()
         else:
             default_field = self._server_env_default_fieldname(field_name)
             if default_field:
