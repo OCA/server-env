@@ -27,7 +27,7 @@ class IrMailServer(models.Model):
         return mail_fields
 
     def _compute_default_authentication(self):
-        return "login"
+        self.update({"smtp_authentication": "login"})
 
     @api.model
     def _server_env_global_section_name(self):
