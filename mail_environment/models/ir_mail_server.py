@@ -16,10 +16,18 @@ class IrMailServer(models.Model):
             "smtp_port": {},
             "smtp_user": {},
             "smtp_pass": {},
+            "smtp_ssl_certificate": {},  # the value must be base64 encoded
+            "smtp_ssl_private_key": {},  # the value must be base64 encoded
             "smtp_encryption": {},
+            "smtp_authentication": {
+                "compute_default": "_compute_default_authentication"
+            },
         }
         mail_fields.update(base_fields)
         return mail_fields
+
+    def _compute_default_authentication(self):
+        self.update({"smtp_authentication": "login"})
 
     @api.model
     def _server_env_global_section_name(self):
