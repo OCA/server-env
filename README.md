@@ -20,7 +20,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[auth_saml_environment](auth_saml_environment/) | 14.0.1.0.0 |  | Allows system administrator to authenticate with any account
+[auth_saml_environment](auth_saml_environment/) | 14.0.1.0.1 |  | Allows system administrator to authenticate with any account
 [data_encryption](data_encryption/) | 14.0.1.0.0 |  | Store accounts and credentials encrypted by environment
 [mail_environment](mail_environment/) | 14.0.1.0.1 |  | Configure mail servers with server_environment_files
 [mail_environment_office365](mail_environment_office365/) | 14.0.1.0.0 |  | Configure Office365 parameters with environment variables via server_environment
