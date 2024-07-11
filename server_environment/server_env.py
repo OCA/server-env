@@ -45,13 +45,20 @@ _boolean_states = {
 
 def _load_running_env():
     if not system_base_config.get("running_env"):
-        _logger.info("`running_env` not found. Using default = `test`.")
-        _logger.info(
-            "We strongly recommend against using the rc file but instead use an "
-            "explicit config file or env variable."
-        )
-        # safe default
-        system_base_config["running_env"] = "test"
+        env_running_env = os.environ.get("RUNNING_ENV", os.environ.get("ODOO_STAGE"))
+        if env_running_env:
+            system_base_config["running_env"] = env_running_env
+        else:
+            _logger.info(
+                "`running_env` or `RUNNING_ENV`, `ODOO_STAGE` not found. "
+                "Using default = `test`."
+            )
+            _logger.info(
+                "We strongly recommend against using the rc file but instead use an "
+                "explicit config file or env variable."
+            )
+            # safe default
+            system_base_config["running_env"] = "test"
 
 
 _load_running_env()
