@@ -6,7 +6,7 @@
     "summary": "Allows system administrator to authenticate with any account",
     "version": "14.0.1.0.1",
     "category": "base",
-    "author": "Camptocamp SA,Odoo Community Association (OCA)",
+    "author": "Camptocamp,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-env",
     "license": "AGPL-3",
     "depends": [
