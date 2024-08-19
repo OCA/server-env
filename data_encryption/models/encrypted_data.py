@@ -140,8 +140,7 @@ class EncryptedData(models.Model):
             self.create(
                 {"name": name, "environment": env, "encrypted_data": encrypted_data}
             )
-        self._encrypted_get.clear_cache(self)
-        self._encrypted_read_json.clear_cache(self)
+        self.env.registry.clear_cache()
 
     @api.model
     def _encrypted_store_json(self, name, json_data, env=None):
