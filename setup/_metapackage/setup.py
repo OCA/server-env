@@ -11,6 +11,7 @@ setuptools.setup(
         'odoo14-addon-auth_saml_environment',
         'odoo14-addon-data_encryption',
         'odoo14-addon-mail_environment',
+        'odoo14-addon-mail_environment_google_gmail',
         'odoo14-addon-mail_environment_office365',
         'odoo14-addon-payment_environment',
         'odoo14-addon-server_environment',

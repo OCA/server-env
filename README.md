@@ -23,6 +23,7 @@ addon | version | maintainers | summary
 [auth_saml_environment](auth_saml_environment/) | 14.0.1.0.1 |  | Allows system administrator to authenticate with any account
 [data_encryption](data_encryption/) | 14.0.1.0.0 |  | Store accounts and credentials encrypted by environment
 [mail_environment](mail_environment/) | 14.0.1.0.1 |  | Configure mail servers with server_environment_files
+[mail_environment_google_gmail](mail_environment_google_gmail/) | 14.0.1.0.0 | [![ivantodorovich](https://github.com/ivantodorovich.png?size=30px)](https://github.com/ivantodorovich) | Configure Gmail mail servers with server_environment_files
 [mail_environment_office365](mail_environment_office365/) | 14.0.1.0.0 |  | Configure Office365 parameters with environment variables via server_environment
 [payment_environment](payment_environment/) | 14.0.1.0.2 | [![ivantodorovich](https://github.com/ivantodorovich.png?size=30px)](https://github.com/ivantodorovich) | Configure payment acquirers with server_environment
 [server_environment](server_environment/) | 14.0.2.2.3 |  | move some configurations out of the database
