@@ -24,10 +24,10 @@ def _get_output(cmd):
 def get_server_environment():
     # inspired by server/bin/service/web_services.py
     try:
-        rev_id = "git:%s" % _get_output("git rev-parse HEAD")
+        rev_id = "git:{}".format(_get_output("git rev-parse HEAD"))
     except Exception:
         try:
-            rev_id = "bzr: %s" % _get_output("bzr revision-info")
+            rev_id = "bzr: {}".format(_get_output("bzr revision-info"))
         except Exception:
             rev_id = "Can not retrieve revison from git or bzr"
 

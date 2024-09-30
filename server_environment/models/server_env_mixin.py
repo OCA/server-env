@@ -352,7 +352,7 @@ class ServerEnvMixin(models.AbstractModel):
         """Transform the original field in a computed field"""
         field.compute = "_compute_server_env"
 
-        inverse_method_name = "_inverse_server_env_%s" % field.name
+        inverse_method_name = f"_inverse_server_env_{field.name}"
         inverse_method = _partialmethod(
             type(self)._inverse_server_env, field.name, __name__=inverse_method_name
         )

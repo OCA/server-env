@@ -71,7 +71,7 @@ if _dir:
     if not os.path.exists(ck_path):
         raise Exception(
             "Provided server environment does not exist, "
-            "please add a folder %s" % ck_path
+            f"please add a folder {ck_path}"
         )
 
 
@@ -260,7 +260,7 @@ class ServerConfiguration(models.TransientModel):
         return (
             '<group col="2" colspan="4">'
             + "".join(
-                ['<field name="%s" readonly="1"/>' % _escape(name) for name in names]
+                [f'<field name="{_escape(name)}" readonly="1"/>' for name in names]
             )
             + "</group>"
         )
@@ -274,14 +274,14 @@ class ServerConfiguration(models.TransientModel):
         rcfile = system_base_config.rcfile
         items = cls._get_base_cols()
         arch += '<page string="Odoo">'
-        arch += '<separator string="%s" colspan="4"/>' % _escape(rcfile)
+        arch += f'<separator string="{_escape(rcfile)}" colspan="4"/>'
         arch += cls._group(items)
         arch += '<separator colspan="4"/></page>'
 
         arch += '<page string="Environment based configurations">'
         for section in sorted(serv_config.sections()):
             items = cls._get_env_cols(sections=[section])
-            arch += '<separator string="[%s]" colspan="4"/>' % _escape(section)
+            arch += f'<separator string="[{_escape(section)}]" colspan="4"/>'
             arch += cls._group(items)
         arch += '<separator colspan="4"/></page>'
 
