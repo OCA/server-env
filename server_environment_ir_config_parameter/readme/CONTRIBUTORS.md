@@ -3,3 +3,4 @@
 - Gilles Meyomesse \<<gilles.meyomesse@acsone.eu>\>
   (<https://acsone.eu>)
 - Sylvain LE GAL (<https://www.twitter.com/legalsylvain>)
+- Chau Le \<<chaulb@trobz.com>\>

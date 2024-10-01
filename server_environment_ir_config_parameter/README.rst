@@ -97,11 +97,13 @@ Contributors
 -  Thierry Ducrest <thierry.ducrest@camptocamp.com>
 -  Gilles Meyomesse <gilles.meyomesse@acsone.eu> (https://acsone.eu)
 -  Sylvain LE GAL (https://www.twitter.com/legalsylvain)
+-  Chau Le <chaulb@trobz.com>
 
 Other credits
 -------------
 
-This module is maintained by: \* Odoo Community Association
+The migration of this module from 17.0 to 18.0 was financially supported
+by Camptocamp.
 
 Maintainers
 -----------
