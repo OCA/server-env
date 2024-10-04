@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -150,6 +150,16 @@ msgid "odoo | db_port"
 msgstr ""
 
 #. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_db_replica_host
+msgid "odoo | db_replica_host"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_db_replica_port
+msgid "odoo | db_replica_port"
+msgstr ""
+
+#. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_db_sslmode
 msgid "odoo | db_sslmode"
 msgstr ""
@@ -240,8 +250,18 @@ msgid "odoo | limit_memory_hard"
 msgstr ""
 
 #. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_limit_memory_hard_gevent
+msgid "odoo | limit_memory_hard_gevent"
+msgstr ""
+
+#. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_limit_memory_soft
 msgid "odoo | limit_memory_soft"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_limit_memory_soft_gevent
+msgid "odoo | limit_memory_soft_gevent"
 msgstr ""
 
 #. module: server_environment
