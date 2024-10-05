@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-10 02:53+0000\n"
-"PO-Revision-Date: 2024-02-14 13:36+0000\n"
+"PO-Revision-Date: 2024-10-05 18:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-9-0/"
 "language/it/)\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__config
@@ -158,12 +158,12 @@ msgstr "odoo | db_port"
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_db_replica_host
 msgid "odoo | db_replica_host"
-msgstr ""
+msgstr "odoo | db_replica_host"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_db_replica_port
 msgid "odoo | db_replica_port"
-msgstr ""
+msgstr "odoo | db_replica_port"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_db_sslmode
@@ -258,7 +258,7 @@ msgstr "odoo | limit_memory_hard"
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_limit_memory_hard_gevent
 msgid "odoo | limit_memory_hard_gevent"
-msgstr ""
+msgstr "odoo | limit_memory_hard_gevent"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_limit_memory_soft
@@ -268,7 +268,7 @@ msgstr "odoo | limit_memory_soft"
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_limit_memory_soft_gevent
 msgid "odoo | limit_memory_soft_gevent"
-msgstr ""
+msgstr "odoo | limit_memory_soft_gevent"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config__odoo_I_limit_request
