@@ -21,6 +21,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
+[mail_environment](mail_environment/) | 18.0.1.0.0 |  | Configure mail servers with server_environment_files
 [server_environment](server_environment/) | 18.0.1.0.0 |  | move some configurations out of the database
 
 [//]: # (end addons)
