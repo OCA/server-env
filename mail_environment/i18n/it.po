@@ -1,0 +1,52 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mail_environment
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-02-04 22:36+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: mail_environment
+#: model:ir.model.fields,help:mail_environment.field_fetchmail_server__is_ssl
+msgid ""
+"Connections are encrypted with SSL/TLS through a dedicated port (default: "
+"IMAPS=993, POP3S=995)"
+msgstr ""
+"Le connessioni sono criptate con SSL/TLS attraverso una porta dedicata "
+"(predefinite: IMAPS=993, POP3S=995)"
+
+#. module: mail_environment
+#: model:ir.model,name:mail_environment.model_fetchmail_server
+msgid "Incoming Mail Server"
+msgstr "Server di posta in arrivo"
+
+#. module: mail_environment
+#: model:ir.model,name:mail_environment.model_ir_mail_server
+msgid "Mail Server"
+msgstr "Server di posta"
+
+#. module: mail_environment
+#: model:ir.model.fields,field_description:mail_environment.field_fetchmail_server__is_ssl
+msgid "SSL/TLS"
+msgstr "SSL/TLS"
+
+#. module: mail_environment
+#: model:ir.model.fields,field_description:mail_environment.field_fetchmail_server__server_env_defaults
+#: model:ir.model.fields,field_description:mail_environment.field_ir_mail_server__server_env_defaults
+msgid "Server Env Defaults"
+msgstr "Server ambiente predefinito"
+
+#. module: mail_environment
+#: model:ir.model.fields,field_description:mail_environment.field_fetchmail_server__server_type
+msgid "Server Type"
+msgstr "Tipo server"
