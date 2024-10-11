@@ -36,7 +36,6 @@ msgstr ""
 #. module: server_environment_ir_config_parameter
 #. odoo-python
 #: code:addons/server_environment_ir_config_parameter/models/ir_config_parameter.py:0
-#, python-format
 msgid "Key %s is empty in server_environment_file"
 msgstr "La clave %s está vacía en server_environment_file"
 
