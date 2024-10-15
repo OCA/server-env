@@ -12,7 +12,6 @@ class IrMailServer(models.Model):
     def _server_env_fields(self):
         base_fields = super()._server_env_fields
         gmail_fields = {
-            "use_google_gmail_service": {},
             "google_gmail_authorization_code": {},
             "google_gmail_refresh_token": {},
         }
