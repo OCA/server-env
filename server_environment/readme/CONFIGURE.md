@@ -98,3 +98,20 @@ Note: empty environment keys always take precedence over default fields
 
 Read the documentation of the class
 [models/server_env_mixin.py](models/server_env_mixin.py).
+
+## Auto creation of records
+
+It is possible to indicate that records must be created automatically if not found in the database.
+
+When specifying a section in the configuration file or environment variable, also define ``__autocreate = {}``.
+The value is a dictionary that will be passed when the record is created. This allows setting some non environment variables that are required.
+For example, when using fs_storage module, the name of the storage is required so the configuration would look like:
+
+```ini
+[fs_storage.my_sftp]
+__autocreate = {"name": "My SFTP"}
+protocol=sftp
+options={"host": "10.10.10.10", "username": "foo", "password": "xxxxxxxxx"}
+```
+
+When the module creates such a record, it will add an xml id in the form `__server_enironment__.<section name>`.
