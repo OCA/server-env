@@ -10,4 +10,6 @@
     "license": "AGPL-3",
     "website": "https://github.com/OCA/server-env",
     "depends": ["mail", "server_environment"],
+    "pre_init_hook": "pre_init_hook",
+    "post_init_hook": "post_init_hook",
 }
