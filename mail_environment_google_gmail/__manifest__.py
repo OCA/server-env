@@ -5,7 +5,7 @@
 {
     "name": "Mail configuration with server_environment for Google Gmail",
     "summary": "Configure Gmail mail servers with server_environment_files",
-    "version": "16.0.1.0.0",
+    "version": "18.0.1.0.0",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "maintainers": ["ivantodorovich"],
     "website": "https://github.com/OCA/server-env",
