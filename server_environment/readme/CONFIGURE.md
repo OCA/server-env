@@ -1,6 +1,6 @@
 To configure this module, you need to edit the main configuration file
 of your instance, and add a directive called `running_env`. Commonly
-used values are 'dev', 'test', 'production':
+used values are ‘dev’, ‘test’, ‘production’:
 
     [options]
     running_env=dev
@@ -9,12 +9,13 @@ Or set the `RUNNING_ENV` or `ODOO_STAGE` environment variable. If both all are s
 will take the precedence on environment and `RUNNING_ENV` over `ODOO_STAGE`.
 
 `ODOO_STAGE` is used for odoo.sh platform where we can't set `RUNNING_ENV`, possible
-observed values are `production`, `staging` and `dev`
+observed values are ‘production’, ‘staging’ and ‘dev’.
+‘dummy’ is also used on that platform when it tests a version before putting it in production.
 
-Values associated to keys containing 'passw' are only displayed in the
-'dev' environment.
+Values associated to keys containing ‘passw’ are only displayed in the
+‘dev’ environment.
 
-If you don't provide any value, test is used as a safe default.
+If you don't provide any value, ‘test’ is used as a safe default.
 
 You have several possibilities to set configuration values:
 
