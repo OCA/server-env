@@ -19,21 +19,22 @@ from ..models import server_env_mixin as server_env_mixin_2
 # Test need to be run post install otherwise the _register_hook is not called yet
 @tagged("post_install", "-at_install")
 class TestEnv(common.ServerEnvironmentCase):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
+    def setUp(self):
+        super().setUp()
         # Load fake models ->/
-        cls.loader = FakeModelLoader(cls.env, cls.__module__)
-        cls.loader.backup_registry()
+        self.loader = FakeModelLoader(self.env, self.__module__)
+        self.loader.backup_registry()
+
         from .models import ExternalService, ExternalService2
 
-        cls.loader.update_registry((ExternalService, ExternalService2))
-        cls.env["external_service"].create([{"name": "ftp2", "description": "another"}])
+        self.loader.update_registry((ExternalService, ExternalService2))
+        self.env["external_service"].create(
+            [{"name": "ftp2", "description": "another"}]
+        )
 
-    @classmethod
-    def tearDownClass(cls):
-        cls.loader.restore_registry()
-        super().tearDownClass()
+    def tearDown(self):
+        self.loader.restore_registry()
+        super().tearDown()
 
     @patch.dict(config.options, {"running_env": "autocreate"})
     def test_autocreate(self):
