@@ -1,0 +1,2 @@
+- This module does not guarantee that any model record can be created, extra steps might be needed.
+- If a created record is not referenced in the configuration anymore, it is not removed.
