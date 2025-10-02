@@ -417,11 +417,10 @@ class ServerEnvMixin(models.AbstractModel):
             self._add_field(fieldname, field)
 
     @api.model
-    def _setup_base(self):
-        super()._setup_base()
+    def _post_model_setup__(self):
         for fieldname in self._server_env_fields:
             field = self._fields[fieldname]
             self._server_env_add_default_field(field)
             self._server_env_transform_field_to_read_from_env(field)
             self._server_env_add_is_editable_field(field)
-        return
+        return super()._post_model_setup__()

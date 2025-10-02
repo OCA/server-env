@@ -81,7 +81,7 @@ class TestEnv(common.ServerEnvironmentCase):
         with self.load_config(config_dir="testfiles"):
             model = self.env["server.config"]
             model._add_columns()
-            self.env.registry.setup_models(self.env.cr)
+            self.env.registry._setup_models__(self.env.cr)
         defaults = self._test_default(hidden_pwd=True)
 
         self.assertIn("odoo_I_admin_passwd", defaults)

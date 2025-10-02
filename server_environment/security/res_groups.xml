@@ -7,8 +7,8 @@
     <record model="res.groups" id="has_server_configuration_access">
         <field name="name">View Server Environment Configuration</field>
         <field
-            name="users"
-            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+            name="user_ids"
+            eval="[Command.link(ref('base.user_root')), Command.link(ref('base.user_admin'))]"
         />
     </record>
 </odoo>

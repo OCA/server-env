@@ -121,7 +121,7 @@ def _load_config_from_server_env_files(config_p):
 
 
 def _load_config_from_rcfile(config_p):
-    config_p.read(system_base_config.rcfile)
+    config_p.read(system_base_config["config"])
     config_p.remove_section("options")
 
 
@@ -173,16 +173,14 @@ class ServerConfiguration(models.TransientModel):
     config = Serialized()
 
     @classmethod
-    def _build_model(cls, pool, cr):
+    def _build_model(cls):
         """Add columns to model dynamically
         and init some properties
 
         """
-        ModelClass = super()._build_model(pool, cr)
-        ModelClass._add_columns()
-        ModelClass._arch = None
-        ModelClass._build_osv()
-        return ModelClass
+        cls._add_columns()
+        cls._arch = None
+        cls._build_osv()
 
     @classmethod
     def _format_key(cls, section, key):
@@ -270,7 +268,7 @@ class ServerConfiguration(models.TransientModel):
         arch = '<form string="Configuration Form"><notebook colspan="4">'
 
         # Odoo server configuration
-        rcfile = system_base_config.rcfile
+        rcfile = system_base_config["config"]
         items = cls._get_base_cols()
         arch += '<page string="Odoo">'
         arch += f'<separator string="{_escape(rcfile)}" colspan="4"/>'
