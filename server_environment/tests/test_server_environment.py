@@ -4,7 +4,7 @@
 import os
 from unittest.mock import patch
 
-from odoo.tools.config import config as odoo_config
+from odoo.addons.server_environment.server_env import server_env_config
 
 from .. import server_env
 from . import common
@@ -46,28 +46,28 @@ class TestEnv(common.ServerEnvironmentCase):
         self.assertTrue(pass_checked)
         return defaults
 
-    @patch.dict(odoo_config.options, {"running_env": "dev"})
+    @patch.dict(server_env_config, {"running_env": "dev"})
     def test_default_dev(self):
         self._test_default()
 
-    @patch.dict(odoo_config.options, {"running_env": "whatever"})
+    @patch.dict(server_env_config, {"running_env": "whatever"})
     def test_default_non_dev_env(self):
         server_env._load_running_env()
         self._test_default(hidden_pwd=True)
 
-    @patch.dict(odoo_config.options, {"running_env": None})
+    @patch.dict(server_env_config, {"running_env": None})
     @patch.dict(os.environ, {"RUNNING_ENV": "dev"})
     def test_default_dev_from_environ(self):
         server_env._load_running_env()
         self._test_default()
 
-    @patch.dict(odoo_config.options, {"running_env": None})
+    @patch.dict(server_env_config, {"running_env": None})
     @patch.dict(os.environ, {"ODOO_STAGE": "dev"})
     def test_odoosh_dev_from_environ(self):
         server_env._load_running_env()
         self._test_default()
 
-    @patch.dict(odoo_config.options, {"running_env": "testing"})
+    @patch.dict(server_env_config, {"running_env": "testing"})
     def test_value_retrieval(self):
         with self.set_config_dir("testfiles"):
             parser = server_env._load_config()
@@ -76,7 +76,7 @@ class TestEnv(common.ServerEnvironmentCase):
             val = parser.get("external_service.ftp", "host")
             self.assertEqual(val, "sftp.example.com")
 
-    @patch.dict(odoo_config.options, {"running_env": "testing"})
+    @patch.dict(server_env_config, {"running_env": "testing"})
     def test_default_hidden_password(self):
         with self.load_config(config_dir="testfiles"):
             model = self.env["server.config"]

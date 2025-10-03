@@ -28,6 +28,15 @@ except ImportError:
     )
     _dir = None
 
+rcfile = system_base_config.get("config")
+cp = configparser.ConfigParser()
+cp.read([rcfile])
+
+if cp.has_section("server_env"):
+    server_env_config = cp["server_env"]
+else:
+    server_env_config = {}
+
 ENV_VAR_NAMES = ("SERVER_ENV_CONFIG", "SERVER_ENV_CONFIG_SECRET")
 
 # Same dict as RawConfigParser._boolean_states
@@ -44,10 +53,10 @@ _boolean_states = {
 
 
 def _load_running_env():
-    if not system_base_config.get("running_env"):
+    if not server_env_config.get("running_env"):
         env_running_env = os.environ.get("RUNNING_ENV", os.environ.get("ODOO_STAGE"))
         if env_running_env:
-            system_base_config["running_env"] = env_running_env
+            server_env_config["running_env"] = env_running_env
         else:
             _logger.info(
                 "`running_env` or `RUNNING_ENV`, `ODOO_STAGE` not found. "
@@ -58,7 +67,7 @@ def _load_running_env():
                 "explicit config file or env variable."
             )
             # safe default
-            system_base_config["running_env"] = "test"
+            server_env_config["running_env"] = "test"
 
 
 _load_running_env()
@@ -66,7 +75,7 @@ _load_running_env()
 
 ck_path = None
 if _dir:
-    ck_path = os.path.join(_dir, system_base_config["running_env"])
+    ck_path = os.path.join(_dir, server_env_config["running_env"])
 
     if not os.path.exists(ck_path):
         raise Exception(
@@ -108,7 +117,7 @@ def _listconf(env_path):
 
 def _load_config_from_server_env_files(config_p):
     default = os.path.join(_dir, "default")
-    running_env = os.path.join(_dir, system_base_config["running_env"])
+    running_env = os.path.join(_dir, server_env_config["running_env"])
     if os.path.isdir(default):
         conf_files = _listconf(default) + _listconf(running_env)
     else:
@@ -188,7 +197,7 @@ class ServerConfiguration(models.TransientModel):
 
     @property
     def show_passwords(self):
-        return system_base_config["running_env"] in ("dev",)
+        return server_env_config["running_env"] in ("dev",)
 
     @classmethod
     def _format_key_display_name(cls, key_name):

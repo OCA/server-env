@@ -75,7 +75,7 @@ used values are 'dev', 'test', 'production':
 
 ::
 
-   [options]
+   [server_env]
    running_env=dev
 
 Or set the ``RUNNING_ENV`` or ``ODOO_STAGE`` environment variable. If

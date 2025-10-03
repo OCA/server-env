@@ -2,7 +2,7 @@ To configure this module, you need to edit the main configuration file
 of your instance, and add a directive called `running_env`. Commonly
 used values are 'dev', 'test', 'production':
 
-    [options]
+    [server_env]
     running_env=dev
 
 Or set the `RUNNING_ENV` or `ODOO_STAGE` environment variable. If both all are set config file

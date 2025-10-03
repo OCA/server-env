@@ -3,23 +3,22 @@
 
 from unittest.mock import patch
 
-from odoo.tools.config import config as odoo_config
-
 from odoo.addons.server_environment import server_env
+from odoo.addons.server_environment.server_env import server_env_config
 
 from .common import ServerEnvironmentCase
 
 
 class TestRunningEnvDefault(ServerEnvironmentCase):
-    @patch.dict(odoo_config.options, {"running_env": None})
+    @patch.dict(server_env_config, {"running_env": None})
     def test_running_env_default(self):
         """When var is not provided it defaults to `test`."""
         with self.set_env_variables():
             server_env._load_running_env()
-        self.assertEqual(odoo_config["running_env"], "test")
+        self.assertEqual(server_env_config["running_env"], "test")
 
 
-@patch.dict(odoo_config.options, {"running_env": "testing"})
+@patch.dict(server_env_config, {"running_env": "testing"})
 class TestEnvironmentVariables(ServerEnvironmentCase):
     def test_env_variables(self):
         public = "[section]\nfoo=bar\nbar=baz\n"
