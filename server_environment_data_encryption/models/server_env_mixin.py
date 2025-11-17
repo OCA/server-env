@@ -1,5 +1,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+import base64
 import json
 import logging
 
@@ -44,7 +45,13 @@ class ServerEnvMixin(models.AbstractModel):
             ._encrypted_read_json(encrypted_data_name, env=env)
         )
         if vals.get(field_name):
-            self[field_name] = vals[field_name]
+            if self._fields[field_name].type == "binary":
+                # convert back to bytes
+                # see _inverse_server_env
+                value = base64.b64decode(vals[field_name])
+            else:
+                value = vals[field_name]
+            self[field_name] = value
         else:
             return super()._compute_server_env_from_default(field_name, options)
 
@@ -66,7 +73,14 @@ class ServerEnvMixin(models.AbstractModel):
                 values = encrypted_data_obj._encrypted_read_json(
                     encrypted_data_name, env=env
                 )
-                new_val = {field_name: record[field_name]}
+                if self._fields[field_name].type == "binary":
+                    # convert bytes to utf8 string
+                    # it will be converted in json
+                    # in _encrypted_store_json
+                    value_str = base64.b64encode(record[field_name]).decode("utf-8")
+                else:
+                    value_str = record[field_name]
+                new_val = {field_name: value_str}
                 values.update(new_val)
                 encrypted_data_obj._encrypted_store_json(
                     encrypted_data_name, values, env=env
