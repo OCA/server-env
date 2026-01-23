@@ -188,13 +188,16 @@ class ServerEnvMixin(models.AbstractModel):
 
     _server_env_section_name_field = "name"
 
+    def _server_env_record_name(self):
+        return self[self._server_env_section_name_field]
+
     def _server_env_section_name(self):
         """Name of the section in the configuration files
 
         Can be customized in your model
         """
         self.ensure_one()
-        val = self[self._server_env_section_name_field]
+        val = self._server_env_record_name()
         if not val:
             # special case: we have onchanges relying on tech_name
             # and we are testing them using `tests.common.Form`.
