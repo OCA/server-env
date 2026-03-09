@@ -21,7 +21,7 @@ class ServerEnvMixin(models.AbstractModel):
     def _get_server_env_section_name(self, section_name: str) -> None | str:
         """From the full section name of the configuration, allow to get the name if
         the section matches the model.
-        For example “storage_backend.my_sftp” (used in server_environement
+        For example “storage_backend.my_sftp” (used in server_environment
         documentation) would return “my_sftp” on the model “storage.backend”.
 
         This is the inverse of :meth:`~_server_env_section_name`, so this method
@@ -35,7 +35,7 @@ class ServerEnvMixin(models.AbstractModel):
             return section_name[len(global_section_name) + 1 :]
         return None
 
-    def _register_hook(self):
+    def _register_hook(self) -> None:
         super()._register_hook()
         if self._server_env_allow_autocreate:
             for section in serv_config:

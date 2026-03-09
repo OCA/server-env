@@ -4,16 +4,11 @@
 {
     "name": "Server Environment Autocreate",
     "summary": """Add ability to auto create records""",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "license": "LGPL-3",
     "author": "XCG Consulting,Odoo Community Association (OCA)",
     "depends": ["server_environment"],
     "development_status": "Beta",
     "category": "Tools",
     "website": "https://github.com/OCA/server-env",
-    "external_dependencies": {
-        "python": [
-            "odoo-test-helper",
-        ],
-    },
 }
