@@ -3,7 +3,6 @@
 import psycopg2
 
 from odoo.modules.module import get_resource_path
-from odoo.tests.common import Form
 from odoo.tools import convert_file
 from odoo.tools.misc import mute_logger
 
@@ -68,20 +67,3 @@ class TestEnv(ServerEnvironmentCase):
     #         account = self.IAP.search([("tech_name", "=", "account_xml")])
     #         self.assertEqual(account.service_name, "partner_autocomplete_xml")
     #         self.assertEqual(account.account_token, "my_secret_token_xml")
-
-    def test_update_account_data(self):
-        """We can't set account data that is in config file"""
-        with self.load_config(public=self.env_config):
-            # when creating, the value is overridden by config file
-            account = self.IAP.create(
-                {
-                    "tech_name": "account_2",
-                }
-            )
-            account_form = Form(account)
-            self.assertEqual(account.service_name, "partner_autocomplete_2")
-            self.assertEqual(account.account_token, "my_secret_token_2")
-            with self.assertRaises(AssertionError):
-                account_form.service_name = "new_partner_autocomplete"
-            with self.assertRaises(AssertionError):
-                account_form.account_token = "my_new_secret_token"

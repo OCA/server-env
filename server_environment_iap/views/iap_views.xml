@@ -4,7 +4,6 @@
         <field name="name">iap.account.form.inherit</field>
         <field name="model">iap.account</field>
         <field name="inherit_id" ref="iap.iap_account_view_form" />
-        <field name="groups_id" eval="[(4, ref('base.group_system'))]" />
         <field name="arch" type="xml">
             <field name="service_name" position="before">
                 <field name="tech_name" groups="base.group_no_one" />
@@ -15,7 +14,6 @@
         <field name="name">iap.account.tree.inherit</field>
         <field name="model">iap.account</field>
         <field name="inherit_id" ref="iap.iap_account_view_tree" />
-        <field name="groups_id" eval="[(4, ref('base.group_system'))]" />
         <field name="arch" type="xml">
             <field name="service_name" position="before">
                 <field name="tech_name" groups="base.group_no_one" />
