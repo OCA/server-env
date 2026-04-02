@@ -3,7 +3,7 @@
 
 {
     "name": "Mail configuration with server_environment",
-    "version": "19.0.1.1.0",
+    "version": "19.0.1.1.1",
     "category": "Tools",
     "summary": "Configure mail servers with server_environment_files",
     "author": "Camptocamp, Odoo Community Association (OCA)",
