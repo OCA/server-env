@@ -425,3 +425,31 @@ class ServerEnvMixin(models.AbstractModel):
             self._server_env_transform_field_to_read_from_env(field)
             self._server_env_add_is_editable_field(field)
         return
+
+    @api.model
+    def _preserve_not_env_managed_data(self, field_name_list):
+        """
+        Helper function typically used for hooks and migration scripts.
+        Restores database values for fields transitioning to 'server env managed'.
+
+        When a field is defined as managed by the server environment, Odoo
+        ignores the value stored in the database, prioritizing the environment
+        configuration instead. If no environment configuration exists, the field
+        may effectively lose its previous value.
+
+        This method forces to 'persist' these values if they are not
+        explicitly overridden by the current environment configuration.
+        """
+        self.env.cr.execute(f"SELECT * FROM {self._table}")
+        for row in self.env.cr.dictfetchall():
+            record = (
+                self.env[self._name]
+                .with_context(active_test=False)
+                .search([("id", "=", row["id"])])
+            )
+            if record:
+                record_values = {}
+                for field_name in field_name_list:
+                    if field_name in row:
+                        record_values[field_name] = row[field_name]
+                record.update(record_values)
