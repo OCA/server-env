@@ -74,7 +74,7 @@ class TestEnv(common.ServerEnvironmentCase):
         with self.set_config_dir("testfiles"):
             parser = server_env._load_config()
             val = parser.get("external_service.ftp", "user")
-            self.assertEqual(val, "testing")
+            self.assertEqual(val, "testing%")
             val = parser.get("external_service.ftp", "host")
             self.assertEqual(val, "sftp.example.com")
 
