@@ -1,1 +1,2 @@
-remove interpolation in the configparser
+make configparser interpolation parameter controllable via Odoo configuration
+in 'server_environnment'

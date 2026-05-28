@@ -154,8 +154,23 @@ def _load_config_from_env(config_p):
 
 
 def _load_config():
-    """Load the configuration and return a ConfigParser instance."""
-    config_p = configparser.ConfigParser(interpolation=None)
+    """
+    Load the configuration and return a ConfigParser instance.
+    Uses the server_environment config param 'config_interpolation'
+    To know whether the config must be parsed with interpolation
+    of '%' characters. By default interpolation is enabled.
+    """
+    interpolation = system_base_config.get(
+        "server_environment_config_interpolation",
+        os.environ.get("SERVER_ENV_CONFIG_INTERPOLATION", True),
+    )
+    if isinstance(interpolation, str):
+        interpolation = _boolean_states.get(interpolation.lower(), True)
+
+    if interpolation:
+        config_p = configparser.ConfigParser()
+    else:
+        config_p = configparser.ConfigParser(interpolation=None)
     # options are case-sensitive
     config_p.optionxform = str
 
