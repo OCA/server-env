@@ -14,7 +14,7 @@ from odoo.tools.config import config as system_base_config
 
 from odoo.addons.base_sparse_field.models.fields import Serialized
 
-from .system_info import get_server_environment
+from .system_info import get_server_environment, skip_subprocess
 
 _logger = logging.getLogger(__name__)
 
@@ -236,6 +236,8 @@ class ServerConfiguration(models.TransientModel):
     @classmethod
     def _get_system_cols(cls):
         """Compute system fields"""
+        if skip_subprocess():
+            return {}
         res = {}
         for col, item in get_server_environment():
             key = cls._format_key("system", col)
