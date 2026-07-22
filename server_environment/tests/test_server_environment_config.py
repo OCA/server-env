@@ -93,3 +93,36 @@ class TestEnv(common.ServerEnvironmentCase):
                     AssertionError, "can't write on readonly field 'password'"
                 ):
                     f.password = "newpass"
+
+    def _setup_external_service(self):
+        from .models import ExternalService
+
+        add_to_registry(self.registry, ExternalService)
+        self.registry._setup_models__(self.env.cr, ["external.service"])
+        self.registry.init_models(
+            self.env.cr, ["external.service"], {"models_to_check": True}
+        )
+
+    def test_search_env_field(self):
+        """Env-computed fields can be used in a search domain.
+
+        Regression test: since Odoo 19 the domain engine requires a
+        non-stored field to declare a ``search`` method, otherwise
+        searching on it raises ``ValueError: Cannot convert ... because
+        it is not stored``.
+        """
+        self._setup_external_service()
+        model = self.env["external.service"]
+        ftp1 = model.create({"name": "ftp1", "description": "Description ftp1"})
+        ftp2 = model.create({"name": "ftp2", "description": "Description ftp2"})
+        ftp1.invalidate_recordset()
+        ftp2.invalidate_recordset()
+        with self.load_config(public=CONFIG):
+            # host is an env-computed (non-stored) field
+            self.assertEqual(ftp1.host, "sftp.example.com")
+            self.assertEqual(ftp2.host, "sftp2.example.com")
+
+            self.assertEqual(model.search([("host", "=", "sftp.example.com")]), ftp1)
+            self.assertEqual(model.search([("host", "!=", "sftp.example.com")]), ftp2)
+            self.assertEqual(model.search([("host", "like", "sftp")]), ftp1 + ftp2)
+            self.assertFalse(model.search([("host", "=", "nope.example.com")]))
