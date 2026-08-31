@@ -7,11 +7,25 @@ import os
 import platform
 import subprocess
 
+import odoo
 from odoo import release
 from odoo.tools.config import config
 
 
+def skip_subprocess():
+    # In the gevent worker (longpolling/websocket) running subprocesses can
+    # deadlock, freezing real-time updates. This system info only feeds the
+    # settings display, so skip the subprocess calls there.
+    return odoo.evented
+
+
 def _get_output(cmd):
+    # Use assert to force developers to
+    # take correct action when developing
+    # but running `python -O` removes it completely
+    assert (
+        not skip_subprocess()
+    ), "Subprocess must not be called, use skip_subprocess in a pre-check"
     bindir = config["root_path"]
     p = subprocess.Popen(
         cmd, shell=True, cwd=bindir, stdout=subprocess.PIPE, stderr=subprocess.STDOUT
@@ -20,6 +34,9 @@ def _get_output(cmd):
 
 
 def get_server_environment():
+    # Function relies mainly on subprocesses
+    if skip_subprocess():
+        return ()
     # inspired by server/bin/service/web_services.py
     try:
         rev_id = "git:%s" % _get_output("git rev-parse HEAD")
