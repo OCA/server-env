@@ -314,7 +314,7 @@ class ServerEnvMixin(models.AbstractModel):
             for elem in view_arch.findall(field_xpath % field):
                 # set env-computed fields to readonly if the configuration
                 # files have a key set for this field
-                elem.set("readonly", "not is_editable_field")
+                elem.set("readonly", f"not {is_editable_field}")
             if not view_arch.findall(field_xpath % is_editable_field):
                 # add the _is_editable fields in the view for the 'attrs'
                 # domain
@@ -323,16 +323,11 @@ class ServerEnvMixin(models.AbstractModel):
                 )
         return view_arch
 
-    def _fields_view_get(
-        self, view_id=None, view_type="form", toolbar=False, submenu=False
-    ):
-        view_data = super()._fields_view_get(
-            view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu
-        )
-        view_arch = etree.fromstring(view_data["arch"].encode("utf-8"))
-        view_arch = self._server_env_view_set_readonly(view_arch)
-        view_data["arch"] = etree.tostring(view_arch, encoding="unicode")
-        return view_data
+    @api.model
+    def _get_view(self, view_id=None, view_type="form", **options):
+        arch, view = super()._get_view(view_id, view_type, **options)
+        arch = self._server_env_view_set_readonly(arch)
+        return arch, view
 
     def _server_env_default_fieldname(self, base_field_name):
         """Return the name of the field with default value"""
