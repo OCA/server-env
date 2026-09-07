@@ -10,4 +10,5 @@
     "license": "AGPL-3",
     "website": "https://github.com/OCA/server-env",
     "depends": ["mail", "server_environment"],
+    "uninstall_hook": "uninstall_hook",
 }
