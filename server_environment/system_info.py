@@ -3,6 +3,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html)
 
 import locale
+import logging
 import os
 import platform
 import subprocess
@@ -11,6 +12,8 @@ from functools import lru_cache
 import odoo
 from odoo import release
 from odoo.tools.config import config
+
+_logger = logging.getLogger(__name__)
 
 
 def skip_subprocess():
@@ -51,10 +54,12 @@ def get_server_environment():
     os_lang = ".".join([x for x in locale.getlocale() if x])
     if not os_lang:
         os_lang = "NOT SET"
+    lsbinfo = "not lsb compliant"
     if os.name == "posix" and platform.system() == "Linux":
-        lsbinfo = _get_output("lsb_release -a")
-    else:
-        lsbinfo = "not lsb compliant"
+        try:
+            lsbinfo = _get_output("lsb_release -a")
+        except Exception:
+            _logger.info("lsb_release not compliant")
     return (
         ("platform", platform.platform()),
         ("os.name", os.name),
