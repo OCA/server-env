@@ -442,6 +442,13 @@ class ServerEnvMixin(models.AbstractModel):
 
         This method forces to 'persist' these values if they are not
         explicitly overridden by the current environment configuration.
+
+        Note: if a field is already server-env managed (ie it already has a
+        value stored in its ``<field>_env_default`` companion field, for
+        instance because the mixin was already applied to it by another
+        module before), its raw column may only contain stale data from
+        before it became a non-stored field. In that case, we must not
+        overwrite the existing (up to date) default value with it.
         """
         self.env.cr.execute(f"SELECT * FROM {self._table}")
         for row in self.env.cr.dictfetchall():
@@ -453,6 +460,15 @@ class ServerEnvMixin(models.AbstractModel):
             if record:
                 record_values = {}
                 for field_name in field_name_list:
-                    if field_name in row:
-                        record_values[field_name] = row[field_name]
-                record.update(record_values)
+                    if field_name not in row:
+                        continue
+                    default_field = self._server_env_default_fieldname(field_name)
+                    if default_field and record[default_field]:
+                        # A value is already preserved for this field
+                        # (eg. set by a previous server-env managed version
+                        # of the field): keep it, do not clobber it with the
+                        # (possibly stale) raw column value.
+                        continue
+                    record_values[field_name] = row[field_name]
+                if record_values:
+                    record.update(record_values)
