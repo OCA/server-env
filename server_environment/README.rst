@@ -100,12 +100,12 @@ You can edit the settings you need in the ``server_environment_files``
 addon. The ``server_environment_files_sample`` can be used as an
 example:
 
-- values common to all / most environments can be stored in the
-  ``default/`` directory using the .ini file syntax;
-- each environment you need to define is stored in its own directory and
-  can override or extend default values;
-- you can override or extend values in the main configuration file of
-  your instance;
+-  values common to all / most environments can be stored in the
+   ``default/`` directory using the .ini file syntax;
+-  each environment you need to define is stored in its own directory
+   and can override or extend default values;
+-  you can override or extend values in the main configuration file of
+   your instance;
 
 Environment variable
 --------------------
@@ -382,13 +382,13 @@ server-environment features for those who install the glue addon.
 Known issues / Roadmap
 ======================
 
-- it is not possible to set the environment from the command line. A
-  configuration file must be used.
-- the module does not allow to set low level attributes such as database
-  server, etc.
-- server.env.techname.mixin's tech_name field could leverage the new
-  option for computable / writable fields and get rid of some onchange /
-  read / write code.
+-  it is not possible to set the environment from the command line. A
+   configuration file must be used.
+-  the module does not allow to set low level attributes such as
+   database server, etc.
+-  server.env.techname.mixin's tech_name field could leverage the new
+   option for computable / writable fields and get rid of some onchange
+   / read / write code.
 
 Bug Tracker
 ===========
@@ -411,18 +411,18 @@ Authors
 Contributors
 ------------
 
-- Florent Xicluna (Wingo) <florent.xicluna@gmail.com>
-- Nicolas Bessi <nicolas.bessi@camptocamp.com>
-- Alexandre Fayolle <alexandre.fayolle@camptocamp.com>
-- Daniel Reis <dgreis@sapo.pt>
-- Holger Brunn <hbrunn@therp.nl>
-- Leonardo Pistone <leonardo.pistone@camptocamp.com>
-- Adrien Peiffer <adrien.peiffer@acsone.com>
-- Thierry Ducrest <thierry.ducrest@camptocamp.com>
-- Guewen Baconnier <guewen.baconnier@camptocamp.com>
-- Thomas Binfeld <thomas.binsfeld@acsone.eu>
-- Stéphane Bidoul <stefane.bidoul@acsone.com>
-- Simone Orsi <simahawk@gmail.com>
+-  Florent Xicluna (Wingo) <florent.xicluna@gmail.com>
+-  Nicolas Bessi <nicolas.bessi@camptocamp.com>
+-  Alexandre Fayolle <alexandre.fayolle@camptocamp.com>
+-  Daniel Reis <dgreis@sapo.pt>
+-  Holger Brunn <hbrunn@therp.nl>
+-  Leonardo Pistone <leonardo.pistone@camptocamp.com>
+-  Adrien Peiffer <adrien.peiffer@acsone.com>
+-  Thierry Ducrest <thierry.ducrest@camptocamp.com>
+-  Guewen Baconnier <guewen.baconnier@camptocamp.com>
+-  Thomas Binfeld <thomas.binsfeld@acsone.eu>
+-  Stéphane Bidoul <stefane.bidoul@acsone.com>
+-  Simone Orsi <simahawk@gmail.com>
 
 Maintainers
 -----------
