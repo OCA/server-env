@@ -1,8 +1,6 @@
 # Copyright 2026 Camptocamp SA
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html)
 
-from odoo_test_helper import FakeModelLoader
-
 from . import common
 
 
@@ -10,6 +8,9 @@ class TestPreserveNotEnvManagedData(common.ServerEnvironmentCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        # Avoid import errors by other repos depending on server env test classes
+        from odoo_test_helper import FakeModelLoader
+
         cls.loader = FakeModelLoader(cls.env, cls.__module__)
         cls.loader.backup_registry()
         cls._origin_fields = {}
