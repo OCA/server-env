@@ -423,3 +423,47 @@ class ServerEnvMixin(models.AbstractModel):
             self._server_env_transform_field_to_read_from_env(field)
             self._server_env_add_is_editable_field(field)
         return super()._post_model_setup__()
+
+    @api.model
+    def _preserve_not_env_managed_data(self, field_name_list):
+        """
+        Helper function typically used for hooks and migration scripts.
+        Restores database values for fields transitioning to 'server env managed'.
+
+        When a field is defined as managed by the server environment, Odoo
+        ignores the value stored in the database, prioritizing the environment
+        configuration instead. If no environment configuration exists, the field
+        may effectively lose its previous value.
+
+        This method forces to 'persist' these values if they are not
+        explicitly overridden by the current environment configuration.
+
+        Note: if a field is already server-env managed (ie it already has a
+        value stored in its ``<field>_env_default`` companion field, for
+        instance because the mixin was already applied to it by another
+        module before), its raw column may only contain stale data from
+        before it became a non-stored field. In that case, we must not
+        overwrite the existing (up to date) default value with it.
+        """
+        self.env.cr.execute(f"SELECT * FROM {self._table}")
+        for row in self.env.cr.dictfetchall():
+            record = (
+                self.env[self._name]
+                .with_context(active_test=False)
+                .search([("id", "=", row["id"])])
+            )
+            if record:
+                record_values = {}
+                for field_name in field_name_list:
+                    if field_name not in row:
+                        continue
+                    default_field = self._server_env_default_fieldname(field_name)
+                    if default_field and record[default_field]:
+                        # A value is already preserved for this field
+                        # (eg. set by a previous server-env managed version
+                        # of the field): keep it, do not clobber it with the
+                        # (possibly stale) raw column value.
+                        continue
+                    record_values[field_name] = row[field_name]
+                if record_values:
+                    record.update(record_values)
