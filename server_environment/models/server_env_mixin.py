@@ -277,6 +277,14 @@ class ServerEnvMixin(models.AbstractModel):
                 else:
                     record._compute_server_env_from_default(field_name, options)
 
+    def _search_server_env(self, field_name, operator, value):
+        # env-computed fields are not stored, so we can't search them in SQL.
+        # Load all records and filter them in memory instead. These config
+        # models hold very few records, so the full scan is acceptable.
+        all_records = self.search([])  # pylint: disable=no-search-all
+        matched = all_records.filtered_domain([(field_name, operator, value)])
+        return [("id", "in", matched.ids)]
+
     def _inverse_server_env(self, field_name):
         options = self._server_env_fields[field_name]
         default_field = self._server_env_default_fieldname(field_name)
@@ -358,6 +366,16 @@ class ServerEnvMixin(models.AbstractModel):
         )
         setattr(type(self), inverse_method_name, inverse_method)
         field.inverse = inverse_method_name
+
+        search_method_name = f"_search_server_env_{field.name}"
+        search_method = _partialmethod(
+            type(self)._search_server_env,
+            field.name,
+            __name__=search_method_name,
+        )
+        setattr(type(self), search_method_name, search_method)
+        field.search = search_method_name
+
         field.store = False
         field.required = False
         field.copy = False
