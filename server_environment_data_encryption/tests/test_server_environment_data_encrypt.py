@@ -46,6 +46,24 @@ class TestServerEnvDataEncrypted(CommonDataEncrypted):
         self.assertEqual(partner.with_context(environment="test").city, "test city")
         self.assertEqual(partner.with_context(environment="prod").city, "prod city")
 
+    def test_constraint_reads_sibling_env_field(self):
+        """Writing an env field must not corrupt the cache of sibling env
+        fields read by a constraint in the same transaction.
+
+        Regression test: after a cache clear followed by a re-read (what the
+        web client does before saving a form), writing ``street`` used to leave
+        ``street2`` stale, so the constraint raised although ``street2`` was set.
+        """
+        from odoo.tests import Form
+
+        partner = self.env["res.partner"].create({"name": "Fake name"})
+        partner.write({"street": "Test street", "street2": "Test street2"})
+        # Simulate the web client save: clear the cache and re-read the record
+        # before writing, as odoo.tests.Form does.
+        with Form(partner) as form:
+            form.street = "New street"
+        self.assertEqual(partner.street2, "Test street2")
+
     def test_view_with_env_update(self):
         self.maxDiff = None
         # common class already set test environment (as default)

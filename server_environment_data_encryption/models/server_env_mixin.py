@@ -74,6 +74,27 @@ class ServerEnvMixin(models.AbstractModel):
                 encrypted_data_obj._encrypted_store_json(
                     encrypted_data_name, values, env=env
                 )
+                # The env fields are non-stored computed fields with no field
+                # dependency on the storage. Their cache is therefore not
+                # updated when we store here: refresh the *sibling* fields from
+                # the values we just wrote, so that a constraint validating a
+                # sibling field (e.g. microsoft_outlook reading smtp_encryption
+                # while saving smtp_authentication) sees the current values.
+                # The written field is left untouched so later inverses of the
+                # same write still read its freshly-assigned value.
+                record._update_cache(
+                    {
+                        name: value
+                        for name, value in values.items()
+                        if (
+                            name in record._fields
+                            and name != field_name
+                            and not record.env.cache.contains(
+                                record, record._fields[name]
+                            )
+                        )
+                    }
+                )
 
     def action_change_env_data_encrypted_fields(self):
         action_id = self.env.context.get("params", {}).get("action")
