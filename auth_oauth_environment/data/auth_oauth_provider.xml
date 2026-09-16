@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="auth_oauth.provider_openerp" model="auth.oauth.provider">
+        <field name="tech_name">provider_openerp</field>
+    </record>
+    <record id="auth_oauth.provider_facebook" model="auth.oauth.provider">
+        <field name="tech_name">provider_facebook</field>
+    </record>
+    <record id="auth_oauth.provider_google" model="auth.oauth.provider">
+        <field name="tech_name">provider_google</field>
+    </record>
+</odoo>
