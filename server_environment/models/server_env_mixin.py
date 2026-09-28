@@ -1,6 +1,7 @@
 # Copyright 2018 Camptocamp (https://www.camptocamp.com).
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html)
 
+import json
 import logging
 from functools import partialmethod
 
@@ -445,6 +446,7 @@ class ServerEnvMixin(models.AbstractModel):
         before it became a non-stored field. In that case, we must not
         overwrite the existing (up to date) default value with it.
         """
+        self.flush_model(["server_env_defaults"])
         self.env.cr.execute(f"SELECT * FROM {self._table}")
         for row in self.env.cr.dictfetchall():
             record = (
@@ -454,11 +456,16 @@ class ServerEnvMixin(models.AbstractModel):
             )
             if record:
                 record_values = {}
+                # Read the already preserved defaults from the raw JSON column
+                # rather than through the ORM: a selection value may belong to
+                # a module that is not loaded yet at migration time (e.g.
+                # 'outlook' from microsoft_outlook), which the ORM rejects.
+                env_defaults = json.loads(row.get("server_env_defaults") or "{}")
                 for field_name in field_name_list:
                     if field_name not in row:
                         continue
                     default_field = self._server_env_default_fieldname(field_name)
-                    if default_field and record[default_field]:
+                    if default_field and env_defaults.get(default_field):
                         # A value is already preserved for this field
                         # (eg. set by a previous server-env managed version
                         # of the field): keep it, do not clobber it with the
