@@ -292,6 +292,32 @@ class ServerEnvMixin(models.AbstractModel):
                     getattr(record, options["inverse_default"])()
                 elif default_field:
                     record[default_field] = record[field_name]
+        self._server_env_cache_sibling_fields(field_name)
+
+    def _server_env_cache_sibling_fields(self, field_name):
+        """Put the env-computed siblings of ``field_name`` in cache
+
+        Env-computed fields share ``_compute_server_env`` and have no field
+        dependency: while one of them is written, the ORM protects all of
+        them against recomputation, and reading one that is not in cache
+        (e.g. from a constraint validating the write) returns an empty value
+        instead of computing it. Compute the missing ones from the
+        configuration or their default value. Fields already in cache are
+        left untouched so a multi-field write keeps its new values.
+        """
+        siblings = [
+            self._fields[name] for name in self._server_env_fields if name != field_name
+        ]
+        with self.env.protecting(siblings, self):
+            for record in self:
+                for field in siblings:
+                    if field.name in record._cache:
+                        continue
+                    options = self._server_env_fields[field.name]
+                    if record._server_env_has_key_defined(field.name):
+                        record._compute_server_env_from_config(field.name, options)
+                    else:
+                        record._compute_server_env_from_default(field.name, options)
 
     def _compute_server_env_is_editable(self):
         """Compute <field>_is_editable values
