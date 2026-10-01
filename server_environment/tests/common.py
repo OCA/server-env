@@ -56,8 +56,12 @@ class ServerEnvironmentCase(common.TransactionCase):
                 parser = server_env._load_config()
                 serv_config_class.serv_config = parser
                 server_env.serv_config = parser
+                # env-computed fields have no dependency to invalidate them
+                # when the configuration changes
+                self.env.invalidate_all()
                 yield
 
         finally:
             serv_config_class.serv_config = original_serv_config
             server_env.serv_config = original_serv_config
+            self.env.invalidate_all()

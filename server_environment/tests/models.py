@@ -1,4 +1,5 @@
 from odoo import api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class ExternalService(models.Model):
@@ -31,6 +32,14 @@ class ExternalService(models.Model):
                 "inverse_default": "_inverse_password",
             },
         }
+
+    @api.constrains("host")
+    def _check_user_when_host(self):
+        """Read a sibling env field (``user``) while another one (``host``)
+        is written."""
+        for record in self:
+            if record.host and not record.user:
+                raise ValidationError(self.env._("A user is required with a host."))
 
     def _compute_password(self):
         for record in self:
