@@ -48,10 +48,8 @@ class TestEnv(ServerEnvironmentCase):
             # read so it's created in db
             value = self.ICP.get_param("ircp_from_config")
             self.assertEqual(value, "config_value")
-            # now it's in db
-            res = self.ICP.search([("key", "=", "ircp_from_config")])
-            self.assertEqual(len(res), 1)
-            self.assertEqual(res.value, "config_value")
+            # It should not be saved in db
+            self.assertFalse(self.ICP.search([("key", "=", "ircp_from_config")]))
 
     def test_set_param_1(self):
         """We can't set parameters that are in config file"""
@@ -74,11 +72,11 @@ class TestEnv(ServerEnvironmentCase):
             res.unlink()
             res = self.ICP.search([("key", "=", "ircp_from_config")])
             self.assertEqual(len(res), 0)
-            # but the value is recreated when getting param again
+            # but the value should not be recreated when getting param again
             value = self.ICP.get_param("ircp_from_config")
             self.assertEqual(value, "config_value")
-            res = self.ICP.search([("key", "=", "ircp_from_config")])
-            self.assertEqual(len(res), 1)
+            # It should not be saved in db
+            self.assertFalse(self.ICP.search([("key", "=", "ircp_from_config")]))
 
     def test_set_param_2(self):
         """We can set parameters that are not in config file"""
@@ -120,18 +118,17 @@ class TestEnv(ServerEnvironmentCase):
         ):
             value = self.ICP.get_param("mail.catchall.alias")
             self.assertEqual(value, "my_alias")
-            res = self.ICP.search([("key", "=", "mail.catchall.alias")])
-            self.assertEqual(len(res), 1)
-            self.assertEqual(res.value, "my_alias")
+            # It should not be saved in db
+            self.assertFalse(self.ICP.search([("key", "=", "mail.catchall.alias")]))
 
     def test_write(self):
         # there's a write override, test it here
-        self._load_xml(
-            "server_environment_ir_config_parameter", "tests/config_param_test.xml"
-        )
         with self.load_config(
             public=self.env_config, serv_config_class=ir_config_parameter
         ):
+            self._load_xml(
+                "server_environment_ir_config_parameter", "tests/config_param_test.xml"
+            )
             ICP = self.ICP
             icp1 = ICP.search([("key", "=", "ircp_from_config")])
             self.assertEqual(icp1.value, "value_from_xml")
@@ -139,8 +136,8 @@ class TestEnv(ServerEnvironmentCase):
             self.assertEqual(icp2.value, "other_value_from_xml")
             # Ensures that each record has its own value at write
             (icp1 | icp2).write({"value": "test"})
-            self.assertEqual(icp1.value, "config_value")
-            self.assertEqual(icp2.value, "other_config_value")
+            self.assertEqual(icp1.value, "test")
+            self.assertEqual(icp2.value, "test")
             self.assertEqual(ICP.get_param(icp1.key), "config_value")
             self.assertEqual(ICP.get_param(icp2.key), "other_config_value")
 
@@ -165,5 +162,5 @@ class TestEnv(ServerEnvironmentCase):
             # Ensures each record has its own value at create
             self.assertEqual(
                 records.mapped("value"),
-                ["config_value_without_record", "other_config_value_without_record"],
+                ["NOPE", "NOPE"],
             )

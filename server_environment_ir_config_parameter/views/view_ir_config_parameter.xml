@@ -12,6 +12,9 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
             <field name="value" position="after">
                 <field name="is_environment" />
             </field>
+            <field name="value" position="attributes">
+                <attribute name="invisible">is_environment</attribute>
+            </field>
         </field>
     </record>
 
@@ -27,6 +30,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
             </field>
             <field name="value" position="attributes">
                 <attribute name="readonly">is_environment</attribute>
+                <attribute name="invisible">is_environment</attribute>
             </field>
         </field>
     </record>
