@@ -1,0 +1,1 @@
+odoo-addon-server_environment @ git+https://github.com/OCA/server-env.git@refs/pull/307/head#subdirectory=server_environment
