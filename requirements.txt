@@ -1,3 +1,4 @@
 # generated from manifests external_dependencies
 cryptography==3.4.8; python_version < '3.12'
 cryptography==42.0.8 ; python_version >= '3.12'
+odoo-test-helper
