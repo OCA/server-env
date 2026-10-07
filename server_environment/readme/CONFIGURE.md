@@ -106,3 +106,22 @@ Note: empty environment keys always take precedence over default fields
 Read the documentation of the class
 [models/server_env_mixin.py](models/server_env_mixin.py) and [models/server_env_tech_name_mixin.py]
 (models/server_env_tech_name_mixin.py)
+
+## ConfigParser interpolation
+
+By default, ConfigParser interpolation is enabled to preserve compatibility
+
+It can be disabled:
+
+::
+
+   [options]
+   server_environment_config_interpolation = False
+
+Or with the environment variable:
+
+::
+
+   export SERVER_ENV_CONFIG_INTERPOLATION=False
+
+When enabled, standard Python ``configparser`` interpolation rules apply.
