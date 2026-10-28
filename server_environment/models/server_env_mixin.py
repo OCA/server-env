@@ -270,8 +270,12 @@ class ServerEnvMixin(models.AbstractModel):
         If an env-computed field has no key in configuration files,
         read from the ``<field>_env_default`` field from database.
         """
+        self._server_env_compute_fields(self._server_env_fields)
+
+    def _server_env_compute_fields(self, field_names):
         for record in self:
-            for field_name, options in self._server_env_fields.items():
+            for field_name in field_names:
+                options = self._server_env_fields[field_name]
                 if record._server_env_has_key_defined(field_name):
                     record._compute_server_env_from_config(field_name, options)
 
@@ -292,6 +296,33 @@ class ServerEnvMixin(models.AbstractModel):
                     getattr(record, options["inverse_default"])()
                 elif default_field:
                     record[default_field] = record[field_name]
+
+    def _validate_fields(self, field_names, excluded_names=()):
+        """Put the protected env-computed fields in cache before constraints
+
+        Env-computed fields share ``_compute_server_env`` and have no field
+        dependency: while one of them is written, the ORM protects all of
+        them against recomputation, and a constraint reading one that is not
+        in cache gets an empty value instead of computing it.
+
+        The fields being written are skipped: if they were evicted from
+        cache, the ORM writes them again before inversing them, and filling
+        them from the configuration or stored defaults would hide that and
+        lose their new values. For the same reason, this is not done in the
+        inverse, which runs while other written fields await theirs.
+        """
+        field_names = set(field_names)
+        if self._constraint_methods:
+            for record in self:
+                missing = [
+                    name
+                    for name in self._server_env_fields
+                    if name not in field_names
+                    and name not in record._cache
+                    and self.env.is_protected(self._fields[name], record)
+                ]
+                record._server_env_compute_fields(missing)
+        return super()._validate_fields(field_names, excluded_names)
 
     def _compute_server_env_is_editable(self):
         """Compute <field>_is_editable values
