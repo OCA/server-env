@@ -352,8 +352,6 @@ class ServerEnvMixin(models.AbstractModel):
 
     def _server_env_transform_field_to_read_from_env(self, field):
         """Transform the original field in a computed field"""
-        field.compute = "_compute_server_env"
-
         inverse_method_name = f"_inverse_server_env_{field.name}"
         inverse_method = _partialmethod(
             type(self)._inverse_server_env, field.name, __name__=inverse_method_name
@@ -361,12 +359,19 @@ class ServerEnvMixin(models.AbstractModel):
         # Mute message related to new safeguard (PR odoo/odoo#247151)
         with mute_logger("odoo.tests.common"):
             setattr(type(self), inverse_method_name, inverse_method)
-        field.inverse = inverse_method_name
-        field.store = False
-        field.required = False
-        field.copy = False
-        field.sparse = None
-        field.prefetch = False
+        field_args = dict(field.args or {})
+        field_args.pop("_sequence", None)
+        field_args.update(
+            compute="_compute_server_env",
+            inverse=inverse_method_name,
+            store=False,
+            required=False,
+            copy=False,
+            sparse=None,
+            prefetch=False,
+        )
+        new_field = type(field)(**field_args)
+        self._add_field(field.name, new_field)
 
     def _server_env_add_is_editable_field(self, base_field):
         """Add a field indicating if we can edit the env-computed fields
