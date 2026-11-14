@@ -382,7 +382,7 @@ configuration file, and the values for the various possible environments
 are stored in the <tt class="docutils literal">server_environment_files</tt> companion module.</p>
 <p>The <tt class="docutils literal">server_environment_files</tt> module is optional, the values can be
 set using an environment variable with a fallback on default values in
-the database.</p>
+the database. you will be able to overwrite some odoo options.</p>
 <p>The configuration read from the files are visible under the
 Configuration menu. If you are not in the ‘dev’ environment you will not
 be able to see the values contained in the defined secret keys (by
@@ -459,6 +459,13 @@ example:</p>
 can override or extend default values;</li>
 <li>you can override or extend values in the main configuration file of
 your instance;</li>
+<li>In some platforms (like odoo.sh where production config file is copied
+to staging) it can be useful to overwrite options written in the
+<tt class="docutils literal">[options]</tt> section. You must allow the override by adding
+<tt class="docutils literal">server_environment_allow_overwrite_options_section = True</tt> to the
+former <tt class="docutils literal">odoo.cfg</tt> config file or through the environment variable:
+<tt class="docutils literal">export SERVER_ENVIRONMENT_ALLOW_OVERWRITE_OPTIONS_SECTION=True</tt> (if
+both are set config file takes precedence).</li>
 </ul>
 </div>
 <div class="section" id="environment-variable">

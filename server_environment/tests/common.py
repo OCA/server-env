@@ -48,6 +48,7 @@ class ServerEnvironmentCase(common.TransactionCase):
         serv_config_class=server_env_mixin,
     ):
         original_serv_config = serv_config_class.serv_config
+        original_fields = dir(server_env.ServerConfiguration)
         try:
             with (
                 self.set_config_dir(config_dir),
@@ -61,3 +62,7 @@ class ServerEnvironmentCase(common.TransactionCase):
         finally:
             serv_config_class.serv_config = original_serv_config
             server_env.serv_config = original_serv_config
+            for attr, fld in vars(server_env.ServerConfiguration).items():
+                if attr not in original_fields:
+                    server_env.ServerConfiguration._field_definitions.remove(fld)
+                    delattr(self.env["server.config"].__class__, attr)
