@@ -1,4 +1,5 @@
 from odoo import api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class ExternalService(models.Model):
@@ -31,6 +32,17 @@ class ExternalService(models.Model):
                 "inverse_default": "_inverse_password",
             },
         }
+
+    # Reads sibling env fields (``user``, ``password``) while another one
+    # (``host``) is written. Tests creating or writing a ``host`` must
+    # provide a ``user`` as well.
+    @api.constrains("host")
+    def _check_credentials_when_host(self):
+        for record in self:
+            if record.host and not (record.user and record.password):
+                raise ValidationError(
+                    self.env._("A user and a password are required with a host.")
+                )
 
     def _compute_password(self):
         for record in self:
