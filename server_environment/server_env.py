@@ -209,6 +209,10 @@ class ServerConfiguration(models.TransientModel):
         return system_base_config["running_env"] in ("dev",)
 
     @classmethod
+    def _format_field_name(cls, key):
+        return key.replace(".", "_").replace("%", "%25").replace(" ", "%20")
+
+    @classmethod
     def _format_key_display_name(cls, key_name):
         return key_name.replace("_I_", " | ")
 
@@ -221,9 +225,9 @@ class ServerConfiguration(models.TransientModel):
             list(cls._get_system_cols().items()),
         )
         for col, value in cols:
-            col_name = col.replace(".", "_")
+            col_name = cls._format_field_name(col)
             tmp_field = fields.Char(
-                string=cls._format_key_display_name(col_name),
+                string=cls._format_key_display_name(col.replace(".", "_")),
                 sparse="config",
                 readonly=True,
             )
@@ -271,7 +275,7 @@ class ServerConfiguration(models.TransientModel):
         names = []
 
         for key in sorted(items):
-            names.append(key.replace(".", "_"))
+            names.append(cls._format_field_name(key))
         return (
             '<group col="2" colspan="4">'
             + "".join(

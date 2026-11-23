@@ -29,6 +29,30 @@ class TestEnv(common.ServerEnvironmentCase):
         view = model.get_view()
         self.assertTrue(view)
 
+    def test_section_name_with_spaces(self):
+        config = "[outgoing_mail.test mail]\nsmtp_host = smtp.example.com\n"
+        config += "[outgoing_mail.test%20mail]\nsmtp_host = literal.example.com\n"
+        expected = {
+            "outgoing_mail_test%20mail_I_smtp_host": "smtp.example.com",
+            "outgoing_mail_test%2520mail_I_smtp_host": "literal.example.com",
+        }
+        model = self.env["server.config"]
+        preserve_defaults = patch.dict(model._conf_defaults)
+        preserve_arch = patch.object(type(model), "_arch", model._arch)
+        with self.load_config(public=config), preserve_defaults, preserve_arch:
+            model._add_columns()
+            model._build_osv()
+            self.env.registry.setup_models(self.env.cr)
+            context = {"module": "server_environment"}
+            self.env.registry.init_models(self.env.cr, [model._name], context, False)
+
+            self.assertEqual(model.default_get(list(expected)), expected)
+            view_fields = set(model._arch.xpath("//field/@name"))
+            for name in expected:
+                self.assertIn(name, view_fields)
+                field = self.env.ref(f"server_environment.field_server_config__{name}")
+                self.assertEqual(field.name, name)
+
     def _test_default(self, hidden_pwd=False):
         model = self.env["server.config"]
         rec = model.create({})
