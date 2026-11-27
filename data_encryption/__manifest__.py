@@ -12,13 +12,7 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "external_dependencies": {
-        # Use the same pin as Odoo to avoid compatibility issues
-        "python": [
-            "cryptography==3.4.8; python_version < '3.12'",
-            "cryptography==42.0.8 ; python_version >= '3.12'",
-        ]
-    },
+    "external_dependencies": {"python": ["cryptography"]},
     "depends": ["base"],
     "data": ["security/ir.model.access.csv"],
 }
