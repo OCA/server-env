@@ -1,3 +1,7 @@
+.. image:: https://odoo-community.org/readme-banner-image
+   :target: https://odoo-community.org/get-involved?utm_source=readme
+   :alt: Odoo Community Association
+
 ===========================================================
 Mail configuration with server_environment for Google Gmail
 ===========================================================
@@ -13,17 +17,17 @@ Mail configuration with server_environment for Google Gmail
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--env-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-env/tree/18.0/mail_environment_google_gmail
+    :target: https://github.com/OCA/server-env/tree/19.0/mail_environment_google_gmail
     :alt: OCA/server-env
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-env-18-0/server-env-18-0-mail_environment_google_gmail
+    :target: https://translation.odoo-community.org/projects/server-env-19-0/server-env-19-0-mail_environment_google_gmail
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-env&target_branch=18.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-env&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -51,8 +55,7 @@ Example of config file :
    smtp_port = 587
    smtp_user = example@gmail.com
    smtp_encryption = starttls
-   use_google_gmail_service = True
-   google_gmail_authorization_code = YOUR_ACCOUNT_AUTH_CODE
+   smtp_authentication = gmail
    google_gmail_refresh_token = YOUR_REFRESH_TOKEN
 
 These two are global parameters, in core they're configured in General
@@ -63,14 +66,12 @@ Settings:
 - \`YOUR_GMAIL_API_CLIENT_SECRET\`: The client secret of your Google API
   project.
 
-These two are account-specific parameters:
-
-- \`YOUR_ACCOUNT_AUTH_CODE\`: In core, there's a button that opens an
-  URL to generate it.
-- \`YOUR_REFRESH_TOKEN\`: In core, it's generated automatically when the
-  google_gmail_authorization_code is written. It's not shown on the
-  form, but I recommend having Odoo generate it and extract it from
-  there, before setting up the server-env.
+``YOUR_REFRESH_TOKEN`` is account-specific. Connect the Gmail account
+using Odoo's OAuth authentication flow before enabling the environment
+configuration. Retrieve the generated ``google_gmail_refresh_token``
+from the mail server and store it in your secret environment
+configuration. The authorization code is handled by Odoo's callback; it
+is no longer a configurable model field.
 
 Bug Tracker
 ===========
@@ -78,7 +79,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-env/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/server-env/issues/new?body=module:%20mail_environment_google_gmail%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/server-env/issues/new?body=module:%20mail_environment_google_gmail%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -118,6 +119,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-ivantodorovich| 
 
-This module is part of the `OCA/server-env <https://github.com/OCA/server-env/tree/18.0/mail_environment_google_gmail>`_ project on GitHub.
+This module is part of the `OCA/server-env <https://github.com/OCA/server-env/tree/19.0/mail_environment_google_gmail>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

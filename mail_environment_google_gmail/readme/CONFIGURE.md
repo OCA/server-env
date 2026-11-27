@@ -9,8 +9,7 @@ Example of config file :
     smtp_port = 587
     smtp_user = example@gmail.com
     smtp_encryption = starttls
-    use_google_gmail_service = True
-    google_gmail_authorization_code = YOUR_ACCOUNT_AUTH_CODE
+    smtp_authentication = gmail
     google_gmail_refresh_token = YOUR_REFRESH_TOKEN
 
 These two are global parameters, in core they're configured in General
@@ -21,11 +20,8 @@ Settings:
 - \`YOUR_GMAIL_API_CLIENT_SECRET\`: The client secret of your Google API
   project.
 
-These two are account-specific parameters:
-
-- \`YOUR_ACCOUNT_AUTH_CODE\`: In core, there's a button that opens an
-  URL to generate it.
-- \`YOUR_REFRESH_TOKEN\`: In core, it's generated automatically when the
-  google_gmail_authorization_code is written. It's not shown on the
-  form, but I recommend having Odoo generate it and extract it from
-  there, before setting up the server-env.
+`YOUR_REFRESH_TOKEN` is account-specific. Connect the Gmail account using
+Odoo's OAuth authentication flow before enabling the environment configuration.
+Retrieve the generated `google_gmail_refresh_token` from the mail server and
+store it in your secret environment configuration. The authorization code is
+handled by Odoo's callback; it is no longer a configurable model field.
